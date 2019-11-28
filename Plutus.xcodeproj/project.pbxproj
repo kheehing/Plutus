@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */; };
 		5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5197F002238F62D2005BC7F0 /* Main.storyboard */; };
-		5197F007238F62D2005BC7F0 /* Plutus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5197F005238F62D2005BC7F0 /* Plutus.xcdatamodeld */; };
 		5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5197F008238F62D3005BC7F0 /* Assets.xcassets */; };
-		5197F00C238F62D3005BC7F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5197F00A238F62D3005BC7F0 /* LaunchScreen.storyboard */; };
 		5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197F031238F67CA005BC7F0 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,13 +32,11 @@
 
 /* Begin PBXFileReference section */
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		514103D4238F771F006178D0 /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PlutusTests.xctest; path = "/Users/itp312/Desktop/Plutus/build/Debug-iphoneos/PlutusTests.xctest"; sourceTree = "<absolute>"; };
-		514103D5238F771F006178D0 /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PlutusUITests.xctest; path = "/Users/itp312/Desktop/Plutus/build/Debug-iphoneos/PlutusUITests.xctest"; sourceTree = "<absolute>"; };
+		514103D8238F9517006178D0 /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		514103D9238F9517006178D0 /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5197F003238F62D2005BC7F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5197F006238F62D2005BC7F0 /* Plutus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Plutus.xcdatamodel; sourceTree = "<group>"; };
 		5197F008238F62D3005BC7F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5197F00B238F62D3005BC7F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5197F00D238F62D3005BC7F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5197F031238F67CA005BC7F0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,24 +66,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		514103DC238F980A006178D0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5197F031238F67CA005BC7F0 /* LoginViewController.swift */,
+				5197F002238F62D2005BC7F0 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		5197EFF2238F62D2005BC7F0 = {
 			isa = PBXGroup;
 			children = (
 				5197EFFD238F62D2005BC7F0 /* Plutus */,
 				514103D3238F771F006178D0 /* Plutus.app */,
+				514103D8238F9517006178D0 /* PlutusTests.xctest */,
+				514103D9238F9517006178D0 /* PlutusUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
 		5197EFFD238F62D2005BC7F0 /* Plutus */ = {
 			isa = PBXGroup;
 			children = (
+				514103DC238F980A006178D0 /* Main */,
 				5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */,
-				5197F031238F67CA005BC7F0 /* LoginViewController.swift */,
-				5197F002238F62D2005BC7F0 /* Main.storyboard */,
 				5197F008238F62D3005BC7F0 /* Assets.xcassets */,
-				5197F00A238F62D3005BC7F0 /* LaunchScreen.storyboard */,
 				5197F00D238F62D3005BC7F0 /* Info.plist */,
-				5197F005238F62D2005BC7F0 /* Plutus.xcdatamodeld */,
 			);
 			path = Plutus;
 			sourceTree = "<group>";
@@ -127,7 +131,7 @@
 			);
 			name = PlutusTests;
 			productName = PlutusTests;
-			productReference = 514103D4238F771F006178D0 /* PlutusTests.xctest */;
+			productReference = 514103D8238F9517006178D0 /* PlutusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5197F01C238F62D3005BC7F0 /* PlutusUITests */ = {
@@ -145,7 +149,7 @@
 			);
 			name = PlutusUITests;
 			productName = PlutusUITests;
-			productReference = 514103D5238F771F006178D0 /* PlutusUITests.xctest */;
+			productReference = 514103D9238F9517006178D0 /* PlutusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -196,7 +200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5197F00C238F62D3005BC7F0 /* LaunchScreen.storyboard in Resources */,
 				5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */,
 				5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */,
 			);
@@ -225,7 +228,6 @@
 			files = (
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
-				5197F007238F62D2005BC7F0 /* Plutus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,14 +267,6 @@
 				5197F003238F62D2005BC7F0 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5197F00A238F62D3005BC7F0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5197F00B238F62D3005BC7F0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -546,19 +540,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		5197F005238F62D2005BC7F0 /* Plutus.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				5197F006238F62D2005BC7F0 /* Plutus.xcdatamodel */,
-			);
-			currentVersion = 5197F006238F62D2005BC7F0 /* Plutus.xcdatamodel */;
-			path = Plutus.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 5197EFF3238F62D2005BC7F0 /* Project object */;
 }
