@@ -1,0 +1,16 @@
+PODS:
+  - FRHyperLabel (1.0.4)
+
+DEPENDENCIES:
+  - FRHyperLabel
+
+SPEC REPOS:
+  trunk:
+    - FRHyperLabel
+
+SPEC CHECKSUMS:
+  FRHyperLabel: f4a127d5f8ffb211040554615e93f936d5a576a6
+
+PODFILE CHECKSUM: cdcf1400e8ee511019d3b64767fe7fea5826f306
+
+COCOAPODS: 1.8.4
