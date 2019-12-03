@@ -7,58 +7,47 @@
 //
 
 import UIKit
-import FRHyperLabel
+import Hero
 
-class LoginViewController: UIViewController, UIScrollViewDelegate {
+class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var TextField: UITextField!
     @IBOutlet weak var NextButton: UIButton!
-    @IBOutlet weak var agreementLabel: FRHyperLabel!
-    
-    
-    //TextField.delegate = self
+    @IBOutlet weak var agreementLabel: UITextView!
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        agreementLabel.textAlignment = NSTextAlignment.center
         self.setNotificationKeyboard()
+        agreementLabel.isHidden = true
         scrollView.delegate = self
-        // agreementLabel.isHidden = true
-        if #available(iOS 11.0, *){
+        if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
-        }else{
+        } else {
             automaticallyAdjustsScrollViewInsets = false
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let agreementLabelString = "By Clicking Next, you agree to the Plutus Privacy Policy, Plutus Service Agreement & Plutus Terms and Conditions"
-        
-        let agreementLabelAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)]
-        
-        agreementLabel.attributedText = NSAttributedString(
-            string: agreementLabelString,
-            attributes: agreementLabelAttributes)
-        
-        let agreementLabelHalder = {
-            (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
-            let controller = UIAlertController(title: substring, message: nil, preferredStyle: UIAlertController.Style.alert)
-            controller.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-            self.present(controller, animated: true, completion: nil)
+        agreementLabel.delegate = self
+        let attributedString = NSMutableAttributedString(string: "By Clicking Next, you agree to the Plutus Privacy Policy, Plutus Service Agreement & Plutus Terms and Conditions")
+        attributedString.addAttribute(.link, value: "1", range: NSRange(location: 35, length: 21))
+        attributedString.addAttribute(.link, value: "2", range: NSRange(location: 58, length: 24))
+        attributedString.addAttribute(.link, value: "3", range: NSRange(location: 85, length: 27))
+        agreementLabel.attributedText = attributedString
+    }
+    
+    
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if (URL.absoluteString == "1"){
+            let objVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Terms_ConditionsViewController") as! Terms_ConditionsViewController
+            self.navigationController?.pushViewController(objVC, animated: true)
+            return true
+        } else {
+            return false
         }
-        
-        agreementLabel.setLinksForSubstrings(
-            ["Plutus Privacy Policy", "Plutus Service Agreement", "Plutus Terms and Conditions"],
-            withLinkHandler: agreementLabelHalder)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -77,7 +66,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        
+        agreementLabel.isHidden = false
         titleLabel.isHidden = true
         scrollView.isScrollEnabled = false
         self.scrollView.setContentOffset(
@@ -91,7 +80,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func keyboardWillHide(notification:NSNotification){
-        
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
@@ -109,5 +97,5 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         return false
     }
     
-        
+    
 }

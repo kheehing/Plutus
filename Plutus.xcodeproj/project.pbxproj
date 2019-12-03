@@ -11,6 +11,7 @@
 		5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5197F002238F62D2005BC7F0 /* Main.storyboard */; };
 		5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5197F008238F62D3005BC7F0 /* Assets.xcassets */; };
 		5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197F031238F67CA005BC7F0 /* LoginViewController.swift */; };
+		51CDD9BE23961A3100DFEF6B /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CDD9BD23961A3100DFEF6B /* Terms&ConditionsViewController.swift */; };
 		6CC11EFABD9A2890C33B12AE /* Pods_Plutus_PlutusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F0A3AE4C82B7FE41828F61 /* Pods_Plutus_PlutusUITests.framework */; };
 		7DBBAEC5C484F1BA4426E5ED /* Pods_Plutus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFFF28767EFD860DA6DA28 /* Pods_Plutus.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B6D313C45DD86DA1790EBAB8 /* Pods_PlutusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73885A222FE777EAB5A0289 /* Pods_PlutusTests.framework */; };
@@ -40,13 +41,13 @@
 		2955F25C7FB0F951BDC4B618 /* Pods-PlutusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.debug.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5122672B2390CA650021495D /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5122672C2390CA650021495D /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5122672E2390CB760021495D /* Plutus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plutus-Bridging-Header.h"; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5197F003238F62D2005BC7F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5197F008238F62D3005BC7F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5197F00D238F62D3005BC7F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5197F031238F67CA005BC7F0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		51CDD9BD23961A3100DFEF6B /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
 		6408B02D8659F1BCCB737E87 /* Pods-Plutus-PlutusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus-PlutusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7CFFF28767EFD860DA6DA28 /* Pods_Plutus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plutus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15075571F34BCD95B8E243D /* Pods-PlutusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.release.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,9 +96,9 @@
 		514103DC238F980A006178D0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				5197F031238F67CA005BC7F0 /* LoginViewController.swift */,
 				5197F002238F62D2005BC7F0 /* Main.storyboard */,
-				5122672E2390CB760021495D /* Plutus-Bridging-Header.h */,
+				5197F031238F67CA005BC7F0 /* LoginViewController.swift */,
+				51CDD9BD23961A3100DFEF6B /* Terms&ConditionsViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -149,7 +150,7 @@
 				5197EFF7238F62D2005BC7F0 /* Sources */,
 				5197EFF8238F62D2005BC7F0 /* Frameworks */,
 				5197EFF9238F62D2005BC7F0 /* Resources */,
-				B678C90F5A6129142D8A5A28 /* [CP] Embed Pods Frameworks */,
+				1A0BDEFC514AFBF2F89E0256 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,7 +188,7 @@
 				5197F019238F62D3005BC7F0 /* Sources */,
 				5197F01A238F62D3005BC7F0 /* Frameworks */,
 				5197F01B238F62D3005BC7F0 /* Resources */,
-				7D74ADADBA87F5FF4D2A74DB /* [CP] Embed Pods Frameworks */,
+				F3F63C5BD46CC1D7407B2D27 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,21 +271,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7D74ADADBA87F5FF4D2A74DB /* [CP] Embed Pods Frameworks */ = {
+		1A0BDEFC514AFBF2F89E0256 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7EF68B675AB03E4356C9CE04 /* [CP] Check Pods Manifest.lock */ = {
@@ -353,21 +354,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B678C90F5A6129142D8A5A28 /* [CP] Embed Pods Frameworks */ = {
+		F3F63C5BD46CC1D7407B2D27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plutus/Pods-Plutus-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -378,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
+				51CDD9BE23961A3100DFEF6B /* Terms&ConditionsViewController.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

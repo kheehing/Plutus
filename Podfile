@@ -6,7 +6,7 @@ target 'Plutus' do
   use_frameworks!
 
   # Pods for Plutus
-	pod 'FRHyperLabel'
+  pod 'Hero'
 
   target 'PlutusTests' do
     inherit! :search_paths

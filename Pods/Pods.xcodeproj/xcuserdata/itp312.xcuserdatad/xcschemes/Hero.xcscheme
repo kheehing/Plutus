@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1316FE463B64E5BBDB7D6D5AAFED4B28"
-               BuildableName = "FRHyperLabel.framework"
-               BlueprintName = "FRHyperLabel"
+               BlueprintIdentifier = "B3893AEA4D7DBB9A086E889FC469132D"
+               BuildableName = "Hero.framework"
+               BlueprintName = "Hero"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

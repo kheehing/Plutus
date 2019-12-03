@@ -1,16 +1,16 @@
 PODS:
-  - FRHyperLabel (1.0.4)
+  - Hero (1.5.0)
 
 DEPENDENCIES:
-  - FRHyperLabel
+  - Hero
 
 SPEC REPOS:
   trunk:
-    - FRHyperLabel
+    - Hero
 
 SPEC CHECKSUMS:
-  FRHyperLabel: f4a127d5f8ffb211040554615e93f936d5a576a6
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
 
-PODFILE CHECKSUM: cdcf1400e8ee511019d3b64767fe7fea5826f306
+PODFILE CHECKSUM: 0f964aef8f98ba2e5a434ac8139d03cb5d04099a
 
 COCOAPODS: 1.8.4

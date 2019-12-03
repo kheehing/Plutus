@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "FRHyperLabel.h"
 
-FOUNDATION_EXPORT double FRHyperLabelVersionNumber;
-FOUNDATION_EXPORT const unsigned char FRHyperLabelVersionString[];
+FOUNDATION_EXPORT double HeroVersionNumber;
+FOUNDATION_EXPORT const unsigned char HeroVersionString[];
 
