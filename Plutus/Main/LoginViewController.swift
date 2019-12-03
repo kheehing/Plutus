@@ -38,22 +38,35 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         agreementLabel.attributedText = attributedString
     }
     
-    
+    var TcTitle: String = ""
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if (URL.absoluteString == "1"){
-            let objVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Terms_ConditionsViewController") as! Terms_ConditionsViewController
-            self.navigationController?.pushViewController(objVC, animated: true)
+            TcTitle = "Plutus Privacy Policy"
+            self.performSegue(withIdentifier: "toTerms&Conditions", sender: nil)
+            return true
+        } else if (URL.absoluteString == "2"){
+            TcTitle = "Plutus Service Agreement"
+            self.performSegue(withIdentifier: "toTerms&Conditions", sender: nil)
+            return true
+        } else if (URL.absoluteString == "3"){
+            TcTitle = "Plutus Terms and Conditions"
+            self.performSegue(withIdentifier: "toTerms&Conditions", sender: nil)
             return true
         } else {
             return false
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toTerms&Conditions"){
+            let TcVC = segue.destination as! Terms_ConditionsViewController
+            TcVC.titleText = TcTitle
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 { scrollView.contentOffset.x = 0 }
     }
     // Notification when keyboard show
     func setNotificationKeyboard ()  {
@@ -69,23 +82,20 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         agreementLabel.isHidden = false
         titleLabel.isHidden = true
         scrollView.isScrollEnabled = false
-        self.scrollView.setContentOffset(
-            CGPoint(x: 0, y: 200),
-            animated: true)
-        // agreementLabel.isHidden = false
-        var contentInset:UIEdgeInsets = self.scrollView
-            .contentInset
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height
         scrollView.contentInset = contentInset
     }
     
     @objc func keyboardWillHide(notification:NSNotification){
+        titleLabel.isHidden = false
+        agreementLabel.isHidden = true
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Try to find next responder
         // Try to find next responder
         if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()

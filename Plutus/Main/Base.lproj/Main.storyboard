@@ -94,16 +94,17 @@
                         <outlet property="agreementLabel" destination="b9u-hX-0Ba" id="kOI-4P-a9m"/>
                         <outlet property="scrollView" destination="MAd-ga-J2J" id="7cb-gN-b5R"/>
                         <outlet property="titleLabel" destination="qun-oe-DLv" id="t3G-FL-1BV"/>
+                        <segue destination="U6D-Jp-Fhp" kind="presentation" identifier="toTerms&amp;Conditions" modalPresentationStyle="fullScreen" id="n5C-8i-LYI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="138"/>
+            <point key="canvasLocation" x="-77" y="138"/>
         </scene>
         <!--Terms Conditions View Controller-->
         <scene sceneID="FDf-7L-Kp5">
             <objects>
-                <viewController storyboardIdentifier="Terms_ConditionsViewController" id="U6D-Jp-Fhp" customClass="Terms_ConditionsViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Terms_ConditionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U6D-Jp-Fhp" customClass="Terms_ConditionsViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hf0-lY-L7k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,10 +115,23 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oZj-Ey-isF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SQt-cM-nLO" customClass="ter">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMh-um-rBG">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="n71-0y-CeX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQt-cM-nLO">
+                                                <rect key="frame" x="0.0" y="60" width="414" height="698"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Pretium nibh ipsum consequat nisl vel pretium. Mi quis hendrerit dolor magna eget est lorem ipsum. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Risus sed vulputate odio ut enim blandit volutpat. Netus et malesuada fames ac. Risus nec feugiat in fermentum posuere. Justo nec ultrices dui sapien eget mi proin sed. Ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Nibh nisl condimentum id venenatis a. Ac turpis egestas maecenas pharetra convallis posuere morbi. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue.
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Pretium nibh ipsum consequat nisl vel pretium. Mi quis hendrerit dolor magna eget est lorem ipsum. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Risus sed vulputate odio ut enim blandit volutpat. Netus et malesuada fames ac. Risus nec feugiat in fermentum posuere. Justo nec ultrices dui sapien eget mi proin sed. Ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Nibh nisl condimentum id venenatis a. Ac turpis egestas maecenas pharetra convallis posuere morbi. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue.
 
 Lectus urna duis convallis convallis tellus id interdum velit. Ac turpis egestas sed tempus urna et pharetra. A erat nam at lectus. Sed velit dignissim sodales ut eu. In nisl nisi scelerisque eu ultrices. Arcu bibendum at varius vel pharetra vel. Magna fringilla urna porttitor rhoncus dolor purus non enim. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Interdum consectetur libero id faucibus nisl. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Quis lectus nulla at volutpat diam ut venenatis. Id volutpat lacus laoreet non curabitur gravida arcu. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam.
 
@@ -127,7 +141,7 @@ Ac felis donec et odio pellentesque diam volutpat commodo sed. Ut venenatis tell
 
 Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Laoreet id donec ultrices tincidunt arcu non sodales. Elementum nisi quis eleifend quam. Morbi tincidunt augue interdum velit euismod in. Lectus sit amet est placerat. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Non sodales neque sodales ut etiam. Ac tincidunt vitae semper quis lectus. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Lacinia at quis risus sed vulputate odio. Fusce id velit ut tortor pretium viverra. A pellentesque sit amet porttitor eget dolor morbi non arcu. Cum sociis natoque penatibus et magnis dis parturient montes nascetur. Placerat duis ultricies lacus sed turpis. Justo eget magna fermentum iaculis. Eget mauris pharetra et ultrices neque ornare aenean euismod. Urna cursus eget nunc scelerisque. Tellus molestie nunc non blandit massa enim nec.
 
-Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est sit. Urna nunc id cursus metus aliquam eleifend mi. Viverra accumsan in nisl nisi scelerisque. Elit pellentesque habitant morbi tristique senectus et netus et. A pellentesque sit amet porttitor eget dolor morbi non. Neque egestas congue quisque egestas diam in arcu cursus euismod. Eu augue ut lectus arcu bibendum at varius vel. Ut lectus arcu bibendum at varius. Pulvinar etiam non quam lacus suspendisse faucibus. Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Pretium lectus quam id leo. Non enim praesent elementum facilisis leo vel fringilla est. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Ac turpis egestas integer eget. Amet cursus sit amet dictum sit amet justo. Sed blandit libero volutpat sed cras ornare arcu. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus.</mutableString>
+Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est sit. Urna nunc id cursus metus aliquam eleifend mi. Viverra accumsan in nisl nisi scelerisque. Elit pellentesque habitant morbi tristique senectus et netus et. A pellentesque sit amet porttitor eget dolor morbi non. Neque egestas congue quisque egestas diam in arcu cursus euismod. Eu augue ut lectus arcu bibendum at varius vel. Ut lectus arcu bibendum at varius. Pulvinar etiam non quam lacus suspendisse faucibus. Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Pretium lectus quam id leo. Non enim praesent elementum facilisis leo vel fringilla est. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Ac turpis egestas integer eget. Amet cursus sit amet dictum sit amet justo. Sed blandit libero volutpat sed cras ornare arcu. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -137,6 +151,9 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                                     <constraint firstAttribute="height" constant="60" id="RhD-wF-KyU"/>
                                                 </constraints>
                                                 <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="hero_dismissViewController" destination="U6D-Jp-Fhp" eventType="touchUpInside" id="DFB-iv-vCY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -160,13 +177,14 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QMg-Gu-lvg"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZvM-ez-ak7"/>
                     <connections>
-                        <outlet property="PlutusPrivacyPolicy" destination="SQt-cM-nLO" id="whT-2f-DzS"/>
+                        <outlet property="TcTitle" destination="dMh-um-rBG" id="rct-3H-KeS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKs-pe-5Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="794"/>
+            <point key="canvasLocation" x="-693" y="850"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="mkS-OY-87Q">
