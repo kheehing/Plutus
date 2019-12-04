@@ -42,15 +42,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-xL-s6I">
-                                        <rect key="frame" x="320" y="432" width="32" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-xL-s6I">
+                                        <rect key="frame" x="62" y="432" width="290" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="pAe-mC-UBy"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Next"/>
                                         <connections>
-                                            <segue destination="JIP-wE-Z6Y" kind="show" animates="NO" id="944-3M-bml"/>
+                                            <action selector="NextOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2N1-YY-6wz"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="By Clicking Next, you agree to the Plutus Privacy Policy, Plutus Service Agreement &amp; Plutus Terms and Conditions" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b9u-hX-0Ba">
-                                        <rect key="frame" x="87" y="470" width="240" height="100"/>
+                                        <rect key="frame" x="62" y="470" width="290" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="bLr-vj-ko7"/>
@@ -62,9 +67,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="qun-oe-DLv" firstAttribute="centerX" secondItem="MAd-ga-J2J" secondAttribute="centerX" id="50Y-RE-Kum"/>
-                                    <constraint firstItem="b9u-hX-0Ba" firstAttribute="top" secondItem="iPT-xL-s6I" secondAttribute="bottom" constant="8" symbolic="YES" id="FVR-1n-8aa"/>
-                                    <constraint firstItem="b9u-hX-0Ba" firstAttribute="leading" secondItem="MAd-ga-J2J" secondAttribute="leading" constant="87" id="ISv-OW-kqd"/>
-                                    <constraint firstAttribute="bottom" secondItem="iPT-xL-s6I" secondAttribute="bottom" constant="334" id="J3c-f3-kD0"/>
+                                    <constraint firstItem="b9u-hX-0Ba" firstAttribute="top" secondItem="iPT-xL-s6I" secondAttribute="bottom" constant="8" id="FVR-1n-8aa"/>
+                                    <constraint firstItem="b9u-hX-0Ba" firstAttribute="leading" secondItem="MAd-ga-J2J" secondAttribute="leading" constant="62" id="ISv-OW-kqd"/>
+                                    <constraint firstAttribute="bottom" secondItem="iPT-xL-s6I" secondAttribute="bottom" constant="356" id="J3c-f3-kD0"/>
                                     <constraint firstAttribute="trailing" secondItem="qun-oe-DLv" secondAttribute="trailing" constant="32" id="N6a-ih-tgp"/>
                                     <constraint firstItem="qun-oe-DLv" firstAttribute="centerX" secondItem="jun-YD-4eN" secondAttribute="centerX" id="Vjl-Lz-r3m"/>
                                     <constraint firstItem="b9u-hX-0Ba" firstAttribute="centerX" secondItem="jun-YD-4eN" secondAttribute="centerX" id="Vw0-Vx-Gkb"/>
@@ -95,11 +100,12 @@
                         <outlet property="scrollView" destination="MAd-ga-J2J" id="7cb-gN-b5R"/>
                         <outlet property="titleLabel" destination="qun-oe-DLv" id="t3G-FL-1BV"/>
                         <segue destination="U6D-Jp-Fhp" kind="presentation" identifier="toTerms&amp;Conditions" modalPresentationStyle="fullScreen" id="n5C-8i-LYI"/>
+                        <segue destination="JIP-wE-Z6Y" kind="presentation" identifier="toOTP" modalPresentationStyle="fullScreen" id="rWm-ko-amT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-77" y="138"/>
+            <point key="canvasLocation" x="-78.260869565217391" y="137.94642857142856"/>
         </scene>
         <!--Terms Conditions View Controller-->
         <scene sceneID="FDf-7L-Kp5">

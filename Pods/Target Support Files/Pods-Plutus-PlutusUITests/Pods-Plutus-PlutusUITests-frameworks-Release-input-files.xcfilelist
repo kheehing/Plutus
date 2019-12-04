@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
 ${BUILT_PRODUCTS_DIR}/Hero/Hero.framework
+${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

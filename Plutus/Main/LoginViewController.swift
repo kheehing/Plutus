@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Hero
 
 class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -107,5 +106,9 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         return false
     }
     
+    @IBAction func NextOnClick(_ sender: Any) {
+        // check if text box is up if not 'select' it
+        //proceed to OTP with push
+    }
     
 }
