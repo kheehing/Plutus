@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E28A8502398A67400F7DBED /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A84D2398A67400F7DBED /* CustomView.swift */; };
+		0E28A8512398A67400F7DBED /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A84E2398A67400F7DBED /* StringExtension.swift */; };
+		0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */; };
+		0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E28A85D2398A7B700F7DBED /* Budget.storyboard */; };
+		0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */; };
 		5117FB0A23978ED900520011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5117FB0923978ED800520011 /* GoogleService-Info.plist */; };
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
 		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
@@ -39,6 +44,11 @@
 /* Begin PBXFileReference section */
 		05451B9F22DDA319D82DA9C9 /* Pods-Plutus-PlutusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus-PlutusUITests.release.xcconfig"; path = "Target Support Files/Pods-Plutus-PlutusUITests/Pods-Plutus-PlutusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		08F0A3AE4C82B7FE41828F61 /* Pods_Plutus_PlutusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plutus_PlutusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E28A84D2398A67400F7DBED /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		0E28A84E2398A67400F7DBED /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetMainViewController.swift; sourceTree = "<group>"; };
+		0E28A85D2398A7B700F7DBED /* Budget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
+		0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		27D0C5F3B22A2E7139A57F12 /* Pods-Plutus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus.debug.xcconfig"; path = "Target Support Files/Pods-Plutus/Pods-Plutus.debug.xcconfig"; sourceTree = "<group>"; };
 		2955F25C7FB0F951BDC4B618 /* Pods-PlutusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.debug.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5117FB0923978ED800520011 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -87,6 +97,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E28A8532398A73300F7DBED /* Budgeting */ = {
+			isa = PBXGroup;
+			children = (
+				0E28A85D2398A7B700F7DBED /* Budget.storyboard */,
+				0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */,
+				0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */,
+			);
+			path = Budgeting;
+			sourceTree = "<group>";
+		};
 		3A89A49D8EE0D0566BE33A1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +143,9 @@
 		5197EFFD238F62D2005BC7F0 /* Plutus */ = {
 			isa = PBXGroup;
 			children = (
+				0E28A8532398A73300F7DBED /* Budgeting */,
+				0E28A84D2398A67400F7DBED /* CustomView.swift */,
+				0E28A84E2398A67400F7DBED /* StringExtension.swift */,
 				514103DC238F980A006178D0 /* Main */,
 				5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */,
 				5197F008238F62D3005BC7F0 /* Assets.xcassets */,
@@ -258,6 +281,7 @@
 				5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */,
 				5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */,
 				5117FB0A23978ED900520011 /* GoogleService-Info.plist in Resources */,
+				0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,9 +409,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E28A8502398A67400F7DBED /* CustomView.swift in Sources */,
+				0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */,
 				51297C372398A0B6003F913F /* OTPViewController.swift in Sources */,
+				0E28A8512398A67400F7DBED /* StringExtension.swift in Sources */,
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
+				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
 				5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
