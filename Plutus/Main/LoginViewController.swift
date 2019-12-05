@@ -14,8 +14,10 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var TextField: UITextField!
     @IBOutlet weak var NextButton: UIButton!
     @IBOutlet weak var agreementLabel: UITextView!
+    @IBOutlet weak var userNumber: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
+        NextButton.layer.cornerRadius = 5
         agreementLabel.textAlignment = NSTextAlignment.center
         self.setNotificationKeyboard()
         agreementLabel.isHidden = true
@@ -61,6 +63,11 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         if (segue.identifier == "toTerms&Conditions"){
             let TcVC = segue.destination as! Terms_ConditionsViewController
             TcVC.titleText = TcTitle
+        }
+        
+        if (segue.identifier == "toOTPFirstTimeUser"){
+            let ToOTP = segue.destination as! OTPViewController
+            ToOTP.number = TextField.text!
         }
     }
     
@@ -109,6 +116,19 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBAction func NextOnClick(_ sender: Any) {
         // check if text box is up if not 'select' it
         //proceed to OTP with push
+        if !TextField.isFirstResponder{
+            TextField.becomeFirstResponder()
+        } else {
+            if TextField.text?.isEmpty ?? true{
+                self.TextField.layer.borderColor = UIColor.red.cgColor
+                self.TextField.layer.borderWidth = 1
+                self.TextField.layer.cornerRadius = 5
+            } else {
+                self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
+            }
+        }
+        
+        
     }
-    
 }
+

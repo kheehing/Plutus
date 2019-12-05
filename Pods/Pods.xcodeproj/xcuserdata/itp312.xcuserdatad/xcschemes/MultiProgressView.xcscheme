@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6F5AC3C13D45BC6A764365E8CB7DA6E4"
-               BuildableName = "Pods-Plutus.framework"
-               BlueprintName = "Pods-Plutus"
+               BlueprintIdentifier = "B873A6476768FC5172942E3D926EABF2"
+               BuildableName = "MultiProgressView.framework"
+               BlueprintName = "MultiProgressView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

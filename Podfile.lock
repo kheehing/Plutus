@@ -60,6 +60,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.3.2):
     - GoogleUtilities/Logger
   - Hero (1.5.0)
+  - MultiProgressView (1.3.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -69,6 +70,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Hero
+  - MultiProgressView
 
 SPEC REPOS:
   trunk:
@@ -83,6 +85,7 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - Hero
+    - MultiProgressView
     - nanopb
 
 SPEC CHECKSUMS:
@@ -97,8 +100,9 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  MultiProgressView: 65e5bb8181687099ade56d16d85d245a92fafa96
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
 
-PODFILE CHECKSUM: feedbbdfbcd26518aa9dcbad15fb24a6f3836df2
+PODFILE CHECKSUM: f252c13e90ce5653f6ceda9eee5ade1c45a87000
 
 COCOAPODS: 1.8.4

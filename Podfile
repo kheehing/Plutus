@@ -8,6 +8,7 @@ target 'Plutus' do
   # Pods for Plutus
   pod 'Hero'
   pod 'Firebase/Analytics'
+  pod 'MultiProgressView'
 
   target 'PlutusTests' do
     inherit! :search_paths

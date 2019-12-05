@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5117FB0A23978ED900520011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5117FB0923978ED800520011 /* GoogleService-Info.plist */; };
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
+		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
 		5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */; };
 		5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5197F002238F62D2005BC7F0 /* Main.storyboard */; };
 		5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5197F008238F62D3005BC7F0 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		5122672B2390CA650021495D /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5122672C2390CA650021495D /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terms_ConditionsViewController.swift; sourceTree = "<group>"; };
+		51297C362398A0B6003F913F /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5197F003238F62D2005BC7F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				5197F002238F62D2005BC7F0 /* Main.storyboard */,
 				5197F031238F67CA005BC7F0 /* LoginViewController.swift */,
 				5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */,
+				51297C362398A0B6003F913F /* OTPViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51297C372398A0B6003F913F /* OTPViewController.swift in Sources */,
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */,
