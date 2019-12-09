@@ -19,6 +19,11 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var maxLen:Int = 1;
     var number: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textboxOne.becomeFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNumber?.text = number
@@ -27,7 +32,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         textboxThree.delegate = self
         textboxFour.delegate = self
         
-        
+        textboxOne.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        textboxTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        textboxThree.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        textboxFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         // Do any additional setup after loading the view.
     }
     
@@ -38,35 +46,38 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         print("textbox4: \(textboxFour.text!)")
     }
     
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
+    @objc func textFieldDidChange(textField: UITextField){
+        let text = textField.text
+        
+        if text?.utf16.count == 1{
+            switch textField{
+            case textboxOne:
+                textboxTwo.becomeFirstResponder()
+            case textboxTwo:
+                textboxThree.becomeFirstResponder()
+            case textboxThree:
+                textboxFour.becomeFirstResponder()
+            case textboxFour:
+                textboxFour.resignFirstResponder()
+                // check with db
+            default:
+                break
+            }
+        } else {
+            
+        }
+    }
+    
+  
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //disable the cut copy paste for the textbox 1-4
         // delete don't delete two box
         
         if (textField == textboxOne || textField == textboxTwo || textField == textboxThree || textField == textboxFour){
             let currentText = textField.text! + string
-            if (textField == textboxOne && textField.text!.count <= maxLen){
-                textField.text! = string
-                textboxTwo.becomeFirstResponder()
-            } else if (textField == textboxTwo && textField.text!.count <= maxLen){
-                textField.text! = string
-                textboxThree.becomeFirstResponder()
-            } else if (textField == textboxThree && textField.text!.count <= maxLen){
-                textField.text! = string
-                textboxFour.becomeFirstResponder()
-            } else if (textField == textboxFour && textField.text!.count <= maxLen){
-                if textField.text! == "" && string == ""{
-                    textboxThree.becomeFirstResponder()
-                }else {
-                    textField.text! = string
-                    textboxFour.resignFirstResponder()
-                }
-            }
             return currentText.count <= maxLen
         }
         return true;
     }
-    
     
 }

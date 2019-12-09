@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -118,17 +119,14 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         //proceed to OTP with push
         if !TextField.isFirstResponder{
             TextField.becomeFirstResponder()
-        } else {
-            if TextField.text?.isEmpty ?? true{
+        } else if TextField.text?.isEmpty ?? true{
                 self.TextField.layer.borderColor = UIColor.red.cgColor
                 self.TextField.layer.borderWidth = 1
                 self.TextField.layer.cornerRadius = 5
-            } else {
-                self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
-            }
+        } else {
+            
+            self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
         }
-        
-        
     }
 }
 

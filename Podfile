@@ -8,6 +8,8 @@ target 'Plutus' do
   # Pods for Plutus
   pod 'Hero'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'MultiProgressView'
 
   target 'PlutusTests' do
