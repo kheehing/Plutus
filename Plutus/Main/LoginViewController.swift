@@ -17,6 +17,8 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var agreementLabel: UITextView!
     @IBOutlet weak var userNumber: UILabel!
     
+    var VerificationId:String = ""
+    var phoneSignInBool: Bool = true
     override func viewWillAppear(_ animated: Bool) {
         NextButton.layer.cornerRadius = 5
         agreementLabel.textAlignment = NSTextAlignment.center
@@ -69,6 +71,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         if (segue.identifier == "toOTPFirstTimeUser"){
             let ToOTP = segue.destination as! OTPViewController
             ToOTP.number = TextField.text!
+            ToOTP.verificationId = VerificationId
         }
     }
     
@@ -114,6 +117,18 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         return false
     }
     
+    func phoneSignIn(phoneNumber:String){
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationId, error) in
+            if error == nil{
+                print("VERIFICATION ID: ", verificationId!)
+                self.VerificationId = verificationId!
+            } else {
+                print("unable to get secret varification code from fb", error?.localizedDescription as Any)
+                self.phoneSignInBool = false
+            }
+        }
+    }
+    
     @IBAction func NextOnClick(_ sender: Any) {
         // check if text box is up if not 'select' it
         //proceed to OTP with push
@@ -124,8 +139,10 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.TextField.layer.borderWidth = 1
                 self.TextField.layer.cornerRadius = 5
         } else {
+            phoneSignIn(phoneNumber: self.TextField.text!)
+            // async await idk how do this in swift
+            phoneSignInBool ? self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil) : print("phoneSignIn Failed")
             
-            self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
         }
     }
 }

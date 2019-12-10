@@ -18,6 +18,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     
     var maxLen:Int = 1;
     var number: String = ""
+    var verificationId: String = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,7 +37,8 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         textboxTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         textboxThree.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         textboxFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-        // Do any additional setup after loading the view.
+        
+        print("VerificationID: ",verificationId)
     }
     
     @IBAction func resendOnClick(_ sender: Any) {
@@ -66,6 +68,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         } else {
             
         }
+    }
+    
+    func verifyOtp(){
+        
     }
     
   
