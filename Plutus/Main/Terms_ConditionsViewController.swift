@@ -1,11 +1,3 @@
-//
-//  Terms_ConditionsViewController.swift
-//  Plutus
-//
-//  Created by ITP312 on 3/12/19.
-//  Copyright © 2019 NYP. All rights reserved.
-//
-
 import UIKit
 
 class Terms_ConditionsViewController: UIViewController {

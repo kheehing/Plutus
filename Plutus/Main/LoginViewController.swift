@@ -1,11 +1,3 @@
-//
-//  LoginViewController.swift
-//  Plutus
-//
-//  Created by ITP312 on 28/11/19.
-//  Copyright © 2019 NYP. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -17,9 +9,24 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var agreementLabel: UITextView!
     @IBOutlet weak var userNumber: UILabel!
     
-    var VerificationId:String = ""
-    var phoneSignInBool: Bool = true
+    let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+    //let token
+    var TcTitle: String = ""
+    var VerificationIdtoOTP:String = ""
+    var phoneSignInBool: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        if Auth.auth().currentUser != nil {
+            print("toHome")
+            DispatchQueue.main.async() {
+                self.performSegue(withIdentifier: "toHome", sender: nil)
+            }
+        }       
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         NextButton.layer.cornerRadius = 5
         agreementLabel.textAlignment = NSTextAlignment.center
         self.setNotificationKeyboard()
@@ -30,19 +37,15 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         agreementLabel.delegate = self
         let attributedString = NSMutableAttributedString(string: "By Clicking Next, you agree to the Plutus Privacy Policy, Plutus Service Agreement & Plutus Terms and Conditions")
         attributedString.addAttribute(.link, value: "1", range: NSRange(location: 35, length: 21))
         attributedString.addAttribute(.link, value: "2", range: NSRange(location: 58, length: 24))
         attributedString.addAttribute(.link, value: "3", range: NSRange(location: 85, length: 27))
         agreementLabel.attributedText = attributedString
+        
+        
     }
-    
-    var TcTitle: String = ""
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if (URL.absoluteString == "1"){
@@ -67,20 +70,18 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
             let TcVC = segue.destination as! Terms_ConditionsViewController
             TcVC.titleText = TcTitle
         }
-        
         if (segue.identifier == "toOTPFirstTimeUser"){
             let ToOTP = segue.destination as! OTPViewController
             ToOTP.number = TextField.text!
-            ToOTP.verificationId = VerificationId
+            ToOTP.verificationId = VerificationIdtoOTP
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x != 0 { scrollView.contentOffset.x = 0 }
     }
-    // Notification when keyboard show
+    
     func setNotificationKeyboard ()  {
-        // setup keyboard event
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -106,43 +107,50 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Try to find next responder
         if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
         } else {
-            // Not found, so remove keyboard.
             textField.resignFirstResponder()
         }
-        
         return false
     }
     
-    func phoneSignIn(phoneNumber:String){
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationId, error) in
-            if error == nil{
-                print("VERIFICATION ID: ", verificationId!)
-                self.VerificationId = verificationId!
-            } else {
-                print("unable to get secret varification code from fb", error?.localizedDescription as Any)
-                self.phoneSignInBool = false
-            }
-        }
-    }
-    
     @IBAction func NextOnClick(_ sender: Any) {
-        // check if text box is up if not 'select' it
-        //proceed to OTP with push
         if !TextField.isFirstResponder{
             TextField.becomeFirstResponder()
         } else if TextField.text?.isEmpty ?? true{
                 self.TextField.layer.borderColor = UIColor.red.cgColor
                 self.TextField.layer.borderWidth = 1
                 self.TextField.layer.cornerRadius = 5
-        } else {
-            phoneSignIn(phoneNumber: self.TextField.text!)
-            // async await idk how do this in swift
-            phoneSignInBool ? self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil) : print("phoneSignIn Failed")
-            
+        }
+       /* else if (verificationID != nil){
+            print("IF VERIFICATIONID IS NOT NIL: ",verificationID!)
+        } */
+        else {
+            PhoneAuthProvider.provider().verifyPhoneNumber(
+            self.TextField.text!,
+            uiDelegate: nil){ (VerificationId, error) in
+                if let error = error {
+                    print("ERROR: ",error)
+                    print("ERROR DESC: ",error.localizedDescription)
+                    switch error.localizedDescription{
+                        case "Invalid format.":
+                            let alert = UIAlertController(title: "Invalid Phone Number", message: "Please check your phone number and make sure it is a valid number", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+                            self.present(alert, animated: true)
+                        case "We have blocked all requests from this device due to unusual activity. Try again later.":
+                            let alert = UIAlertController(title: "Too Many Request", message: "We have blocked all requests from this device due to unusual activity. Try again later.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+                            self.present(alert, animated: true)
+                    default:
+                        return
+                    }
+                    return
+                }
+                UserDefaults.standard.set(VerificationId, forKey: "authVerificationID")
+                self.VerificationIdtoOTP = VerificationId!
+                self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
+            }
         }
     }
 }
