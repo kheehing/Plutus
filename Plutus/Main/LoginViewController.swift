@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -10,7 +11,8 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var userNumber: UILabel!
     
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
-    //let token
+    let db = Firestore.firestore()
+    
     var TcTitle: String = ""
     var VerificationIdtoOTP:String = ""
     var phoneSignInBool: Bool = false
@@ -123,9 +125,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.TextField.layer.borderWidth = 1
                 self.TextField.layer.cornerRadius = 5
         }
-       /* else if (verificationID != nil){
-            print("IF VERIFICATIONID IS NOT NIL: ",verificationID!)
-        } */
         else {
             PhoneAuthProvider.provider().verifyPhoneNumber(
             self.TextField.text!,
