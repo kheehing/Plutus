@@ -11,8 +11,8 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var userNumber: UILabel!
     
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
-    let db = Firestore.firestore()
     
+    var db: Firestore!
     var TcTitle: String = ""
     var VerificationIdtoOTP:String = ""
     var phoneSignInBool: Bool = false
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
             DispatchQueue.main.async() {
                 self.performSegue(withIdentifier: "toHome", sender: nil)
             }
-        }       
+        }
     }
     
     override func viewDidLoad() {
@@ -45,8 +45,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         attributedString.addAttribute(.link, value: "2", range: NSRange(location: 58, length: 24))
         attributedString.addAttribute(.link, value: "3", range: NSRange(location: 85, length: 27))
         agreementLabel.attributedText = attributedString
-        
-        
+        db = Firestore.firestore()
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
@@ -126,6 +125,19 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.TextField.layer.cornerRadius = 5
         }
         else {
+            db.collection("test").addDocument(data: ["string":"test", "number":123])
+            
+            db.collection("test").whereField("number", isEqualTo: true).getDocuments(){ (QuerySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in QuerySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                }
+            }
+            
+            /*
             PhoneAuthProvider.provider().verifyPhoneNumber(
             self.TextField.text!,
             uiDelegate: nil){ (VerificationId, error) in
@@ -150,6 +162,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.VerificationIdtoOTP = VerificationId!
                 self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
             }
+            */
         }
     }
 }

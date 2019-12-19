@@ -20,17 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
-        /*Auth.auth().addStateDidChangeListener{(auth, user) in
-            if Auth.auth().currentUser == nil {
-                DispatchQueue.main.async() {
-                    self.window!.rootViewController?.dismiss(animated: false, completion: nil)
-                }
-            } else {
-                
-            }
-        }*/
         return true
     }
 
