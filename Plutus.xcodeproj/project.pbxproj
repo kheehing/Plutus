@@ -13,11 +13,11 @@
 		0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E28A85D2398A7B700F7DBED /* Budget.storyboard */; };
 		0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */; };
 		511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511580B823A8842800F006F3 /* HomePageViewController.swift */; };
-		5117FB0A23978ED900520011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5117FB0923978ED800520011 /* GoogleService-Info.plist */; };
 		511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */; };
 		511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511A79B123A32D64000745E4 /* LaunchScreen.storyboard */; };
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
 		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
+		5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */; };
 		5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */; };
 		5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5197F002238F62D2005BC7F0 /* Main.storyboard */; };
 		5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5197F008238F62D3005BC7F0 /* Assets.xcassets */; };
@@ -55,13 +55,13 @@
 		27D0C5F3B22A2E7139A57F12 /* Pods-Plutus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus.debug.xcconfig"; path = "Target Support Files/Pods-Plutus/Pods-Plutus.debug.xcconfig"; sourceTree = "<group>"; };
 		2955F25C7FB0F951BDC4B618 /* Pods-PlutusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.debug.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		511580B823A8842800F006F3 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
-		5117FB0923978ED800520011 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter HouseScript Regular.ttf"; sourceTree = "<group>"; };
 		511A79B123A32D64000745E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5122672B2390CA650021495D /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5122672C2390CA650021495D /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terms_ConditionsViewController.swift; sourceTree = "<group>"; };
 		51297C362398A0B6003F913F /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5197F003238F62D2005BC7F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */,
 				5197F008238F62D3005BC7F0 /* Assets.xcassets */,
 				5197F00D238F62D3005BC7F0 /* Info.plist */,
-				5117FB0923978ED800520011 /* GoogleService-Info.plist */,
+				5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */,
 				511A79B123A32D64000745E4 /* LaunchScreen.storyboard */,
 			);
 			path = Plutus;
@@ -299,8 +299,8 @@
 				5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */,
 				511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */,
 				511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */,
-				5117FB0A23978ED900520011 /* GoogleService-Info.plist in Resources */,
 				0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */,
+				5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.171723R.Plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.Plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -630,7 +630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.171723R.Plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.Plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

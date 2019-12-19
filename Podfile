@@ -10,6 +10,10 @@ target 'Plutus' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  Pod 'Firebase/Core'
+  Pod 'Firebase/Firestore'
+  Pod 'FirebaseFirestoreSwift'
+
   pod 'MultiProgressView'
 
   target 'PlutusTests' do

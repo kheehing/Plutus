@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:808020789555:ios:477921e9ad3c3a6f1ad646</string>
+	<string>1:808020789555:ios:5c1d05a9c57d46551ad646</string>
 	<key>DATABASE_URL</key>
 	<string>https://nyp-sddp-2019.firebaseio.com</string>
 </dict>
