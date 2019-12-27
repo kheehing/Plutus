@@ -125,19 +125,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.TextField.layer.cornerRadius = 5
         }
         else {
-            db.collection("test").addDocument(data: ["string":"test", "number":123])
-            
-            db.collection("test").whereField("number", isEqualTo: true).getDocuments(){ (QuerySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    for document in QuerySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-                    }
-                }
-            }
-            
-            /*
             PhoneAuthProvider.provider().verifyPhoneNumber(
             self.TextField.text!,
             uiDelegate: nil){ (VerificationId, error) in
@@ -162,7 +149,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.VerificationIdtoOTP = VerificationId!
                 self.performSegue(withIdentifier: "toOTPFirstTimeUser", sender: nil)
             }
-            */
         }
     }
 }

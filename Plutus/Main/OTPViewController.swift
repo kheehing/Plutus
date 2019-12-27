@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNumber: UILabel!
@@ -11,6 +12,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var textboxSix: UITextField!
     @IBOutlet var resendButton: UIButton!
     
+    var db: Firestore!
     var verificationCode = "000000"
     var number: String = ""
     var verificationId: String = ""
@@ -22,6 +24,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         userNumber?.text = number
         textboxOne.delegate = self
         textboxTwo.delegate = self
@@ -40,12 +43,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func resendOnClick(_ sender: Any) {
-        /*print("textbox1: \(textboxOne.text!)")
-        print("textbox2: \(textboxTwo.text!)")
-        print("textbox3: \(textboxThree.text!)")
-        print("textbox4: \(textboxFour.text!)")
-        print("textbox5: \(textboxFive.text!)")
-        print("textbox6: \(textboxFive.text!)")*/
         print("Combined textbox: \(textboxOne.text!)\(textboxTwo.text!)\(textboxThree.text!)\(textboxFour.text!)\(textboxFive.text!)\(textboxSix.text!)")
         verifyOtp()
     }
@@ -83,8 +80,23 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             // user is signed in
-            self.performSegue(withIdentifier: "toHomeOTP", sender: nil)
-            
+            self.db.collection("users").document("uid").getDocument {(document, error) in
+                if let document = document {
+                    let dbUID:Array = document["uid"] as? Array ?? [""]
+                    let userId:String = "\(Auth.auth().currentUser?.uid ?? "null")"
+                    print("Cached document data: \(dbUID)")
+                    print("currentUser data: \(userId)")
+                    if dbUID.contains(userId) {
+                        print("user exist")
+                        self.performSegue(withIdentifier: "toHomeOTP", sender: nil)
+                    } else {
+                        print("user doesn't exist")
+                        self.db.collection("users").document().updateData([ "uid":FieldValue.arrayUnion(["\(userId)"]) ])
+                    }
+                } else {
+                    print("Document does not exist in cache")
+                }
+            }
         }
     }
     
@@ -117,4 +129,3 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-

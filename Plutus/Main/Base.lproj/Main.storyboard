@@ -116,7 +116,7 @@
                         <outlet property="titleLabel" destination="qun-oe-DLv" id="t3G-FL-1BV"/>
                         <segue destination="U6D-Jp-Fhp" kind="show" identifier="toTerms&amp;Conditions" id="n5C-8i-LYI"/>
                         <segue destination="JIP-wE-Z6Y" kind="show" identifier="toOTPFirstTimeUser" animates="NO" id="rWm-ko-amT"/>
-                        <segue destination="H2o-xg-qc1" kind="show" identifier="toHome" id="UXM-Yu-EtX"/>
+                        <segue destination="H2o-xg-qc1" kind="show" identifier="toHome" animates="NO" id="UXM-Yu-EtX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
