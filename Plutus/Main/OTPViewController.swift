@@ -91,6 +91,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                         self.performSegue(withIdentifier: "toHomeOTP", sender: nil)
                     } else {
                         print("user doesn't exist")
+                        self.performSegue(withIdentifier: "toCreateProfilePage", sender: nil)
                         self.db.collection("users").document().updateData([ "uid":FieldValue.arrayUnion(["\(userId)"]) ])
                     }
                 } else {
@@ -101,10 +102,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Pass device token to auth
         Auth.auth().setAPNSToken(deviceToken, type: .prod)
-        // Further handling of the device token if needed by the app
-        // ...
     }
     
     func application(_ application: UIApplication,
@@ -128,4 +126,11 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         return true;
     }
     
+    @IBAction func BackOnClick(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("Error trying to sign out of Firebase: \(error.localizedDescription)")
+        }
+    }
 }
