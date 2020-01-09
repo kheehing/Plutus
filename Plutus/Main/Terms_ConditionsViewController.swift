@@ -8,5 +8,6 @@ class Terms_ConditionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         TcTitle?.text = titleText
+        self.navigationController?.isNavigationBarHidden = false
     }
 }

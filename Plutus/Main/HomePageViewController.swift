@@ -7,14 +7,14 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         let currentUser = Auth.auth().currentUser
         nameLabel.text = currentUser?.phoneNumber!
     }
 
     @IBAction func SignOutOnClick(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
         do {
-            try firebaseAuth.signOut()
+            try Auth.auth().signOut()
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }

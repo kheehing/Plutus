@@ -24,6 +24,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         db = Firestore.firestore()
         userNumber?.text = number
         textboxOne.delegate = self
@@ -124,13 +125,5 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
             return currentText.count <= 1
         }
         return true;
-    }
-    
-    @IBAction func BackOnClick(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print("Error trying to sign out of Firebase: \(error.localizedDescription)")
-        }
     }
 }

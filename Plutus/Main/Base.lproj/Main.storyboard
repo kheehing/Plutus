@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T2z-gS-euf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ttm-fw-0cT">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,8 +13,9 @@
         <!--Navigation Controller-->
         <scene sceneID="IWs-ZH-wJB">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Ttm-fw-0cT" sceneMemberID="viewController">
+                <navigationController id="Ttm-fw-0cT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pk7-vh-hzT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -34,10 +35,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAd-ga-J2J">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="qun-oe-DLv">
-                                        <rect key="frame" x="32.5" y="223" width="349" height="163"/>
+                                        <rect key="frame" x="32.5" y="201" width="349" height="163"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Plutus">
                                                 <attributes>
@@ -52,12 +53,12 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jun-YD-4eN">
-                                        <rect key="frame" x="62" y="394" width="290" height="30"/>
+                                        <rect key="frame" x="62" y="372" width="290" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-xL-s6I">
-                                        <rect key="frame" x="62" y="448" width="290" height="30"/>
+                                        <rect key="frame" x="62" y="426" width="290" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="pAe-mC-UBy"/>
@@ -69,7 +70,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="By Clicking Next, you agree to the Plutus Privacy Policy, Plutus Service Agreement &amp; Plutus Terms and Conditions" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b9u-hX-0Ba">
-                                        <rect key="frame" x="62" y="486" width="290" height="100"/>
+                                        <rect key="frame" x="62" y="464" width="290" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="bLr-vj-ko7"/>
@@ -106,8 +107,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2yr-Bd-3fj"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="kl8-Qq-XhN"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="kl8-Qq-XhN"/>
                     <connections>
                         <outlet property="NextButton" destination="iPT-xL-s6I" id="Z9c-JD-JgJ"/>
                         <outlet property="TextField" destination="jun-YD-4eN" id="9mW-Wk-2GN"/>
@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-78" y="-267"/>
+            <point key="canvasLocation" x="-49" y="-267"/>
         </scene>
         <!--Terms Conditions View Controller-->
         <scene sceneID="FDf-7L-Kp5">
@@ -132,10 +132,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFj-GR-Mvh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oZj-Ey-isF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMh-um-rBG">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -147,7 +147,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQt-cM-nLO">
-                                                <rect key="frame" x="0.0" y="60" width="414" height="698"/>
+                                                <rect key="frame" x="0.0" y="60" width="414" height="714"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -167,16 +167,6 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-mL-GdZ">
-                                                <rect key="frame" x="0.0" y="758" width="414" height="60"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="RhD-wF-KyU"/>
-                                                </constraints>
-                                                <state key="normal" title="Back"/>
-                                                <connections>
-                                                    <action selector="hero_dismissViewController" destination="U6D-Jp-Fhp" eventType="touchUpInside" id="DFB-iv-vCY"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -217,7 +207,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNF-AI-1To">
-                                <rect key="frame" x="141.5" y="174" width="131.5" height="40"/>
+                                <rect key="frame" x="141.5" y="218" width="131.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="8DM-jR-XoV"/>
                                 </constraints>
@@ -226,7 +216,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the code received by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa0-th-QrP">
-                                <rect key="frame" x="77.5" y="222" width="259.5" height="15"/>
+                                <rect key="frame" x="77.5" y="266" width="259.5" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Rpe-BQ-R5R"/>
                                 </constraints>
@@ -235,7 +225,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQJ-TC-3fq">
-                                <rect key="frame" x="148.5" y="245" width="117.5" height="30"/>
+                                <rect key="frame" x="148.5" y="289" width="117.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="koA-5G-Zz2"/>
                                 </constraints>
@@ -244,22 +234,14 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2P-HW-ZeZ">
-                                <rect key="frame" x="181" y="345" width="52" height="30"/>
+                                <rect key="frame" x="181" y="389" width="52" height="30"/>
                                 <state key="normal" title="Resend"/>
                                 <connections>
                                     <action selector="resendOnClick:" destination="JIP-wE-Z6Y" eventType="touchUpInside" id="jkp-t3-ceB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZP-eM-8Qc">
-                                <rect key="frame" x="190" y="414" width="34" height="30"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="BackOnClick:" destination="JIP-wE-Z6Y" eventType="touchUpInside" id="YDu-fa-18C"/>
-                                    <action selector="hero_dismissViewController" destination="JIP-wE-Z6Y" eventType="touchUpInside" id="g83-gQ-wbq"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSD-7q-NUy">
-                                <rect key="frame" x="57" y="291" width="300" height="46"/>
+                                <rect key="frame" x="57" y="335" width="300" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CCV-O0-2Ri">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
@@ -324,21 +306,25 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                     <constraint firstAttribute="width" constant="300" id="s9Q-iT-1kb"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1g3-gW-OQ9">
+                                <rect key="frame" x="182.5" y="449" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xa0-th-QrP" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="0MK-LP-YSO"/>
                             <constraint firstItem="M2P-HW-ZeZ" firstAttribute="top" secondItem="OSD-7q-NUy" secondAttribute="bottom" constant="8" symbolic="YES" id="CRC-uT-f5c"/>
                             <constraint firstItem="OSD-7q-NUy" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="DTG-ng-i1g"/>
-                            <constraint firstItem="BZP-eM-8Qc" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="I2n-9y-DVi"/>
+                            <constraint firstItem="1g3-gW-OQ9" firstAttribute="top" secondItem="M2P-HW-ZeZ" secondAttribute="bottom" constant="30" id="GdI-Yv-Viu"/>
                             <constraint firstItem="zQJ-TC-3fq" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="IHy-Dn-Gna"/>
                             <constraint firstItem="OSD-7q-NUy" firstAttribute="top" secondItem="zQJ-TC-3fq" secondAttribute="bottom" constant="16" id="Jz5-Fx-Aix"/>
                             <constraint firstItem="xa0-th-QrP" firstAttribute="top" secondItem="jNF-AI-1To" secondAttribute="bottom" constant="8" symbolic="YES" id="KKA-dY-yru"/>
                             <constraint firstItem="jNF-AI-1To" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="OD4-hc-g8d"/>
                             <constraint firstItem="jNF-AI-1To" firstAttribute="top" secondItem="fA0-vp-UyE" secondAttribute="top" constant="130" id="WKc-DN-cIG"/>
+                            <constraint firstItem="1g3-gW-OQ9" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="aLg-lQ-baC"/>
                             <constraint firstItem="zQJ-TC-3fq" firstAttribute="top" secondItem="xa0-th-QrP" secondAttribute="bottom" constant="8" symbolic="YES" id="jxA-xg-6ZJ"/>
                             <constraint firstItem="M2P-HW-ZeZ" firstAttribute="centerX" secondItem="FGu-Nb-cq7" secondAttribute="centerX" id="pGK-m3-b6n"/>
-                            <constraint firstItem="BZP-eM-8Qc" firstAttribute="top" secondItem="M2P-HW-ZeZ" secondAttribute="bottom" constant="39" id="pPu-Pl-Asw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fA0-vp-UyE"/>
                     </view>
@@ -351,7 +337,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="textboxThree" destination="yPe-U1-tAp" id="wrh-DB-zFx"/>
                         <outlet property="textboxTwo" destination="mZd-bf-BjM" id="uRP-fI-lJo"/>
                         <outlet property="userNumber" destination="zQJ-TC-3fq" id="bvC-PG-83O"/>
-                        <segue destination="H2o-xg-qc1" kind="show" identifier="toHomeOTP" id="iKh-G5-dBw"/>
+                        <segue destination="H2o-xg-qc1" kind="replace" identifier="toHomeOTP" splitViewControllerTargetIndex="1" id="iKh-G5-dBw"/>
                         <segue destination="T2z-gS-euf" kind="show" identifier="toCreateProfilePage" id="2Et-E8-b05"/>
                     </connections>
                 </viewController>
@@ -370,13 +356,6 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8fX-uR-6tX">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skx-HI-IAg">
-                                        <rect key="frame" x="25" y="22" width="34" height="30"/>
-                                        <state key="normal" title="Back"/>
-                                        <connections>
-                                            <action selector="BackOnClick:" destination="T2z-gS-euf" eventType="touchUpInside" id="VoP-Pw-eZs"/>
-                                        </connections>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-wh-Psb">
                                         <rect key="frame" x="82" y="500" width="250" height="130"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -449,7 +428,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Retype Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l3i-tp-d6h">
                                         <rect key="frame" x="82" y="416" width="250" height="30"/>
@@ -459,7 +438,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvV-fu-Zvn">
                                         <rect key="frame" x="82" y="353" width="250" height="17"/>
@@ -504,8 +483,6 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="skx-HI-IAg" firstAttribute="leading" secondItem="y76-g6-UiL" secondAttribute="leading" constant="25" id="H4q-o4-aPD"/>
-                            <constraint firstItem="skx-HI-IAg" firstAttribute="top" secondItem="y76-g6-UiL" secondAttribute="top" constant="10" id="Hhe-px-7Rm"/>
                             <constraint firstItem="8fX-uR-6tX" firstAttribute="bottom" secondItem="y76-g6-UiL" secondAttribute="bottom" id="J5N-vf-i8y"/>
                             <constraint firstItem="8fX-uR-6tX" firstAttribute="trailing" secondItem="y76-g6-UiL" secondAttribute="trailing" id="h9m-dQ-5PA"/>
                             <constraint firstItem="8fX-uR-6tX" firstAttribute="top" secondItem="y76-g6-UiL" secondAttribute="top" id="jvy-eN-D02"/>
@@ -521,11 +498,13 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="InputPassword2" destination="l3i-tp-d6h" id="OZB-lT-Mfy"/>
                         <outlet property="bottomTextView" destination="Pnj-wh-Psb" id="oct-dM-29g"/>
                         <outlet property="scollView" destination="8fX-uR-6tX" id="D3y-Mi-XJ3"/>
+                        <outlet property="submitButton" destination="Wwf-iS-JaS" id="U1p-NK-2CJ"/>
+                        <segue destination="H2o-xg-qc1" kind="replace" splitViewControllerTargetIndex="1" id="4kP-43-E7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoO-Ie-279" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586.9565217391305" y="461.38392857142856"/>
+            <point key="canvasLocation" x="1587" y="461"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="aqt-Dg-Mmz">
@@ -624,7 +603,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ns1-Uv-y4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587" y="-267"/>
+            <point key="canvasLocation" x="1587" y="-281"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

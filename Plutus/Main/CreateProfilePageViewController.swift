@@ -10,11 +10,16 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
     @IBOutlet var InputPassword: UITextField!
     @IBOutlet var InputPassword2: UITextField!
     @IBOutlet var bottomTextView: UITextView!
+    @IBOutlet var submitButton: UIButton!
     
     var db: Firestore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        submitButton.isEnabled = false
+        InputPassword.textContentType = .newPassword
+        InputPassword2.textContentType = .newPassword
         db = Firestore.firestore()
         self.setNotificationKeyboard()
         scollView.delegate = self
@@ -23,8 +28,14 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
-            InputPassword.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-            InputPassword2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        InputFirstname.addTarget(self, action: #selector(self.textFieldIsNotEmpty(textField:)), for: UIControl.Event.editingChanged)
+        InputLastname.addTarget(self, action: #selector(self.textFieldIsNotEmpty(textField:)), for: UIControl.Event.editingChanged)
+        InputEmail.addTarget(self, action: #selector(self.textFieldIsNotEmpty(textField:)), for: UIControl.Event.editingChanged)
+        InputPassword.addTarget(self, action: #selector(self.textFieldIsNotEmpty(textField:)), for: UIControl.Event.editingChanged)
+        InputPassword2.addTarget(self, action: #selector(self.textFieldIsNotEmpty(textField:)), for: UIControl.Event.editingChanged)
+        
+        InputPassword.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        InputPassword2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -77,32 +88,19 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
             InputPassword2.layer.cornerRadius = 0
         }
     }
+    @objc private func textFieldIsNotEmpty(textField: UITextField){
+        if (InputFirstname.text?.isEmpty)! || (InputLastname.text?.isEmpty)! || (InputEmail.text?.isEmpty)! || (InputPassword.text?.isEmpty)! || (InputPassword2.text?.isEmpty)!{
+            submitButton.isEnabled = false
+        } else {
+            submitButton.isEnabled = true
+        }
+    }
     
     @IBAction func SubmitOnClick(_ sender: Any) {
         var warningText:String = ""
         var isError:Bool = false
-        if (InputFirstname.text?.isEmpty)! {
-            warningText += "\n Firstname should not be empty"
-            isError = true
-        }
-        if (InputLastname.text?.isEmpty)! {
-            warningText += "\n Lastname should not be empty"
-            isError = true
-        }
-        if (InputEmail.text?.isEmpty)! {
-            warningText += "\n Email should not be empty"
-            isError = true
-        }
-        if (InputPassword.text?.isEmpty)! {
-            warningText += "\n Password should not be empty"
-            isError = true
-        }
-        if (InputPassword2.text?.isEmpty)! {
-            warningText += "\n Please retype your password"
-            isError = true
-        }
         if InputPassword.text! != InputPassword2.text! {
-            warningText += "\n Password does not match"
+            warningText += "Password does not match"
             isError = true
         }
         bottomTextView.text! = warningText
@@ -110,10 +108,23 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = "\(InputFirstname.text!) \(InputLastname.text!)"
             changeRequest?.commitChanges { (error) in
-                print("changeRequest Error: \(error!)")
+                if (error != nil) {
+                    print("changeRequest Error: \(error!.localizedDescription)")
+                }
             }
-            let usersRef = db.collection("users").document("uid")
-            usersRef.updateData([ "uid": FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"]) ])
+            let usersRef = db.collection("users")
+            usersRef.document("uid").updateData([ "uid": FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"]) ])
+            usersRef.document("\(Auth.auth().currentUser!.uid)").setData([
+                "Email":"hi"
+            ]){ err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        } else if (isError == true){
+            print("password does not match")
         }
     }
     
