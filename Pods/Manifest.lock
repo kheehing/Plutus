@@ -282,6 +282,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - UPCarouselFlowLayout (1.1.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -291,6 +292,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Hero
   - MultiProgressView
+  - UPCarouselFlowLayout
 
 SPEC REPOS:
   trunk:
@@ -317,6 +319,7 @@ SPEC REPOS:
     - leveldb-library
     - MultiProgressView
     - nanopb
+    - UPCarouselFlowLayout
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -342,7 +345,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MultiProgressView: 65e5bb8181687099ade56d16d85d245a92fafa96
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
 
-PODFILE CHECKSUM: b907f218e86f39db398870bfa7f84db142de5a46
+PODFILE CHECKSUM: 742056ebcbf306233ca58d7623fa8cfdd6a8f0d3
 
 COCOAPODS: 1.8.4

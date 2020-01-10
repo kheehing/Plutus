@@ -103,6 +103,10 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
             warningText += "Password does not match"
             isError = true
         }
+        if isValidEmail(InputEmail.text!) == false {
+            warningText += "\n Password does not match"
+            isError = true
+        }
         bottomTextView.text! = warningText
         if (isError == false) {
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -115,7 +119,12 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
             let usersRef = db.collection("users")
             usersRef.document("uid").updateData([ "uid": FieldValue.arrayUnion(["\(Auth.auth().currentUser!.uid)"]) ])
             usersRef.document("\(Auth.auth().currentUser!.uid)").setData([
-                "Email":"hi"
+                "email" : "\(InputEmail.text!)",
+                "firstName" : "\(InputFirstname.text!)",
+                "lastName" : "\(InputLastname.text!)",
+                "mobileNumber" : "\((Auth.auth().currentUser?.phoneNumber)!)",
+                "balanceWallet" : 0,
+                "balanceSaving" : 0,
             ]){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -126,6 +135,13 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
         } else if (isError == true){
             print("password does not match")
         }
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
     
     @IBAction func BackOnClick(_ sender: Any) {

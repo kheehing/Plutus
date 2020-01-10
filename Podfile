@@ -14,6 +14,7 @@ target 'Plutus' do
   pod 'Firebase/Firestore'
 
   pod 'MultiProgressView'
+  pod 'UPCarouselFlowLayout'
 
   target 'PlutusTests' do
     inherit! :search_paths

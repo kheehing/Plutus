@@ -15,6 +15,7 @@
 		511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511580B823A8842800F006F3 /* HomePageViewController.swift */; };
 		511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */; };
 		511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511A79B123A32D64000745E4 /* LaunchScreen.storyboard */; };
+		511B3CDA23C84B2100B73C8E /* SnappingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511B3CD923C84B2100B73C8E /* SnappingFlowLayout.swift */; };
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
 		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
 		51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */; };
@@ -58,6 +59,7 @@
 		511580B823A8842800F006F3 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter HouseScript Regular.ttf"; sourceTree = "<group>"; };
 		511A79B123A32D64000745E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		511B3CD923C84B2100B73C8E /* SnappingFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingFlowLayout.swift; sourceTree = "<group>"; };
 		5122672B2390CA650021495D /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5122672C2390CA650021495D /* PlutusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terms_ConditionsViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				51297C362398A0B6003F913F /* OTPViewController.swift */,
 				511580B823A8842800F006F3 /* HomePageViewController.swift */,
 				51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */,
+				511B3CD923C84B2100B73C8E /* SnappingFlowLayout.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				51297C372398A0B6003F913F /* OTPViewController.swift in Sources */,
 				0E28A8512398A67400F7DBED /* StringExtension.swift in Sources */,
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
+				511B3CDA23C84B2100B73C8E /* SnappingFlowLayout.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
 				511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */,

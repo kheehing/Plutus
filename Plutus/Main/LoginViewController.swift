@@ -130,7 +130,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         }
         else {
             PhoneAuthProvider.provider().verifyPhoneNumber(
-            self.TextField.text!,
+            "+65\(self.TextField.text!)",
             uiDelegate: nil){ (VerificationId, error) in
                 if let error = error {
                     print("ERROR: ",error)

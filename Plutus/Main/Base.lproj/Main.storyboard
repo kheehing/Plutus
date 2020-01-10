@@ -337,7 +337,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="textboxThree" destination="yPe-U1-tAp" id="wrh-DB-zFx"/>
                         <outlet property="textboxTwo" destination="mZd-bf-BjM" id="uRP-fI-lJo"/>
                         <outlet property="userNumber" destination="zQJ-TC-3fq" id="bvC-PG-83O"/>
-                        <segue destination="H2o-xg-qc1" kind="replace" identifier="toHomeOTP" splitViewControllerTargetIndex="1" id="iKh-G5-dBw"/>
+                        <segue destination="H2o-xg-qc1" kind="push" identifier="toHomeOTP" splitViewControllerTargetIndex="1" id="iKh-G5-dBw"/>
                         <segue destination="T2z-gS-euf" kind="show" identifier="toCreateProfilePage" id="2Et-E8-b05"/>
                     </connections>
                 </viewController>
@@ -499,7 +499,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="bottomTextView" destination="Pnj-wh-Psb" id="oct-dM-29g"/>
                         <outlet property="scollView" destination="8fX-uR-6tX" id="D3y-Mi-XJ3"/>
                         <outlet property="submitButton" destination="Wwf-iS-JaS" id="U1p-NK-2CJ"/>
-                        <segue destination="H2o-xg-qc1" kind="replace" splitViewControllerTargetIndex="1" id="4kP-43-E7o"/>
+                        <segue destination="H2o-xg-qc1" kind="push" splitViewControllerTargetIndex="1" id="4kP-43-E7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoO-Ie-279" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -514,19 +514,13 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nW0-1f-uRP">
-                                <rect key="frame" x="20" y="90" width="202" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-dy-jaJ">
-                                <rect key="frame" x="0.0" y="119" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="159" width="414" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="PhW-ig-gIQ"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="20" id="Crl-RQ-bW7">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="30" minimumInteritemSpacing="20" id="Crl-RQ-bW7">
                                     <size key="itemSize" width="374" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -539,58 +533,31 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="total money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dk3-5o-1F3">
-                                                    <rect key="frame" x="20" y="20" width="90" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="total $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYw-aM-4mg">
-                                                    <rect key="frame" x="20" y="45" width="50" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3s-VE-UW7">
-                                                    <rect key="frame" x="20" y="80" width="30" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4O-Ke-uJi">
-                                                    <rect key="frame" x="20" y="104" width="45" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </view>
-                                        <connections>
-                                            <outlet property="totalBalanceMoney" destination="NYw-aM-4mg" id="vmY-qz-rJ3"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmQ-wr-6Ba">
-                                <rect key="frame" x="338" y="90" width="56" height="30"/>
+                                <rect key="frame" x="338" y="108" width="56" height="30"/>
                                 <state key="normal" title="SignOut"/>
                                 <connections>
                                     <action selector="SignOutOnClick:" destination="H2o-xg-qc1" eventType="touchUpInside" id="dHs-wk-hSo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nW0-1f-uRP">
+                                <rect key="frame" x="20" y="114" width="202" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nW0-1f-uRP" firstAttribute="top" secondItem="5Nt-mj-LSJ" secondAttribute="top" constant="46" id="8UH-p1-cft"/>
+                            <constraint firstItem="nW0-1f-uRP" firstAttribute="top" secondItem="5Nt-mj-LSJ" secondAttribute="top" constant="26" id="8UH-p1-cft"/>
                             <constraint firstItem="5Nt-mj-LSJ" firstAttribute="trailing" secondItem="NmQ-wr-6Ba" secondAttribute="trailing" constant="20" id="FN2-mK-Whw"/>
-                            <constraint firstItem="SI8-dy-jaJ" firstAttribute="top" secondItem="nW0-1f-uRP" secondAttribute="bottom" constant="8" id="JOK-2u-72s"/>
+                            <constraint firstItem="SI8-dy-jaJ" firstAttribute="top" secondItem="nW0-1f-uRP" secondAttribute="bottom" constant="24" id="JOK-2u-72s"/>
                             <constraint firstItem="nW0-1f-uRP" firstAttribute="leading" secondItem="G3H-8A-H4t" secondAttribute="leadingMargin" id="UBk-zm-Hkh"/>
-                            <constraint firstItem="NmQ-wr-6Ba" firstAttribute="top" secondItem="5Nt-mj-LSJ" secondAttribute="top" constant="46" id="YgC-gi-Xb2"/>
+                            <constraint firstItem="NmQ-wr-6Ba" firstAttribute="top" secondItem="5Nt-mj-LSJ" secondAttribute="top" constant="20" id="YgC-gi-Xb2"/>
                             <constraint firstItem="SI8-dy-jaJ" firstAttribute="leading" secondItem="5Nt-mj-LSJ" secondAttribute="leading" id="gle-pM-fdf"/>
                             <constraint firstItem="SI8-dy-jaJ" firstAttribute="trailing" secondItem="5Nt-mj-LSJ" secondAttribute="trailing" id="iTD-rh-arQ"/>
                         </constraints>
@@ -598,6 +565,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                     </view>
                     <navigationItem key="navigationItem" id="CBd-lI-8ei"/>
                     <connections>
+                        <outlet property="collectionView" destination="SI8-dy-jaJ" id="y6f-By-cVj"/>
                         <outlet property="nameLabel" destination="nW0-1f-uRP" id="9ea-uO-fD1"/>
                     </connections>
                 </viewController>
