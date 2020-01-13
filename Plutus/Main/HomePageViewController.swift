@@ -9,7 +9,6 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         nameLabel.text = Auth.auth().currentUser?.displayName!
-        collectionView.collectionViewLayout = SnappingFlowLayout()
     }
 
     
