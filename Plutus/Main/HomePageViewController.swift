@@ -5,6 +5,7 @@ import FirebaseFirestore
 class HomePageViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var currentBalance: UILabel!
+    @IBOutlet weak var savingBalance: UILabel!
     
     var db: Firestore!
     let currentUserID = Auth.auth().currentUser?.uid
@@ -24,6 +25,7 @@ class HomePageViewController: UIViewController {
                 return
             }
             self.currentBalance.text = "\(data["balanceWallet"] ?? 0)"
+            self.savingBalance.text = "\(data["balanceSaving"] ?? 0)"
             print("Current data: \(data)")
         }
     }
