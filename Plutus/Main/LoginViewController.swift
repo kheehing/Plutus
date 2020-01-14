@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         if Auth.auth().currentUser != nil {
-            print("toHome")
+            print("currentUser:\(Auth.auth().currentUser?.displayName! ?? "")")
             DispatchQueue.main.async() {
                 self.performSegue(withIdentifier: "toHome", sender: nil)
             }

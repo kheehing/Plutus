@@ -1,14 +1,31 @@
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class HomePageViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var currentBalance: UILabel!
+    
+    var db: Firestore!
+    let currentUserID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        nameLabel.text = Auth.auth().currentUser?.displayName!
+        nameLabel.text = Auth.auth().currentUser?.displayName! ?? ""
+        db = Firestore.firestore()
+        db.collection("users").document("\(currentUserID ?? "")").addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            self.currentBalance.text = "\(data["balanceWallet"] ?? 0)"
+            print("Current data: \(data)")
+        }
     }
 
     
