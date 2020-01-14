@@ -43,4 +43,25 @@ class HomePageViewController: UIViewController {
             }
         }
     }
+    @IBAction func scanOnClick(_ sender: Any) {
+    }
+    @IBAction func payOnClick(_ sender: Any) {
+    }
+    @IBAction func manageOnClick(_ sender: Any) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let transferAction = UIAlertAction(title: "Transfer", style: .default, handler: transferhandler)
+        optionMenu.addAction(transferAction)
+        let topupAction = UIAlertAction(title: "Top Up", style: .default, handler: topuphandler)
+        optionMenu.addAction(topupAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    func transferhandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "", sender: nil)
+    }
+    func topuphandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "", sender: nil)
+    }
+    
 }

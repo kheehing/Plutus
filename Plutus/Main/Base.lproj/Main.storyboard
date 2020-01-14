@@ -467,7 +467,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoO-Ie-279" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587" y="461"/>
+            <point key="canvasLocation" x="1857" y="461"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="aqt-Dg-Mmz">
@@ -500,15 +500,17 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                             <constraint firstAttribute="width" constant="84" id="RPe-Oj-6WR"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="cyb-AP-iem"/>
                                         </constraints>
-                                        <state key="normal" title="Transfer"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjH-EZ-eo2">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjH-EZ-eo2">
                                         <rect key="frame" x="50" y="160" width="84" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="84" id="3gc-p5-Kai"/>
                                             <constraint firstAttribute="height" constant="30" id="Kn9-Tj-koV"/>
                                         </constraints>
-                                        <state key="normal" title="Add"/>
+                                        <state key="normal" title="Manage"/>
+                                        <connections>
+                                            <action selector="manageOnClick:" destination="H2o-xg-qc1" eventType="touchUpInside" id="SwO-TE-gq7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66D-c2-FUr">
                                         <rect key="frame" x="8" y="16" width="30" height="50"/>
@@ -570,20 +572,45 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1o5-hW-pPo">
+                                        <rect key="frame" x="267" y="26" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Oex-1S-TCg"/>
+                                            <constraint firstAttribute="width" constant="30" id="enp-qE-SHp"/>
+                                        </constraints>
+                                        <state key="normal" title="Pay"/>
+                                        <connections>
+                                            <action selector="payOnClick:" destination="H2o-xg-qc1" eventType="touchUpInside" id="1OQ-Lp-8ES"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYQ-lF-BrF">
+                                        <rect key="frame" x="265" y="123" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ktI-4a-Udq"/>
+                                            <constraint firstAttribute="width" constant="35" id="srH-5A-au9"/>
+                                        </constraints>
+                                        <state key="normal" title="Scan"/>
+                                        <connections>
+                                            <action selector="scanOnClick:" destination="H2o-xg-qc1" eventType="touchUpInside" id="QeV-jA-huN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="PEm-ze-rCt" firstAttribute="top" secondItem="kXF-0m-T1G" secondAttribute="bottom" constant="46" id="0Th-nc-AcB"/>
                                     <constraint firstItem="mjH-EZ-eo2" firstAttribute="baseline" secondItem="yyT-yM-Gc3" secondAttribute="baseline" id="1Jn-JH-e1C"/>
                                     <constraint firstItem="2W8-E7-ExQ" firstAttribute="top" secondItem="66D-c2-FUr" secondAttribute="bottom" constant="8" id="4cY-gf-Q1e"/>
+                                    <constraint firstAttribute="trailing" secondItem="1o5-hW-pPo" secondAttribute="trailing" constant="77" id="6oi-Mv-BUy"/>
                                     <constraint firstItem="oXz-I2-5V1" firstAttribute="leading" secondItem="2W8-E7-ExQ" secondAttribute="trailing" constant="-5" id="6wc-Em-E8y"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="CFn-OX-1F9"/>
                                     <constraint firstItem="PEm-ze-rCt" firstAttribute="leading" secondItem="kXF-0m-T1G" secondAttribute="leading" id="EMr-rX-iaZ"/>
                                     <constraint firstItem="kXF-0m-T1G" firstAttribute="top" secondItem="gDB-Bo-VBT" secondAttribute="top" constant="16" id="HUc-P4-7HV"/>
                                     <constraint firstItem="66D-c2-FUr" firstAttribute="leading" secondItem="gDB-Bo-VBT" secondAttribute="leading" constant="8" id="HvH-37-BSH"/>
+                                    <constraint firstItem="1o5-hW-pPo" firstAttribute="top" secondItem="gDB-Bo-VBT" secondAttribute="top" constant="26" id="LCU-qA-INo"/>
                                     <constraint firstItem="2W8-E7-ExQ" firstAttribute="leading" secondItem="66D-c2-FUr" secondAttribute="leading" id="LOS-xX-Q1Z"/>
                                     <constraint firstItem="BO1-Z4-GW1" firstAttribute="leading" secondItem="66D-c2-FUr" secondAttribute="trailing" constant="-5" id="LTE-o2-OAe"/>
                                     <constraint firstAttribute="height" constant="200" id="QUW-j2-yem"/>
+                                    <constraint firstItem="xYQ-lF-BrF" firstAttribute="top" secondItem="1o5-hW-pPo" secondAttribute="bottom" constant="67" id="Smy-08-jUf"/>
                                     <constraint firstAttribute="bottom" secondItem="yyT-yM-Gc3" secondAttribute="bottom" constant="10" id="Uy1-b9-Pcx"/>
                                     <constraint firstItem="kXF-0m-T1G" firstAttribute="leading" secondItem="gDB-Bo-VBT" secondAttribute="leading" constant="33" id="bUN-3u-zrB"/>
                                     <constraint firstItem="BO1-Z4-GW1" firstAttribute="top" secondItem="gDB-Bo-VBT" secondAttribute="top" constant="16" id="coD-Fl-0iF"/>
@@ -591,6 +618,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                     <constraint firstItem="oXz-I2-5V1" firstAttribute="leading" secondItem="BO1-Z4-GW1" secondAttribute="leading" id="iux-ze-gmQ"/>
                                     <constraint firstItem="66D-c2-FUr" firstAttribute="top" secondItem="gDB-Bo-VBT" secondAttribute="top" constant="16" id="mgI-4M-UZD"/>
                                     <constraint firstAttribute="trailing" secondItem="yyT-yM-Gc3" secondAttribute="trailing" constant="50" id="mzV-02-fpi"/>
+                                    <constraint firstAttribute="trailing" secondItem="xYQ-lF-BrF" secondAttribute="trailing" constant="74" id="sn5-mJ-mbU"/>
                                     <constraint firstItem="oXz-I2-5V1" firstAttribute="top" secondItem="BO1-Z4-GW1" secondAttribute="bottom" constant="8" id="tc2-TY-CzS"/>
                                 </constraints>
                             </view>
@@ -618,11 +646,27 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="currentBalance" destination="BO1-Z4-GW1" id="DS6-FL-kUC"/>
                         <outlet property="nameLabel" destination="nW0-1f-uRP" id="0mq-0o-Uig"/>
                         <outlet property="savingBalance" destination="oXz-I2-5V1" id="n4J-nb-DRj"/>
+                        <segue destination="Kav-z1-ede" kind="show" identifier="toTransfer" id="jvo-Wh-WOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ns1-Uv-y4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586.9565217391305" y="-281.25"/>
+            <point key="canvasLocation" x="1857" y="-267"/>
+        </scene>
+        <!--Transfer View Controller-->
+        <scene sceneID="PAr-Bb-fQ4">
+            <objects>
+                <viewController id="Kav-z1-ede" customClass="TransferViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hih-dj-4MY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WHU-qz-Lyb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qVa-d6-j2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3091" y="-267"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

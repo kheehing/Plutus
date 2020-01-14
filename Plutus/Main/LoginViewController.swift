@@ -8,7 +8,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     @IBOutlet weak var TextField: UITextField!
     @IBOutlet weak var NextButton: UIButton!
     @IBOutlet weak var agreementLabel: UITextView!
-    @IBOutlet weak var userNumber: UILabel!
     
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
     
@@ -25,6 +24,10 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
                 self.performSegue(withIdentifier: "toHome", sender: nil)
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {

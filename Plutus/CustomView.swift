@@ -27,6 +27,6 @@ class CustomView : UIView {
         self.layer.shadowRadius = 5
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        self.layer.shouldRasterize = true
+        //self.layer.shouldRasterize = true
     }
 }
