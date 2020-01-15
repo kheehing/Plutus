@@ -14,9 +14,16 @@ class CustomProgressView: MultiProgressView {
     
     @IBInspectable var percentage: Int = 0 {
         didSet {
-            percentageLabel.text = "\(percentage)%"
+            percentageLabel.text = "\(self.percentage)%"
         }
     }
+    
+    private let percentageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        label.textColor = .white
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,12 +34,7 @@ class CustomProgressView: MultiProgressView {
         super.init(coder: aDecoder)
         initialize()
     }
-    
-    private let percentageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        return label
-    }()
+
     
     private func initialize() {
         setUpLabels()
@@ -41,7 +43,7 @@ class CustomProgressView: MultiProgressView {
     
     private func setUpLabels() {
         addSubview(percentageLabel)
-//        percentageLabel.leadingAnchor
+        percentageLabel.anchor(left: leftAnchor, paddingLeft: 8)
         percentageLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }

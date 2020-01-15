@@ -9,12 +9,27 @@
 import UIKit
 import MultiProgressView
 
-class BudgetMainViewController: UIViewController, MultiProgressViewDataSource {
-    
+class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource, MultiProgressViewDataSource {
+
     @IBOutlet weak var cardTest: UIView!
     @IBOutlet weak var cashFlow: UIView!
     @IBOutlet weak var expenditure: UIView!
+    
+    
+    //spent and budget labels
+    @IBOutlet weak var spentAmt: UILabel!
+    @IBOutlet weak var budgetAmt: UILabel!
     @IBOutlet weak var spendAmtLabel: UILabel!
+    
+    //cash flow labels
+    @IBOutlet weak var weeklyLabel: UILabel!
+    @IBOutlet weak var ytdLabel: UILabel!
+    @IBOutlet weak var tdyLabel: UILabel!
+    
+    //expenditure
+    @IBOutlet weak var tableView: UITableView!
+    
+    //progress bar
     @IBOutlet weak var progressBar: CustomProgressView!
     
     var budgetOver = false
@@ -24,6 +39,8 @@ class BudgetMainViewController: UIViewController, MultiProgressViewDataSource {
         super.viewDidLoad()
         checkAmtLabel()
         animatedProgress(progressBar, progress: 0.85)
+        
+        tableView.rowHeight = tableView.frame.height / 3.45
     }
     
     func checkAmtLabel() {
@@ -53,4 +70,18 @@ class BudgetMainViewController: UIViewController, MultiProgressViewDataSource {
         
         return budgetLeft
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "expenditureCell", for: indexPath)
+        
+        cell.textLabel?.text = "testing"
+        cell.detailTextLabel?.text = "details"
+        
+        return cell
+    }
+    
 }

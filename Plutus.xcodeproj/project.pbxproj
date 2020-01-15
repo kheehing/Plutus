@@ -12,6 +12,9 @@
 		0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */; };
 		0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E28A85D2398A7B700F7DBED /* Budget.storyboard */; };
 		0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */; };
+		0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122B323CF7FF200F79724 /* ViewExpViewController.swift */; };
+		0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122B423CF7FF200F79724 /* AddExpViewController.swift */; };
+		0EA122BC23CF811600F79724 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122BB23CF811600F79724 /* UIView+Extensions.swift */; };
 		511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511580B823A8842800F006F3 /* HomePageViewController.swift */; };
 		511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */; };
 		511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511A79B123A32D64000745E4 /* LaunchScreen.storyboard */; };
@@ -54,6 +57,9 @@
 		0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetMainViewController.swift; sourceTree = "<group>"; };
 		0E28A85D2398A7B700F7DBED /* Budget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Budget.storyboard; sourceTree = "<group>"; };
 		0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		0EA122B323CF7FF200F79724 /* ViewExpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExpViewController.swift; sourceTree = "<group>"; };
+		0EA122B423CF7FF200F79724 /* AddExpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpViewController.swift; sourceTree = "<group>"; };
+		0EA122BB23CF811600F79724 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Extensions/UIView+Extensions.swift"; sourceTree = "<group>"; };
 		27D0C5F3B22A2E7139A57F12 /* Pods-Plutus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus.debug.xcconfig"; path = "Target Support Files/Pods-Plutus/Pods-Plutus.debug.xcconfig"; sourceTree = "<group>"; };
 		2955F25C7FB0F951BDC4B618 /* Pods-PlutusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.debug.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		511580B823A8842800F006F3 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 		0E28A8532398A73300F7DBED /* Budgeting */ = {
 			isa = PBXGroup;
 			children = (
+				0EA122B423CF7FF200F79724 /* AddExpViewController.swift */,
+				0EA122B323CF7FF200F79724 /* ViewExpViewController.swift */,
 				0E28A85D2398A7B700F7DBED /* Budget.storyboard */,
 				0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */,
 				0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */,
@@ -164,6 +172,7 @@
 		5197EFFD238F62D2005BC7F0 /* Plutus */ = {
 			isa = PBXGroup;
 			children = (
+				0EA122BB23CF811600F79724 /* UIView+Extensions.swift */,
 				0E28A8532398A73300F7DBED /* Budgeting */,
 				0E28A84D2398A67400F7DBED /* CustomView.swift */,
 				0E28A84E2398A67400F7DBED /* StringExtension.swift */,
@@ -432,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EA122BC23CF811600F79724 /* UIView+Extensions.swift in Sources */,
 				0E28A8502398A67400F7DBED /* CustomView.swift in Sources */,
 				51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */,
 				0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */,
@@ -441,6 +451,8 @@
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
+				0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */,
+				0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */,
 				511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */,
 				5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */,
 			);
