@@ -15,6 +15,8 @@ target 'Plutus' do
 
   pod 'MultiProgressView'
   pod 'UPCarouselFlowLayout'
+  pod 'VisaCheckoutSDK'
+
 
   target 'PlutusTests' do
     inherit! :search_paths

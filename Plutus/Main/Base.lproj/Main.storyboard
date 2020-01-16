@@ -652,39 +652,52 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2O-kN-omV" customClass="CustomView" customModule="Plutus" customModuleProvider="target">
                                 <rect key="frame" x="40" y="248" width="334" height="400"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type of Top Up" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYO-wr-eV9">
-                                        <rect key="frame" x="8" y="8" width="318" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="**** **** **** ****" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYO-wr-eV9">
+                                        <rect key="frame" x="15" y="37" width="304" height="30"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="318" id="PXE-Ha-Ep1"/>
                                             <constraint firstAttribute="height" constant="30" id="jzx-xw-moO"/>
                                         </constraints>
                                         <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CreditCard Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-kh-riS">
+                                        <rect key="frame" x="15" y="8" width="148" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="148" id="aTw-Np-qwD"/>
+                                            <constraint firstAttribute="height" constant="21" id="xZ8-qW-tFo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cardholder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3J-YJ-SvS">
+                                        <rect key="frame" x="15" y="75" width="135" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CreditCard Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfT-mO-M4I">
+                                        <rect key="frame" x="15" y="104" width="304" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="typeOfTopUpTouchDown:" destination="KnO-ly-XU1" eventType="touchDown" id="Vcv-eT-Szb"/>
-                                        </connections>
                                     </textField>
-                                    <pickerView hidden="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuF-XQ-Uxt">
-                                        <rect key="frame" x="8" y="-58" width="318" height="162"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="162" id="HC3-0w-FBm"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="318" id="ZHX-bi-p8T"/>
-                                        </constraints>
-                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="wuF-XQ-Uxt" firstAttribute="leading" secondItem="J2O-kN-omV" secondAttribute="leading" constant="8" id="71W-MD-Xgl"/>
                                     <constraint firstItem="rYO-wr-eV9" firstAttribute="centerX" secondItem="J2O-kN-omV" secondAttribute="centerX" id="YTD-zZ-ULs"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="ZuZ-0R-Dug"/>
-                                    <constraint firstAttribute="trailing" secondItem="wuF-XQ-Uxt" secondAttribute="trailing" constant="8" id="hwt-HJ-BaZ"/>
-                                    <constraint firstItem="rYO-wr-eV9" firstAttribute="top" secondItem="J2O-kN-omV" secondAttribute="top" constant="8" id="p3h-vM-Ui8"/>
-                                    <constraint firstItem="wuF-XQ-Uxt" firstAttribute="top" secondItem="J2O-kN-omV" secondAttribute="top" constant="-58" id="q5W-RG-1Jh"/>
+                                    <constraint firstItem="7il-kh-riS" firstAttribute="leading" secondItem="J2O-kN-omV" secondAttribute="leading" constant="15" id="fAb-wc-4Ym"/>
+                                    <constraint firstItem="7il-kh-riS" firstAttribute="top" secondItem="J2O-kN-omV" secondAttribute="top" constant="8" id="iEj-Zw-RdT"/>
                                     <constraint firstAttribute="height" constant="400" id="rJG-Cx-cOh"/>
-                                    <constraint firstAttribute="trailing" secondItem="rYO-wr-eV9" secondAttribute="trailing" constant="8" id="tlY-pR-qKd"/>
-                                    <constraint firstItem="rYO-wr-eV9" firstAttribute="leading" secondItem="J2O-kN-omV" secondAttribute="leading" constant="8" id="zvt-Sg-xaN"/>
+                                    <constraint firstAttribute="trailing" secondItem="rYO-wr-eV9" secondAttribute="trailing" constant="15" id="tlY-pR-qKd"/>
+                                    <constraint firstItem="rYO-wr-eV9" firstAttribute="top" secondItem="7il-kh-riS" secondAttribute="bottom" constant="8" id="yAO-9R-5mc"/>
+                                    <constraint firstItem="rYO-wr-eV9" firstAttribute="leading" secondItem="J2O-kN-omV" secondAttribute="leading" constant="15" id="zvt-Sg-xaN"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -699,15 +712,10 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                     </view>
                     <connections>
                         <outlet property="typeOfTopUp" destination="rYO-wr-eV9" id="qv7-2w-LnC"/>
-                        <outlet property="typeOfTopUpPickerView" destination="wuF-XQ-Uxt" id="ywZ-mO-172"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8oM-UI-c2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <gestureRecognizer id="BDm-gl-JXY">
-                    <connections>
-                        <action selector="typeOfTopUpPickerViewTouchUpInside:" destination="KnO-ly-XU1" id="Lrf-wk-A2k"/>
-                    </connections>
-                </gestureRecognizer>
+                <gestureRecognizer id="BDm-gl-JXY"/>
             </objects>
             <point key="canvasLocation" x="3718.840579710145" y="-267.1875"/>
         </scene>
