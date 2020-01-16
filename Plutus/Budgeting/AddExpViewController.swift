@@ -1,12 +1,6 @@
-//
-//  AddExpViewController.swift
-//  Plutus
-//
-//  Created by Vellyn Tjandra on 9/1/20.
-//  Copyright © 2020 NYP. All rights reserved.
-//
-
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class AddExpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -18,11 +12,15 @@ class AddExpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var descField: UITextField!
     @IBOutlet weak var budgetField: UITextField!
     
+    var db: Firestore!
     let categories = ["Bills", "Transportation", "Food", "Entertainment", "Others"]
     var selectedCat: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
+        
         createCatPicker()
         budgetField.keyboardType = .numberPad
         addBtn.layer.cornerRadius = 5
@@ -69,5 +67,16 @@ class AddExpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         selectedCat = categories[row]
         categoryField.text = selectedCat
     }
-
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        db.collection("expenditure").document(categoryField.text!).setData([
+            "user": Auth.auth().currentUser?.uid ?? "testUID",
+            "categories": categoryField.text!,
+            "description": descField.text!,
+            "budget": budgetField.text!
+            ])
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
