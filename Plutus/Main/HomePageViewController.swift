@@ -43,9 +43,15 @@ class HomePageViewController: UIViewController {
             }
         }
     }
-    @IBAction func scanOnClick(_ sender: Any) {
-    }
-    @IBAction func payOnClick(_ sender: Any) {
+    @IBAction func paymentOnClick(_ sender: Any) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let transferAction = UIAlertAction(title: "QR scan", style: .default, handler: QRhandler)
+        optionMenu.addAction(transferAction)
+        let topupAction = UIAlertAction(title: "NFS", style: .default, handler: NFShandler)
+        optionMenu.addAction(topupAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
     }
     @IBAction func manageOnClick(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -57,11 +63,17 @@ class HomePageViewController: UIViewController {
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     }
+    func QRhandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "toQR", sender: nil)
+    }
+    func NFShandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "toNFS", sender: nil)
+    }
     func transferhandler(alert: UIAlertAction!){
-        performSegue(withIdentifier: "", sender: nil)
+        performSegue(withIdentifier: "toTransfer", sender: nil)
     }
     func topuphandler(alert: UIAlertAction!){
-        performSegue(withIdentifier: "", sender: nil)
+        performSegue(withIdentifier: "toTopUp", sender: nil)
     }
     
 }

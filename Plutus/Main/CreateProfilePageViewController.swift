@@ -11,7 +11,6 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
     @IBOutlet var submitButton: UIButton!
     
     var db: Firestore!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bottomTextView.alpha = 0.0
