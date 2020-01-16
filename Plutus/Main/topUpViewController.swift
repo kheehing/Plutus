@@ -55,7 +55,7 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @objc func pickerTapped(tapRecognizer: UITapGestureRecognizer) {
         if tapRecognizer.state == .ended {
             typeOfTopUpPickerView.isHidden = true
-            typeOfTopUp.text = typeOfTopUpPickerView //selected row
+            //typeOfTopUp.text = typeOfTopUpPickerView //selected row
             //let rowHeight = self.pickerView.rowSize(forComponent: 0).height
             //let selectedRowFrame = self.pickerView.bounds.insetBy(dx: 0, dy: (self.pickerView.frame.height - rowHeight) / 2)
             //let userTappedOnSelectedRow = selectedRowFrame.contains(tapRecognizer.location(in: self.pickerView))
