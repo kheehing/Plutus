@@ -167,7 +167,7 @@
                                             </connections>
                                         </button>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenditureCell" textLabel="vZ1-jm-LGZ" detailTextLabel="IcY-o4-Wld" rowHeight="96" style="IBUITableViewCellStyleValue1" id="jkM-Nn-S5w">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenditureCell" textLabel="vZ1-jm-LGZ" detailTextLabel="IcY-o4-Wld" rowHeight="96" style="IBUITableViewCellStyleSubtitle" id="jkM-Nn-S5w">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="96"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jkM-Nn-S5w" id="QuG-oJ-BDk">
@@ -175,16 +175,16 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vZ1-jm-LGZ">
-                                                            <rect key="frame" x="20" y="38" width="33.5" height="20.5"/>
+                                                            <rect key="frame" x="20" y="28" width="33.5" height="20.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IcY-o4-Wld">
-                                                            <rect key="frame" x="310" y="38" width="44" height="20.5"/>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IcY-o4-Wld">
+                                                            <rect key="frame" x="20" y="51.5" width="33" height="14.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
