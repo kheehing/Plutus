@@ -28,10 +28,10 @@ class ViewExpViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(expense.count >= 0) {
+//        if(expense.count >= 0) {
             expense.removeAll()
             loadData()
-        }
+//        }
         self.tableView.reloadData()
     }
     

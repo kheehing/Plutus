@@ -37,6 +37,7 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     var budgetLeft = 15
     var db: Firestore!
     var expense: [Expense] = []
+    var exampleBudget = 550.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +61,10 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(expense.count >= 0) {
+//        if(expense.count >= 0) {
             expense.removeAll()
             loadData()
-        }
+//        }
         self.tableView.reloadData()
     }
     
@@ -106,15 +107,18 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenditureCell", for: indexPath)
-        let label = UILabel.init(frame: CGRect(x:0, y:0, width: 100, height: 20))
+        let label = UILabel.init(frame: CGRect(x:0, y:0, width: 135, height: 20))
+        let budget = Float(expense[indexPath.row].budget)
         
         if indexPath.row <= 3 {
             cell.textLabel?.text = expense[indexPath.row].categories
             cell.detailTextLabel?.text = expense[indexPath.row].desc
-            label.text = expense[indexPath.row].budget
+            label.text = "\(expense[indexPath.row].budget)  |  \(expense[indexPath.row].budget)"
+            if (budget! - budget!) != 0.0 {
+                label.textColor = .red
+            }
             cell.accessoryView = label
         }
         return cell
     }
-    
 }
