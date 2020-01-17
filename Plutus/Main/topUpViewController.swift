@@ -1,15 +1,16 @@
 import UIKit
 import FirebaseFirestore
 
-class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
+class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet var typeOfTopUp: UITextField!
-    @IBOutlet var typeOfTopUpPickerView: UIPickerView!
+    @IBOutlet var scrollView: UIScrollView!
     
     var db: Firestore!
     
     let pickerData = [
     "CreditCard",
     "Paypal",
+    "Bank Transfer",
     ]
     
     override func didReceiveMemoryWarning() {
@@ -18,6 +19,13 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNotificationKeyboard()
+        scrollView.delegate = self
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
         db = Firestore.firestore()
         self.navigationController?.isNavigationBarHidden = false
         self.title = "Top Up"
@@ -63,6 +71,40 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 print("Last Hash: \(lastHashDescription)")
             }
         }
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 { scrollView.contentOffset.x = 0 }
+    }
+    
+    func setNotificationKeyboard ()  {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification:NSNotification){
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 
 }

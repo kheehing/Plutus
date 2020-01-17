@@ -80,23 +80,15 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 print("ERROR DESC: ",error.localizedDescription)
                 return
             }
-            // user is signed in
+//             user is signed in
             self.db.collection("users").document("uid").getDocument {(document, error) in
                 if let document = document {
-                    let dbUID:Array = document["uid"] as? Array ?? [""]
-                    let userId:String = "\(Auth.auth().currentUser?.uid ?? "null")"
-                    print("Cached document data: \(dbUID)")
-                    print("currentUser data: \(userId)")
-                    if dbUID.contains(userId) {
-                        print("user exist")
+                    let uidList = document["uid"] as! Array<String>
+                    if uidList.contains("\(Auth.auth().currentUser!.uid)"){
                         self.performSegue(withIdentifier: "toHomeOTP", sender: nil)
                     } else {
-                        print("user doesn't exist")
                         self.performSegue(withIdentifier: "toCreateProfilePage", sender: nil)
-                        self.db.collection("users").document().updateData([ "uid":FieldValue.arrayUnion(["\(userId)"]) ])
                     }
-                } else {
-                    print("Document does not exist in cache")
                 }
             }
         }
@@ -117,9 +109,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
   
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //disable the cut copy paste for the textbox 1-4
-        // delete don't delete two box
-        
         if (textField == textboxOne || textField == textboxTwo || textField == textboxThree || textField == textboxFour || textField == textboxFive || textField == textboxSix){
             let currentText = textField.text! + string
             return currentText.count <= 1

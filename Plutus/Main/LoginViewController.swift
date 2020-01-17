@@ -20,19 +20,16 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
         super.viewWillAppear(false)
         
         if Auth.auth().currentUser != nil {
-            print("currentUser:\(Auth.auth().currentUser?.displayName! ?? "")")
+            print("currentUser:\(Auth.auth().currentUser!.displayName!)")
             DispatchQueue.main.async() {
                 self.performSegue(withIdentifier: "toHome", sender: nil)
             }
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

@@ -68,7 +68,7 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
                 "mobileNumber" : "\((Auth.auth().currentUser?.phoneNumber)!)",
                 "balanceWallet" : 0,
                 "balanceSaving" : 0,
-                "transcation" : []
+                "transaction" : []
             ]){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
