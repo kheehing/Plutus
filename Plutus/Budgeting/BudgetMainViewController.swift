@@ -8,6 +8,7 @@
 
 import UIKit
 import MultiProgressView
+import FirebaseFirestore
 
 class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource, MultiProgressViewDataSource {
 
@@ -34,13 +35,37 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     
     var budgetOver = false
     var budgetLeft = 15
+    var db: Firestore!
+    var expense: [Expense] = []
+    var exampleBudget = 550.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         checkAmtLabel()
         animatedProgress(progressBar, progress: 0.85)
         
         tableView.rowHeight = tableView.frame.height / 3.45
+    }
+    
+    func loadData() {
+        db.collection("expenditure").getDocuments() { (QuerySnapshot, err)  in
+            if let err = err {
+                print("error getting docs \(err)")
+            } else {
+                for document in QuerySnapshot!.documents {
+                    self.expense.append(Expense(document["user"] as! String, document["categories"] as! String, document["description"] as! String, document["budget"] as! String))
+                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        if(expense.count >= 0) {
+            expense.removeAll()
+            loadData()
+//        }
+        self.tableView.reloadData()
     }
     
     func checkAmtLabel() {
@@ -72,16 +97,28 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+        return expense.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenditureCell", for: indexPath)
+        let label = UILabel.init(frame: CGRect(x:0, y:0, width: 135, height: 20))
+        let budget = Float(expense[indexPath.row].budget)
         
-        cell.textLabel?.text = "testing"
-        cell.detailTextLabel?.text = "details"
-        
+        if indexPath.row <= 3 {
+            cell.textLabel?.text = expense[indexPath.row].categories
+            cell.detailTextLabel?.text = expense[indexPath.row].desc
+            label.text = "\(expense[indexPath.row].budget)  |  \(expense[indexPath.row].budget)"
+            if (budget! - budget!) != 0.0 {
+                label.textColor = .red
+            }
+            cell.accessoryView = label
+        }
         return cell
     }
-    
 }

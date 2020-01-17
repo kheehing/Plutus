@@ -18,6 +18,7 @@ extension String {
                 "text-align: center !important;" +
                 "font-size: \(size)pt !important;" +
                 "font-family: \(family ?? "Helvetica"), Helvetica !important;" +
+//                "color: \(color ?? "black") !important;" +
             "}</style> \(self)"
             
             guard let data = htmlCSSString.data(using: String.Encoding.utf8) else {

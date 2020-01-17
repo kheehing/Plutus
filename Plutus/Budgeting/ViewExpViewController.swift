@@ -6,7 +6,6 @@ class ViewExpViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var expenditures: UIView!
     @IBOutlet weak var tableView: UITableView!
     var db: Firestore!
-    var rowCount: Int = 0
     var expense: [Expense] = []
     
     override func viewDidLoad() {
@@ -16,12 +15,11 @@ class ViewExpViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = tableView.frame.height / 10.5
     }
     
-    func load() {
+    func loadData() {
         db.collection("expenditure").getDocuments() { (QuerySnapshot, err)  in
             if let err = err {
                 print("error getting docs \(err)")
             } else {
-                self.rowCount = QuerySnapshot!.documents.count
                 for document in QuerySnapshot!.documents {
                     self.expense.append(Expense(document["user"] as! String, document["categories"] as! String, document["description"] as! String, document["budget"] as! String))
                 }
@@ -30,10 +28,10 @@ class ViewExpViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(expense.count >= 0) {
+//        if(expense.count >= 0) {
             expense.removeAll()
-            load()
-        }
+            loadData()
+//        }
         self.tableView.reloadData()
     }
     
