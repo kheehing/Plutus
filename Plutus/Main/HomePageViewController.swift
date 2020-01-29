@@ -13,7 +13,7 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        nameLabel.text = Auth.auth().currentUser?.displayName! ?? ""
+        nameLabel.text = Auth.auth().currentUser?.displayName ?? ""
         db = Firestore.firestore()
         db.collection("users").document("\(currentUserID ?? "")").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
@@ -24,12 +24,39 @@ class HomePageViewController: UIViewController {
                 print("Document data was empty.")
                 return
             }
-            self.currentBalance.text = "\(data["balanceWallet"] ?? 0)"
+            
+            
+            self.db.collection("users").document("\(self.currentUserID ?? "")").collection("balanceWallet").document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                guard let data2 = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                
+                guard let currency:String = data["balanceWallet"] as? String else {
+                    print("Error feteching currency Type")
+                    return
+                }
+                guard let amount = data2[currency] else {
+                    print("Error feteching currency Type")
+                    return
+                }
+                print(currency)
+                print("\(amount)")
+                self.currentBalance.text = "\(amount) \(currency.uppercased())"
+            }
+            
+            
+            print("\(data["balanceWallet"] ?? "balanceWallet Empty")")
+            
+            
             self.savingBalance.text = "\(data["balanceSaving"] ?? 0)"
             print("Current data: \(data)")
         }
     }
-
     
     @IBAction func SignOutOnClick(_ sender: Any) {
         do {

@@ -19,6 +19,12 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, UITextViewDel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let signOutError as NSError {
+//            print("Error signing out: %@", signOutError)
+//        }
+        
         if Auth.auth().currentUser != nil {
             print("currentUser:\(Auth.auth().currentUser!.displayName!)")
             DispatchQueue.main.async() {

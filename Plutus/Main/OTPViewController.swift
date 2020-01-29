@@ -108,6 +108,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         // This notification is not auth related, developer should handle it.
     }
   
+    @IBAction func submitButtonOnclick(_ sender: Any) {
+        verifyOtp();
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == textboxOne || textField == textboxTwo || textField == textboxThree || textField == textboxFour || textField == textboxFive || textField == textboxSix){
             let currentText = textField.text! + string

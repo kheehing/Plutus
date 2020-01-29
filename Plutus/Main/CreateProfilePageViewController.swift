@@ -66,7 +66,7 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
                 "firstName" : "\(InputFirstname.text!)",
                 "lastName" : "\(InputLastname.text!)",
                 "mobileNumber" : "\((Auth.auth().currentUser?.phoneNumber)!)",
-                "balanceWallet" : 0,
+                "balanceWallet" : ["sgd":0,],
                 "balanceSaving" : 0,
                 "transaction" : []
             ]){ err in
