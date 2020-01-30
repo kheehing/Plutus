@@ -84,6 +84,8 @@ class HomePageViewController: UIViewController {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let transferAction = UIAlertAction(title: "Transfer", style: .default, handler: transferhandler)
         optionMenu.addAction(transferAction)
+        let exchangeAction = UIAlertAction(title: "Exchange", style: .default, handler: transferhandler)
+        optionMenu.addAction(exchangeAction)
         let topupAction = UIAlertAction(title: "Top Up", style: .default, handler: topuphandler)
         optionMenu.addAction(topupAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -98,6 +100,9 @@ class HomePageViewController: UIViewController {
     }
     func transferhandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toTransfer", sender: nil)
+    }
+    func exchangehandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "toTransfer", sender: nil) // add new controller
     }
     func topuphandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toTopUp", sender: nil)

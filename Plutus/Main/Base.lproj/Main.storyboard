@@ -834,13 +834,84 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                     <view key="view" contentMode="scaleToFill" id="hih-dj-4MY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kVR-ML-e1t">
+                                <rect key="frame" x="107" y="262" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6p3-vX-DO7"/>
+                                    <constraint firstAttribute="height" constant="30" id="aOu-y3-lB7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transferee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRG-BU-jsk">
+                                <rect key="frame" x="107" y="233" width="82" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWm-vk-9bP">
+                                <rect key="frame" x="107" y="329" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6SJ-eM-8ph"/>
+                                    <constraint firstAttribute="width" constant="200" id="UfY-jO-xJW"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iS-3p-ifl">
+                                <rect key="frame" x="107" y="300" width="60" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dx2-br-XQr">
+                                <rect key="frame" x="183.5" y="396" width="47" height="30"/>
+                                <state key="normal" title="submit"/>
+                                <connections>
+                                    <action selector="submitOnClick:" destination="Kav-z1-ede" eventType="touchUpInside" id="6FF-9K-zZY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J5-zX-EUw">
+                                <rect key="frame" x="266" y="328" width="31" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aSs-n3-B3e"/>
+                                    <constraint firstAttribute="width" constant="31" id="hjM-Q5-cfG"/>
+                                </constraints>
+                                <state key="normal" title="SGD"/>
+                                <connections>
+                                    <action selector="CurrencyOnClick:" destination="Kav-z1-ede" eventType="touchUpInside" id="oXw-Tb-7N5"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dx2-br-XQr" firstAttribute="top" secondItem="cWm-vk-9bP" secondAttribute="bottom" constant="37" id="2Tr-hA-yzK"/>
+                            <constraint firstItem="6J5-zX-EUw" firstAttribute="firstBaseline" secondItem="cWm-vk-9bP" secondAttribute="firstBaseline" id="4bg-nH-Vx4"/>
+                            <constraint firstItem="kVR-ML-e1t" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="6BL-4D-HPf"/>
+                            <constraint firstItem="kVR-ML-e1t" firstAttribute="top" secondItem="cRG-BU-jsk" secondAttribute="bottom" constant="8" id="MBV-Nn-xAU"/>
+                            <constraint firstItem="cRG-BU-jsk" firstAttribute="leading" secondItem="kVR-ML-e1t" secondAttribute="leading" id="Voa-oL-ecp"/>
+                            <constraint firstItem="kVR-ML-e1t" firstAttribute="top" secondItem="WHU-qz-Lyb" secondAttribute="top" constant="174" id="a6O-yu-bdM"/>
+                            <constraint firstItem="dx2-br-XQr" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="b08-ln-7Ei"/>
+                            <constraint firstItem="1iS-3p-ifl" firstAttribute="leading" secondItem="cWm-vk-9bP" secondAttribute="leading" id="m2j-Wo-rWb"/>
+                            <constraint firstItem="cWm-vk-9bP" firstAttribute="top" secondItem="kVR-ML-e1t" secondAttribute="bottom" constant="37" id="rHv-k3-rEd"/>
+                            <constraint firstItem="cWm-vk-9bP" firstAttribute="top" secondItem="1iS-3p-ifl" secondAttribute="bottom" constant="8" id="vIo-Wj-CZh"/>
+                            <constraint firstItem="6J5-zX-EUw" firstAttribute="leading" secondItem="cWm-vk-9bP" secondAttribute="trailing" constant="-41" id="vw3-EO-gqC"/>
+                            <constraint firstItem="cWm-vk-9bP" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="y2C-Gd-aYn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WHU-qz-Lyb"/>
                     </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="cWm-vk-9bP" id="9BE-nT-NJo"/>
+                        <outlet property="currencyButton" destination="6J5-zX-EUw" id="owA-Hg-IxL"/>
+                        <outlet property="numberTextField" destination="kVR-ML-e1t" id="AvN-UB-ArI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVa-d6-j2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3719" y="-915"/>
+            <point key="canvasLocation" x="3718.840579710145" y="-915.40178571428567"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

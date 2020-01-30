@@ -9,7 +9,6 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     let pickerData = [
     "CreditCard",
-    "Paypal",
     "Bank Transfer",
     ]
     
@@ -34,6 +33,7 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true}
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1}
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
