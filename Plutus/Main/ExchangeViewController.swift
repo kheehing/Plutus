@@ -9,12 +9,17 @@
 import UIKit
 
 class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return pickerData.count }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { return pickerData[row] }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedPickerView = pickerData[row]
+        if (pickerView == fromPicker){
+            print("frompickerView: \(selectedPickerView)")
+        } else {
+            print("topickerView: \(selectedPickerView)")
+        }
     }
     
     @IBOutlet var exchangeRateUS_SGD: UILabel!
@@ -32,7 +37,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    let picerData = [
+    let pickerData = [
         "SGD",
         "USD",
     ]
@@ -48,7 +53,11 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.navigationController?.isNavigationBarHidden = false
         self.title = "Exchange"
         
+        self.toPicker.delegate = self
+        self.toPicker.dataSource = self
         
+        self.fromPicker.delegate = self
+        self.fromPicker.dataSource = self
         
         if let url = URL(string: "https://api.exchangeratesapi.io/latest") {
             URLSession.shared.dataTask(with: url) { data, response, error in
