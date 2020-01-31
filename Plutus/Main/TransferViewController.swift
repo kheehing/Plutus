@@ -2,7 +2,7 @@ import UIKit
 import FirebaseFirestore
 import Firebase
 
-class TransferViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var amountTextField: UITextField!
     @IBOutlet var numberTextField: UITextField!

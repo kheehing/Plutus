@@ -24,6 +24,7 @@
 		5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */; };
 		513574A623CEE37E00135886 /* topUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513574A523CEE37E00135886 /* topUpViewController.swift */; };
 		513574AA23CEE8E600135886 /* NFSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513574A923CEE8E600135886 /* NFSViewController.swift */; };
+		5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */; };
 		5183AE5F23D0236A00B045EA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5183AE5E23D0236A00B045EA /* Expense.swift */; };
 		5186E44323CDB393001ED3A4 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E44223CDB393001ED3A4 /* TransferViewController.swift */; };
 		5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */; };
@@ -78,6 +79,7 @@
 		513574A723CEE8DC00135886 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		513574A923CEE8E600135886 /* NFSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFSViewController.swift; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		5183AE5E23D0236A00B045EA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		5186E44223CDB393001ED3A4 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
 		5197EFFE238F62D2005BC7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,10 +162,11 @@
 				51297C362398A0B6003F913F /* OTPViewController.swift */,
 				51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */,
 				511580B823A8842800F006F3 /* HomePageViewController.swift */,
-				5186E44223CDB393001ED3A4 /* TransferViewController.swift */,
 				513574A523CEE37E00135886 /* topUpViewController.swift */,
 				513574A723CEE8DC00135886 /* QRViewController.swift */,
 				513574A923CEE8E600135886 /* NFSViewController.swift */,
+				5186E44223CDB393001ED3A4 /* TransferViewController.swift */,
+				5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
 				5183AE5F23D0236A00B045EA /* Expense.swift in Sources */,
+				5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */,
 				0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */,
 				0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */,
 				511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */,
