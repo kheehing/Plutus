@@ -614,18 +614,54 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                     <constraint firstItem="wx7-EN-4aY" firstAttribute="centerX" secondItem="gDB-Bo-VBT" secondAttribute="centerX" id="p9a-GT-0Ci"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C84-Si-dHc">
+                                <rect key="frame" x="170" y="356" width="75" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="9KX-5U-Nxy"/>
+                                    <constraint firstAttribute="height" constant="40" id="sfn-c4-blc"/>
+                                </constraints>
+                                <state key="normal" title="Saving">
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyA-Ye-zgs">
+                                <rect key="frame" x="253" y="356" width="76" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="AnW-iq-vj9"/>
+                                    <constraint firstAttribute="height" constant="40" id="HFU-1L-OeP"/>
+                                </constraints>
+                                <state key="normal" title="BillSplit">
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXZ-Wd-lrs">
+                                <rect key="frame" x="87" y="356" width="75" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="bC5-Rh-xni"/>
+                                    <constraint firstAttribute="height" constant="40" id="wHk-Pr-t6C"/>
+                                </constraints>
+                                <state key="normal" title="Budget">
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gXZ-Wd-lrs" firstAttribute="leading" secondItem="5Nt-mj-LSJ" secondAttribute="leading" constant="87" id="0Hb-Tw-FbB"/>
                             <constraint firstItem="gDB-Bo-VBT" firstAttribute="trailing" secondItem="NmQ-wr-6Ba" secondAttribute="trailing" id="1fq-Nt-NBz"/>
                             <constraint firstItem="gDB-Bo-VBT" firstAttribute="top" secondItem="NmQ-wr-6Ba" secondAttribute="bottom" constant="10" id="2By-Wy-nwQ"/>
                             <constraint firstItem="gDB-Bo-VBT" firstAttribute="centerX" secondItem="G3H-8A-H4t" secondAttribute="centerX" id="7r8-sb-u8r"/>
+                            <constraint firstItem="C84-Si-dHc" firstAttribute="leading" secondItem="gXZ-Wd-lrs" secondAttribute="trailing" constant="8" symbolic="YES" id="B9j-D3-aK6"/>
                             <constraint firstItem="5Nt-mj-LSJ" firstAttribute="trailing" secondItem="NmQ-wr-6Ba" secondAttribute="trailing" constant="20" id="FN2-mK-Whw"/>
+                            <constraint firstItem="JyA-Ye-zgs" firstAttribute="leading" secondItem="C84-Si-dHc" secondAttribute="trailing" constant="8" symbolic="YES" id="Hnm-QE-lJ3"/>
+                            <constraint firstItem="gXZ-Wd-lrs" firstAttribute="top" secondItem="gDB-Bo-VBT" secondAttribute="bottom" constant="8" symbolic="YES" id="KVW-iN-3GZ"/>
                             <constraint firstItem="nW0-1f-uRP" firstAttribute="leading" secondItem="G3H-8A-H4t" secondAttribute="leadingMargin" id="UBk-zm-Hkh"/>
+                            <constraint firstItem="C84-Si-dHc" firstAttribute="baseline" secondItem="gXZ-Wd-lrs" secondAttribute="baseline" id="UJm-gO-oXX"/>
                             <constraint firstItem="NmQ-wr-6Ba" firstAttribute="top" secondItem="5Nt-mj-LSJ" secondAttribute="top" constant="20" id="YgC-gi-Xb2"/>
                             <constraint firstItem="gDB-Bo-VBT" firstAttribute="leading" secondItem="nW0-1f-uRP" secondAttribute="leading" id="g9Z-1r-MVU"/>
                             <constraint firstItem="NmQ-wr-6Ba" firstAttribute="leading" secondItem="nW0-1f-uRP" secondAttribute="trailing" constant="68" id="hdS-uP-AUq"/>
                             <constraint firstItem="nW0-1f-uRP" firstAttribute="centerY" secondItem="NmQ-wr-6Ba" secondAttribute="centerY" id="pBz-TB-ZDr"/>
+                            <constraint firstItem="C84-Si-dHc" firstAttribute="baseline" secondItem="JyA-Ye-zgs" secondAttribute="baseline" id="ro6-3h-ffp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Nt-mj-LSJ"/>
                     </view>
@@ -915,6 +951,6 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iKh-G5-dBw"/>
+        <segue reference="UXM-Yu-EtX"/>
     </inferredMetricsTieBreakers>
 </document>

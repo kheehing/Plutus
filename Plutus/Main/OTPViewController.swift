@@ -111,6 +111,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitButtonOnclick(_ sender: Any) {
         verifyOtp();
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField == textboxOne || textField == textboxTwo || textField == textboxThree || textField == textboxFour || textField == textboxFive || textField == textboxSix){
             let currentText = textField.text! + string

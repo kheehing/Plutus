@@ -79,31 +79,54 @@ class TransferViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
         } else if (amount.isEmpty){
             alert(title: "Empty Field", message: "make sure you enter the transferee's number.")
         } else {
-            db.collection("users").whereField("mobileNumber", isEqualTo: "+65\(mobileNumber)").getDocuments(){ (snapshot, err) in
+            db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    if (snapshot!.isEmpty){
-                        print("empty snapshot")
-                        self.alert(title: "Invalid number", message: "the mobile number does not exist in out database, please check if you have entered the correct number.")
-                    }
-                    for document in snapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-                    }
-                }
-            }
-            db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                } else {
-                    let sData = snapshot!.data()
+                    let sData = snapshot!.data()!
                     let amountType = self.currencyButton.currentTitle!.lowercased()
-                    let amountEntered = Int(amount)
-                    let amountBank = sData!["\(amountType)"]!
-                
-                    print(sData as Any)
-                    print("bank: \(amountBank)")
-                    print("entered: \(amountEntered ?? 0)")
+                    let amountBank = sData["\(amountType)"]!
+                    let amountEntered:Int = Int(amount)!
+                    if (Int("\(amountBank)")! < Int(amountEntered)) {
+                        self.alert(title: "Invalid number", message: "You bank doesn't have $\(amountEntered) \(amountType.uppercased()), \nit only has $\(amountBank) \(amountType.uppercased()).")
+                    } else {
+                        self.db.collection("users").whereField("mobileNumber", isEqualTo: "+65\(mobileNumber)").getDocuments(){ (Tsnapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            } else {
+                                if (Tsnapshot!.isEmpty){
+                                    self.alert(title: "Invalid number", message: "the mobile number does not exist in out database, please check if you have entered the correct number.")
+                                } else {
+                                    for document in Tsnapshot!.documents {
+                                        self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").getDocument{ (snapshott,err) in
+                                            if let err = err {
+                                                print("Error getting documents: \(err)")
+                                            } else {
+                                                
+                                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshot!.data()![amountType] as! Int - amountEntered ]) // transferer
+                                                self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshott!.data()![amountType] as! Int + amountEntered ]) // transferee
+                                                
+                                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
+                                                    "transferer": Auth.auth().currentUser!.displayName!,
+                                                    "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
+                                                    "time": Timestamp(date: Date()),
+                                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
+                                                
+                                                self.db.collection("users").document(document.documentID).collection("transaction").addDocument(data: [
+                                                    "transferer": Auth.auth().currentUser!.displayName!,
+                                                    "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
+                                                    "time": Timestamp(date: Date()),
+                                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        print("bank: \(amountBank)")
+                        print("entered: \(amountEntered )")
+                    }
                 }
             }
         }
