@@ -472,7 +472,15 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
             </objects>
             <point key="canvasLocation" x="1857" y="461"/>
         </scene>
-        <!--Home Page View Controller-->
+        <!--BudgetView-->
+        <scene sceneID="pYl-QX-SLj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Budget" referencedIdentifier="BudgetView" id="vf4-9y-8fC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jom-nY-J7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="-669"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="aqt-Dg-Mmz">
             <objects>
                 <viewController id="H2o-xg-qc1" customClass="HomePageViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
@@ -506,6 +514,9 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <state key="normal" title="Budget">
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="vf4-9y-8fC" kind="show" id="Gh5-kD-R2U"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C84-Si-dHc">
                                 <rect key="frame" x="170" y="356" width="75" height="40"/>
@@ -683,7 +694,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Nt-mj-LSJ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CBd-lI-8ei"/>
+                    <navigationItem key="navigationItem" title="Home" id="CBd-lI-8ei"/>
                     <connections>
                         <outlet property="currentBalance" destination="BO1-Z4-GW1" id="DS6-FL-kUC"/>
                         <outlet property="currentBalanceCurrency" destination="5Mq-87-p1f" id="dlb-EP-YWF"/>
@@ -746,7 +757,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-D3-tCE">
-                                <rect key="frame" x="221" y="269" width="120" height="100"/>
+                                <rect key="frame" x="220.5" y="269" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Son-am-jH5"/>
                                     <constraint firstAttribute="width" constant="120" id="jxk-8t-9V4"/>

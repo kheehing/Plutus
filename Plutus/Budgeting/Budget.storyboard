@@ -13,7 +13,7 @@
         <!--Data Source-->
         <scene sceneID="wMl-Nq-8Gi">
             <objects>
-                <viewController id="HzT-Tb-dww" customClass="BudgetMainViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BudgetView" id="HzT-Tb-dww" customClass="BudgetMainViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oLp-XV-wwH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRR-Se-ncD" customClass="CustomView" customModule="Plutus" customModuleProvider="target">
                                 <rect key="frame" x="20" y="107" width="374" height="234"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You can spend $15 for the rest of the month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Y-TG-nNP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You can spend $0 for the rest of the month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Y-TG-nNP">
                                         <rect key="frame" x="8" y="19" width="358" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -163,7 +163,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="View More"/>
                                             <connections>
-                                                <segue destination="Egc-Lb-GN7" kind="push" id="iz2-vc-MJg"/>
+                                                <segue destination="Egc-Lb-GN7" kind="push" identifier="" id="iz2-vc-MJg"/>
                                             </connections>
                                         </button>
                                         <prototypes>
@@ -227,7 +227,7 @@
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="53.571428571428569"/>
         </scene>
-        <!--Add Budget-->
+        <!--Edit Budget-->
         <scene sceneID="why-dp-Rqd">
             <objects>
                 <viewController id="n8L-BQ-4YU" customClass="AddExpViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
@@ -274,7 +274,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PPT-3E-cii">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PPT-3E-cii">
                                         <rect key="frame" x="25" y="67" width="324" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
@@ -288,7 +288,7 @@
                                 <rect key="frame" x="64" y="740" width="287" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="ADD">
+                                <state key="normal" title="EDIT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -299,7 +299,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ViZ-dL-1Oi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Budget" id="jLy-sN-agB"/>
+                    <navigationItem key="navigationItem" title="Edit Budget" id="jLy-sN-agB"/>
                     <connections>
                         <outlet property="addBtn" destination="VNq-3T-h8Y" id="3Hd-0f-7C5"/>
                         <outlet property="addExp" destination="SKZ-ls-V50" id="W2T-MF-m3A"/>
@@ -352,6 +352,9 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <segue destination="n8L-BQ-4YU" kind="show" identifier="editBudget" id="86g-XQ-6Eh"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -365,13 +368,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FWw-Vg-POZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Expenditure" id="20Z-SM-WW4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="w1G-3m-0Cl">
-                            <connections>
-                                <segue destination="n8L-BQ-4YU" kind="push" id="Ote-Ic-pej"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Expenditure" id="20Z-SM-WW4"/>
                     <connections>
                         <outlet property="expenditures" destination="7oL-Mn-rVC" id="MV9-Lq-02O"/>
                         <outlet property="tableView" destination="Czl-c3-qI5" id="h9R-UL-j5g"/>
