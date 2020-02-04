@@ -1,11 +1,3 @@
-//
-//  ExchangeViewController.swift
-//  Plutus
-//
-//  Created by ITP312 on 31/1/20.
-//  Copyright © 2020 NYP. All rights reserved.
-//
-
 import UIKit
 import FirebaseFirestore
 import Firebase
@@ -26,6 +18,10 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    @IBOutlet weak var fromBefore: UILabel!
+    @IBOutlet weak var toBefore: UILabel!
+    @IBOutlet weak var fromAfter: UILabel!
+    @IBOutlet weak var toAfter: UILabel!
     @IBOutlet var exchangeRateUS_SGD: UILabel!
     @IBOutlet var toPicker: UIPickerView!
     @IBOutlet var fromPicker: UIPickerView!
@@ -44,6 +40,13 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         didSet{
             DispatchQueue.main.async {
                 self.pickerValueOnChange()
+                if (!self.fromPickerValue.isEmpty){
+                    guard let fromDB:Double = self.data2[self.fromPickerValue.lowercased()] as? Double else {
+                        print("Error feteching fromDB")
+                        return
+                    }
+                    self.fromBefore.text = String(format: "%.3f", fromDB)
+                }
             }
         }
     };
@@ -51,6 +54,28 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         didSet{
             DispatchQueue.main.async {
                 self.pickerValueOnChange()
+                if (!self.toPickerValue.isEmpty){
+                    guard let fromDB:Double = self.data2[self.toPickerValue.lowercased()] as? Double else {
+                        print("Error feteching fromDB")
+                        return
+                    }
+                    self.toBefore.text = String(format: "%.3f", fromDB)
+                }
+            }
+        }
+    };
+    var data2 = [String : Any](){
+        didSet{
+            DispatchQueue.main.async {
+                print(self.data2)
+                if (!self.toPickerValue.isEmpty){
+                    print(String(describing: self.data2[self.toPickerValue.lowercased()]!))
+                    self.toBefore.text = String(describing: self.data2[self.toPickerValue.lowercased()]!)
+                }
+                if (!self.fromPickerValue.isEmpty){
+                    print(String(describing: self.data2[self.fromPickerValue.lowercased()]!))
+                    self.fromBefore.text = String(describing: self.data2[self.fromPickerValue.lowercased()]!)
+                }
             }
         }
     };
@@ -79,6 +104,14 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.fromPicker.delegate = self
         self.fromPicker.dataSource = self
         db = Firestore.firestore()
+        db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document2: \(error!)")
+                    return
+                }
+                self.data2 = document.data()!
+        }
         fromTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         toTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         if let url = URL(string: "https://api.exchangeratesapi.io/latest") {
@@ -169,6 +202,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             } else if (fromTextfield.isFirstResponder){
                 if (fromTextfield.text!.isEmpty){
                     toTextfield.text! = ""
+                    resetLabel()
                     toTextfield.isUserInteractionEnabled = true
                 } else if (fromTextfield.text!.prefix(1) == "-"){
                     print("\(fromTextfield.text!.prefix(1))")
@@ -180,6 +214,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             } else if (toTextfield.isFirstResponder){
                 if (toTextfield.text!.isEmpty){
                     fromTextfield.text! = ""
+                    resetLabel()
                     fromTextfield.isUserInteractionEnabled = true
                 } else if (Int(toTextfield.text!)! < 0){
                     alert(title: "Error", message: "Numbers cannot be negative")
@@ -190,6 +225,11 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
             
         }
+    }
+    
+    func resetLabel(){
+        toAfter.text = ""
+        fromAfter.text = ""
     }
     
     func pickerValueOnChange(){

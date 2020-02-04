@@ -95,10 +95,10 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     print("Error feteching amount")
                     return
                 }
-                self.currentBalance.text = "\(walletAmount.roundTo(places: 2))"
+                self.currentBalance.text = String(format: "%.2f", walletAmount)
                 self.currentBalanceCurrency.setTitle("\(walletCurrency.uppercased())", for: .normal)
                 
-                self.savingBalance.text = "\(savingAmount.roundTo(places: 2))"
+                self.savingBalance.text = String(format: "%.2f", savingAmount)
                 self.savingBalanceCurrency.setTitle("\(savingCurrency.uppercased())", for: .normal)
             }
         }
