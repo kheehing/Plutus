@@ -323,7 +323,7 @@ DEPENDENCIES:
   - VisaCheckoutSDK
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - abseil
     - ApiAI
     - BoringSSL-GRPC
@@ -381,4 +381,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5ec0fd7df816bb49ac8ac2bdae5aac87b533ab54
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5
