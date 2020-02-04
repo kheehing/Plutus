@@ -1170,6 +1170,15 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                     <action selector="CurrencyOnClick:" destination="Kav-z1-ede" eventType="touchUpInside" id="oXw-Tb-7N5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYN-93-B74">
+                                <rect key="frame" x="167.5" y="367" width="79" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2aY-Te-Tgr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1177,10 +1186,12 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                             <constraint firstItem="6J5-zX-EUw" firstAttribute="firstBaseline" secondItem="cWm-vk-9bP" secondAttribute="firstBaseline" id="4bg-nH-Vx4"/>
                             <constraint firstItem="kVR-ML-e1t" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="6BL-4D-HPf"/>
                             <constraint firstItem="kVR-ML-e1t" firstAttribute="top" secondItem="cRG-BU-jsk" secondAttribute="bottom" constant="8" id="MBV-Nn-xAU"/>
+                            <constraint firstItem="jYN-93-B74" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="SCK-7s-27Z"/>
                             <constraint firstItem="cRG-BU-jsk" firstAttribute="leading" secondItem="kVR-ML-e1t" secondAttribute="leading" id="Voa-oL-ecp"/>
                             <constraint firstItem="kVR-ML-e1t" firstAttribute="top" secondItem="WHU-qz-Lyb" secondAttribute="top" constant="174" id="a6O-yu-bdM"/>
                             <constraint firstItem="dx2-br-XQr" firstAttribute="centerX" secondItem="hih-dj-4MY" secondAttribute="centerX" id="b08-ln-7Ei"/>
                             <constraint firstItem="1iS-3p-ifl" firstAttribute="leading" secondItem="cWm-vk-9bP" secondAttribute="leading" id="m2j-Wo-rWb"/>
+                            <constraint firstItem="jYN-93-B74" firstAttribute="top" secondItem="cWm-vk-9bP" secondAttribute="bottom" constant="8" id="nbu-3h-nGc"/>
                             <constraint firstItem="cWm-vk-9bP" firstAttribute="top" secondItem="kVR-ML-e1t" secondAttribute="bottom" constant="37" id="rHv-k3-rEd"/>
                             <constraint firstItem="cWm-vk-9bP" firstAttribute="top" secondItem="1iS-3p-ifl" secondAttribute="bottom" constant="8" id="vIo-Wj-CZh"/>
                             <constraint firstItem="6J5-zX-EUw" firstAttribute="leading" secondItem="cWm-vk-9bP" secondAttribute="trailing" constant="-41" id="vw3-EO-gqC"/>
@@ -1191,6 +1202,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                     <connections>
                         <outlet property="amountTextField" destination="cWm-vk-9bP" id="9BE-nT-NJo"/>
                         <outlet property="currencyButton" destination="6J5-zX-EUw" id="owA-Hg-IxL"/>
+                        <outlet property="displayBalance" destination="jYN-93-B74" id="lOi-X6-XtK"/>
                         <outlet property="numberTextField" destination="kVR-ML-e1t" id="AvN-UB-ArI"/>
                     </connections>
                 </viewController>

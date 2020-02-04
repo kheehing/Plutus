@@ -4,6 +4,7 @@ import Firebase
 
 class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet weak var displayBalance: UILabel!
     @IBOutlet var amountTextField: UITextField!
     @IBOutlet var numberTextField: UITextField!
     @IBOutlet var currencyButton: UIButton!
@@ -19,6 +20,15 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var db: Firestore!
     var toolBar = UIToolbar()
     var picker = UIPickerView()
+    var currencySelected = "sgd"
+    var data2 = [String : Any](){
+        didSet{
+            DispatchQueue.main.async {
+                self.displayBalance.text = "You have: \(self.data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!) \(self.currencyButton.currentTitle!.uppercased())"
+                print(self.data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!)
+            }
+        }
+    };
     let pickerData = [
         "SGD",
         "USD",
@@ -29,6 +39,14 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.navigationController?.isNavigationBarHidden = false
         self.title = "Transfer"
         db = Firestore.firestore()
+        db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document2: \(error!)")
+                    return
+                }
+                self.data2 = document.data()!
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,6 +76,7 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @objc func onDoneButtonTapped() {
+        displayBalance.text = "You have: \(data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!) \(self.currencyButton.currentTitle!.uppercased())"
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }

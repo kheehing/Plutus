@@ -61,14 +61,16 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
             data = document.data()!
         }
-    db.collection("users").document("\(self.currentUserID)").collection("balanceWallet").document("currency").addSnapshotListener{ documentSnapshot, error in
+        db.collection("users").document("\(self.currentUserID)").collection("balanceWallet")
+        .document("currency").addSnapshotListener{ documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document2: \(error!)")
                 return
             }
             data2 = document.data()!
         }
-    db.collection("users").document("\(self.currentUserID)").collection("balanceSaving").document("currency").addSnapshotListener{ documentSnapshot, error in
+        db.collection("users").document("\(self.currentUserID)").collection("balanceSaving")
+        .document("currency").addSnapshotListener{ documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching documents3: \(error!)")
                 return
