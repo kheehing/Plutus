@@ -21,7 +21,7 @@ class SavingInputViewController: UIViewController {
     var db: Firestore!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
         if pickedDate != nil {
             switch pickedDate {

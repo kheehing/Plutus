@@ -13,7 +13,7 @@
         <!--D-Bot-->
         <scene sceneID="sW1-Jn-jIa">
             <objects>
-                <viewController id="YTJ-fm-tIV" customClass="ChatbotViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatbox" id="YTJ-fm-tIV" customClass="ChatbotViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8A4-lr-1nc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kG-bh-jmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-313.04347826086956" y="2.6785714285714284"/>
+            <point key="canvasLocation" x="-307" y="3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ME-9h-sd8">

@@ -15,9 +15,4 @@ class NFSViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.title = "NFS"
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-
 }
