@@ -64,7 +64,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.toPicker.dataSource = self
         self.fromPicker.delegate = self
         self.fromPicker.dataSource = self
-        toTextfield.isUserInteractionEnabled = false
         db = Firestore.firestore()
         fromTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -149,18 +148,42 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     }
                 }
             }
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if (!fromTextfield.text!.isEmpty){
-            let regexPattern = "[0-9]*"
-            let result = fromTextfield.text!.range(of: regexPattern,options: .regularExpression)
-            if (result != nil){
-                let value:Double = (someDouble * Double(fromTextfield.text!)!).roundTo(places: 3)
-                toTextfield.text = "\(value)"
-            } else {
-                print("nil")
+        let regexPattern = "[0-9]*"
+        let result = fromTextfield.text!.range(of: regexPattern,options: .regularExpression)
+        if (result != nil){
+            if (fromTextfield.text!.isEmpty && toTextfield.text!.isEmpty){
+                print("1")
+                fromTextfield.isUserInteractionEnabled = true
+                toTextfield.isUserInteractionEnabled = true
+            } else if (fromTextfield.isFirstResponder && fromTextfield.text!.isEmpty){
+                toTextfield.text! = ""
+                toTextfield.isUserInteractionEnabled = true
+            } else if (fromTextfield.isFirstResponder && !fromTextfield.text!.isEmpty){
+                print("2")
+                checkExchange()
+                toTextfield.isUserInteractionEnabled = false
+            } else if (toTextfield.isFirstResponder && toTextfield.text!.isEmpty){
+                fromTextfield.text! = ""
+                fromTextfield.isUserInteractionEnabled = true
+            } else if (toTextfield.isFirstResponder && !toTextfield.text!.isEmpty) {
+                print("3")
+                checkExchange()
+                fromTextfield.isUserInteractionEnabled = false
             }
-        } else {
-            toTextfield.text = ""
+        }
+    }
+    
+    func checkExchange(){
+        if (fromTextfield.isFirstResponder){
+            
+            let value:Double = (someDouble * Double(fromTextfield.text!)!).roundTo(places: 3)
+            toTextfield.text = "\(value)"
+        } else if (toTextfield.isFirstResponder){
+            print("hi")
+            let value:Double = (someDouble * Double(toTextfield.text!)!).roundTo(places: 3)
+            fromTextfield.text = "\(value)"
         }
     }
     

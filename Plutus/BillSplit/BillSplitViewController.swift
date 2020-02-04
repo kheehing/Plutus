@@ -18,7 +18,7 @@ class BillSplitViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func photoOptionsAction(_ sender: Any) {

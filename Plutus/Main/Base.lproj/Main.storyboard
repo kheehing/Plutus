@@ -16,7 +16,7 @@
                 <viewControllerPlaceholder storyboardName="Chatbot" referencedIdentifier="chatbox" id="rG6-fh-y3w" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DG-qS-WPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1507" y="-715"/>
+            <point key="canvasLocation" x="1831" y="-731"/>
         </scene>
         <!--savingView-->
         <scene sceneID="jET-jM-z3I">
@@ -25,6 +25,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82v-CU-5RM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1222" y="-670"/>
+        </scene>
+        <!--billSplit-->
+        <scene sceneID="xt7-Eh-MsR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BillSplit" referencedIdentifier="billSplit" id="8oF-uD-F4b" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uy5-8h-y77" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1830" y="-698"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IWs-ZH-wJB">
@@ -704,6 +712,9 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <state key="normal" title="BillSplit">
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="8oF-uD-F4b" kind="show" id="p7u-Ex-hNY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -880,11 +891,28 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                         <outlet property="fromTextfield" destination="tXv-u2-y9t" id="nZi-Ec-1s8"/>
                         <outlet property="toPicker" destination="W6S-D3-tCE" id="vsV-VY-Pea"/>
                         <outlet property="toTextfield" destination="K4A-8q-BfP" id="ylg-By-rBH"/>
+                        <segue destination="cfA-8T-MAD" kind="push" id="T2G-Np-iA5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NuW-4Y-Eq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2926" y="83"/>
+            <point key="canvasLocation" x="3719" y="461"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vgD-Xi-xih">
+            <objects>
+                <viewController id="cfA-8T-MAD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MOb-td-dr0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="g3s-W2-Dyr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gKe-sD-Vuy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Td7-yg-Rgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4678" y="461"/>
         </scene>
         <!--Top Up View Controller-->
         <scene sceneID="ojp-B3-eow">
@@ -1101,7 +1129,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iS-3p-ifl">
                                 <rect key="frame" x="107" y="300" width="60" height="21"/>

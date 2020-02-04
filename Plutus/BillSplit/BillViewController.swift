@@ -27,7 +27,7 @@ class BillViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = false
         imageView!.image = SelectedImage
         
         let vision = Vision.vision()

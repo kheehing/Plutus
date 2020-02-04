@@ -74,10 +74,12 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             if (amount.isEmpty){
                 alert(title: "Empty Fields", message: "make all fields are filled.")
             } else {
-                alert(title: "Empty Field", message: "make sure you enter an amount.")
+                    alert(title: "Empty Field", message: "make sure you enter an amount.")
             }
         } else if (amount.isEmpty){
             alert(title: "Empty Field", message: "make sure you enter the transferee's number.")
+        } else if (Int(amount)! <= 0){
+            alert(title: "Error", message: "Transfering amount cannot be negative or zero.")
         } else {
             db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
                 if let err = err {

@@ -32,7 +32,7 @@ class SelectPayViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         db = Firestore.firestore()
         tableView?.allowsMultipleSelection = true
-        
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -29,7 +29,7 @@ class BillProductsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
     }
     
