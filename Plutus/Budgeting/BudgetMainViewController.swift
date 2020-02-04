@@ -35,18 +35,19 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     @IBOutlet weak var progressBar: CustomProgressView!
     
     var budgetOver = false
-    var budgetLeft = 15
+    var budgetLeft: Double! = 0.00
+    var totalBudget: Double! = 0.00
+    var totalSpent: Double! = 0.00
     var db: Firestore!
     var expense: [Expense] = []
-    var exampleBudget: Double! = 0.00
+    
     var currentSpent: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        animatedProgress(progressBar, progress: 0.85)
+//        animatedProgress(progressBar, progress: 0.85, 85)
         tableView.rowHeight = tableView.frame.height / 3.45
-        createBudget()
 //        loadData()
 //        checkAmtLabel()
         
@@ -68,31 +69,60 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        expense.removeAll()
+        createBudget()
+        if expense.count > 0 {
+            expense.removeAll()
+        }
         loadData()
         self.tableView.reloadData()
     }
     
     func checkAmtLabel() {
-        exampleBudget = 0
+        totalBudget = 0
+        totalSpent = 0
+        
         for i in expense {
-            exampleBudget += Double(i.budget)!
+            totalBudget += Double(i.budget)!
+            totalSpent += Double(i.spent)!
+        }
+        
+        if (totalBudget! - totalSpent!) < 0 {
+            budgetOver = true
+        } else {
+            budgetOver = false
+        }
+        
+        budgetAmt.text = "$\(totalBudget!)"
+        spentAmt.text = "$\(totalSpent!)"
+        
+        if (totalSpent != 0) {
+            if (totalSpent > totalBudget) {
+                if (totalBudget > 0) {
+                    animatedProgress(progressBar, progress: 1, percentage: Int((totalSpent!/totalBudget!)*100))
+                } else {
+                    animatedProgress(progressBar, progress: 1, percentage: Int(totalSpent!*10))
+                }
+            } else {
+                animatedProgress(progressBar, progress: (Float(totalSpent!/totalBudget!)), percentage: Int((totalSpent!/totalBudget!)*100))
+            }
+        } else {
+            animatedProgress(progressBar, progress: 0, percentage: 0)
         }
         
         if budgetOver == false {
-            self.spendAmtLabel.attributedText = "You can spend <b>$\(exampleBudget!)</b> for the rest of the month!".htmlAttributed(family: "Helvetica", size: 13)
+            self.spendAmtLabel.attributedText = "You can spend <b>$\(((totalBudget! - totalSpent!)*100).rounded()/100)</b> for the rest of the month!".htmlAttributed(family: "Helvetica", size: 13)
         } else {
             self.spendAmtLabel.text = "You have exceeded your budget!"
             budgetOver = true
         }
     }
     
-    private func animatedProgress(_ progressView: CustomProgressView, progress: Float) {
+    private func animatedProgress(_ progressView: CustomProgressView, progress: Float, percentage: Int) {
         UIView.animate(withDuration: 0.25, delay: 0.2, options: .curveEaseInOut, animations: {
             progressView.setProgress(section: 0, to: progress)
         }, completion: nil)
         
-        progressView.percentage = 85
+        progressView.percentage = percentage
     }
     
     func numberOfSections(in progressView: MultiProgressView) -> Int {
