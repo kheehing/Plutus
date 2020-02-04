@@ -102,22 +102,21 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                             if let err = err {
                                                 print("Error getting documents: \(err)")
                                             } else {
-                                                
                                                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshot!.data()![amountType] as! Int - amountEntered ]) // transferer
                                                 self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshott!.data()![amountType] as! Int + amountEntered ]) // transferee
                                                 
                                                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
+                                                    "type": "transfer",
                                                     "transferer": Auth.auth().currentUser!.displayName!,
                                                     "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
                                                     "time": Timestamp(date: Date()),
                                                     "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
-                                                
                                                 self.db.collection("users").document(document.documentID).collection("transaction").addDocument(data: [
+                                                    "type": "transfer",
                                                     "transferer": Auth.auth().currentUser!.displayName!,
                                                     "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
                                                     "time": Timestamp(date: Date()),
                                                     "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
-                                                
                                             }
                                         }
                                     }
