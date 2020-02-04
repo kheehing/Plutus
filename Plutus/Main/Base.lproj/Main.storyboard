@@ -24,7 +24,7 @@
                 <viewControllerPlaceholder storyboardName="Saving" referencedIdentifier="savingView" id="zY7-Zk-bcp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82v-CU-5RM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1222" y="-670"/>
+            <point key="canvasLocation" x="1846" y="-762"/>
         </scene>
         <!--billSplit-->
         <scene sceneID="xt7-Eh-MsR">

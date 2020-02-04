@@ -40,8 +40,20 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    var fromPickerValue:String = "";
-    var toPickerValue:String = "";
+    var fromPickerValue:String = ""{
+        didSet{
+            DispatchQueue.main.async {
+                self.pickerValueOnChange()
+            }
+        }
+    };
+    var toPickerValue:String = ""{
+        didSet{
+            DispatchQueue.main.async {
+                self.pickerValueOnChange()
+            }
+        }
+    };
     var someDouble:Double = 0
     var db: Firestore!
 
@@ -58,6 +70,8 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fromPickerValue = ""
+        toPickerValue = ""
         self.navigationController?.isNavigationBarHidden = false
         self.title = "Exchange"
         self.toPicker.delegate = self
@@ -66,7 +80,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.fromPicker.dataSource = self
         db = Firestore.firestore()
         fromTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
+        toTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         if let url = URL(string: "https://api.exchangeratesapi.io/latest") {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
@@ -105,17 +119,19 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             alert(title: "Error", message: "You can't exchange the same currency")
         } else if (fromTextfield.text!.isEmpty || toTextfield.text!.isEmpty){
             alert(title: "Error", message: "Amount Field(s) should not be Empty")
-        } else {
-            db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
+        } else { db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     let sData = snapshot!.data()!
-                    //let fromAmountType = self.fromPickerValue
-                    //let toAmountType = self.toPickerValue
-                    let amountBank = sData["\(self.fromPickerValue)"]!
-                    let amountEntered:Int = Int(self.fromTextfield.text!)!
-                    if (Int("\(amountBank)")! < Int(amountEntered)) {
+                    let fromAmountType = self.fromPickerValue.lowercased()
+                    let toAmountType = self.toPickerValue.lowercased()
+                    let amountBank:Double  = sData["\(self.fromPickerValue.lowercased())"]! as! Double
+                    let amountEntered:Double = Double(self.fromTextfield.text!)!
+                    let amountCalculated:Double = Double(self.toTextfield.text!)!
+                    print(amountBank)
+                    print(amountEntered)
+                    if (amountBank < amountEntered) {
                         self.alert(title: "Invalid number", message: "You bank doesn't have $\(amountEntered) \(self.fromPickerValue), \nit only has $\(amountBank) \(self.fromPickerValue.uppercased()).")
                     } else {
                         self.db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (Tsnapshot,err) in
@@ -125,20 +141,14 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                 print(Tsnapshot!.data()!)
                                 print(snapshot!.data()!)
                                 print(self.someDouble)
-//                               self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshot!.data()![amountType] as! Int - amountEntered ]) // transferer
-//                                self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshott!.data()![amountType] as! Int + amountEntered ]) // transferee
-//                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
-//                                    "type": "transfer",
-//                                    "transferer": Auth.auth().currentUser!.displayName!,
-//                                    "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
-//                                    "time": Timestamp(date: Date()),
-//                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
-//                                self.db.collection("users").document(document.documentID).collection("transaction").addDocument(data: [
-//                                    "type": "transfer",
-//                                    "transferer": Auth.auth().currentUser!.displayName!,
-//                                    "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
-//                                    "time": Timestamp(date: Date()),
-//                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
+                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "\(fromAmountType)" : snapshot!.data()![fromAmountType] as! Double - amountEntered ]) // from
+                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "\(toAmountType)" : snapshot!.data()![toAmountType] as! Double + amountCalculated ]) // to
+                                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
+                                    "type": "Exchange",
+                                    "user": "\(Auth.auth().currentUser!.displayName!)",
+                                    "time": Timestamp(date: Date()),
+                                    "fromAmount": "\(amountEntered) \(fromAmountType.uppercased())",
+                                    "toAmount": "\(amountCalculated) \(toAmountType.uppercased())",]) // transaction
                                     }
                                 }
                             }
@@ -154,36 +164,84 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let result = fromTextfield.text!.range(of: regexPattern,options: .regularExpression)
         if (result != nil){
             if (fromTextfield.text!.isEmpty && toTextfield.text!.isEmpty){
-                print("1")
                 fromTextfield.isUserInteractionEnabled = true
                 toTextfield.isUserInteractionEnabled = true
-            } else if (fromTextfield.isFirstResponder && fromTextfield.text!.isEmpty){
-                toTextfield.text! = ""
-                toTextfield.isUserInteractionEnabled = true
-            } else if (fromTextfield.isFirstResponder && !fromTextfield.text!.isEmpty){
-                print("2")
-                checkExchange()
-                toTextfield.isUserInteractionEnabled = false
-            } else if (toTextfield.isFirstResponder && toTextfield.text!.isEmpty){
-                fromTextfield.text! = ""
-                fromTextfield.isUserInteractionEnabled = true
-            } else if (toTextfield.isFirstResponder && !toTextfield.text!.isEmpty) {
-                print("3")
-                checkExchange()
-                fromTextfield.isUserInteractionEnabled = false
+            } else if (fromTextfield.isFirstResponder){
+                if (fromTextfield.text!.isEmpty){
+                    toTextfield.text! = ""
+                    toTextfield.isUserInteractionEnabled = true
+                } else if (fromTextfield.text!.prefix(1) == "-"){
+                    print("\(fromTextfield.text!.prefix(1))")
+                    alert(title: "Error", message: "Numbers cannot be negative")
+                } else if (!fromTextfield.text!.isEmpty){
+                    checkExchange()
+                    toTextfield.isUserInteractionEnabled = false
+                }
+            } else if (toTextfield.isFirstResponder){
+                if (toTextfield.text!.isEmpty){
+                    fromTextfield.text! = ""
+                    fromTextfield.isUserInteractionEnabled = true
+                } else if (Int(toTextfield.text!)! < 0){
+                    alert(title: "Error", message: "Numbers cannot be negative")
+                } else if (!toTextfield.text!.isEmpty) {
+                    checkExchange()
+                    fromTextfield.isUserInteractionEnabled = false
+                }
+            }
+            
+        }
+    }
+    
+    func pickerValueOnChange(){
+        if (!toPickerValue.isEmpty || !self.fromPickerValue.isEmpty){
+            if (fromPickerValue != toPickerValue){
+                if (fromTextfield.isUserInteractionEnabled == true && toTextfield.isUserInteractionEnabled == false){
+                    if (fromPickerValue.lowercased() == "sgd"){
+                        var value:Double = (someDouble * Double(fromTextfield.text!)!)
+                        value = value.roundTo(places: 3)
+                        toTextfield.text = "\(value)"
+                    } else {
+                        var value:Double = ((1/someDouble) * Double(fromTextfield.text!)!)
+                        value = value.roundTo(places: 3)
+                        toTextfield.text = "\(value)"
+                    }
+                } else if (toTextfield.isUserInteractionEnabled == true && fromTextfield.isUserInteractionEnabled == false){
+                    if (toPickerValue.lowercased() == "sgd"){
+                        var value:Double = (someDouble / Double(toTextfield.text!)!)
+                        value = value.roundTo(places: 3)
+                        fromTextfield.text = "\(value)"
+                    } else {
+                        var value:Double = ((1/someDouble) * Double(toTextfield.text!)!)
+                        value = value.roundTo(places: 3)
+                        fromTextfield.text = "\(value)"
+                    }
+                }
             }
         }
     }
     
     func checkExchange(){
         if (fromTextfield.isFirstResponder){
-            
-            let value:Double = (someDouble * Double(fromTextfield.text!)!).roundTo(places: 3)
-            toTextfield.text = "\(value)"
+            if (fromPickerValue.lowercased() == "sgd"){
+                var value:Double = (someDouble * Double(fromTextfield.text!)!)
+                value = value.roundTo(places: 3)
+                toTextfield.text = "\(value)"
+            } else {
+                var value:Double = ((1/someDouble) * Double(fromTextfield.text!)!)
+                value = value.roundTo(places: 3)
+                toTextfield.text = "\(value)"
+            }
         } else if (toTextfield.isFirstResponder){
-            print("hi")
-            let value:Double = (someDouble * Double(toTextfield.text!)!).roundTo(places: 3)
-            fromTextfield.text = "\(value)"
+            if (toPickerValue.lowercased() == "sgd"){
+                var value:Double = (someDouble / Double(toTextfield.text!)!)
+                value = value.roundTo(places: 3)
+                fromTextfield.text = "\(value)"
+            } else {
+                var value:Double = ((1/someDouble) * Double(toTextfield.text!)!)
+                value = value.roundTo(places: 3)
+                fromTextfield.text = "\(value)"
+            }
+            
         }
     }
     
