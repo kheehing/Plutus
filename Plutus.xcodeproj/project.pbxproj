@@ -16,6 +16,17 @@
 		0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122B423CF7FF200F79724 /* AddExpViewController.swift */; };
 		0EA122BC23CF811600F79724 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122BB23CF811600F79724 /* UIView+Extensions.swift */; };
 		511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511580B823A8842800F006F3 /* HomePageViewController.swift */; };
+		51170C6923E9503500396AC7 /* SavingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6123E9503400396AC7 /* SavingInfoViewController.swift */; };
+		51170C6A23E9503500396AC7 /* SavingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6223E9503400396AC7 /* SavingHistoryViewController.swift */; };
+		51170C6B23E9503500396AC7 /* SavingInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6323E9503400396AC7 /* SavingInputViewController.swift */; };
+		51170C6C23E9503500396AC7 /* SavingPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6423E9503400396AC7 /* SavingPickerViewController.swift */; };
+		51170C6D23E9503500396AC7 /* Saving.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51170C6523E9503400396AC7 /* Saving.storyboard */; };
+		51170C6E23E9503500396AC7 /* SavingSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6623E9503400396AC7 /* SavingSummaryViewController.swift */; };
+		51170C6F23E9503500396AC7 /* SavingConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6723E9503400396AC7 /* SavingConfirmViewController.swift */; };
+		51170C7023E9503500396AC7 /* SavingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C6823E9503400396AC7 /* SavingHistory.swift */; };
+		51170C7523E9503C00396AC7 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C7223E9503C00396AC7 /* ChatbotViewController.swift */; };
+		51170C7623E9503C00396AC7 /* MessageUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51170C7323E9503C00396AC7 /* MessageUI.swift */; };
+		51170C7723E9503C00396AC7 /* Chatbot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51170C7423E9503C00396AC7 /* Chatbot.storyboard */; };
 		511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */; };
 		511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511A79B123A32D64000745E4 /* LaunchScreen.storyboard */; };
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
@@ -67,6 +78,17 @@
 		27D0C5F3B22A2E7139A57F12 /* Pods-Plutus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plutus.debug.xcconfig"; path = "Target Support Files/Pods-Plutus/Pods-Plutus.debug.xcconfig"; sourceTree = "<group>"; };
 		2955F25C7FB0F951BDC4B618 /* Pods-PlutusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlutusTests.debug.xcconfig"; path = "Target Support Files/Pods-PlutusTests/Pods-PlutusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		511580B823A8842800F006F3 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		51170C6123E9503400396AC7 /* SavingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingInfoViewController.swift; sourceTree = "<group>"; };
+		51170C6223E9503400396AC7 /* SavingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingHistoryViewController.swift; sourceTree = "<group>"; };
+		51170C6323E9503400396AC7 /* SavingInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingInputViewController.swift; sourceTree = "<group>"; };
+		51170C6423E9503400396AC7 /* SavingPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingPickerViewController.swift; sourceTree = "<group>"; };
+		51170C6523E9503400396AC7 /* Saving.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Saving.storyboard; sourceTree = "<group>"; };
+		51170C6623E9503400396AC7 /* SavingSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingSummaryViewController.swift; sourceTree = "<group>"; };
+		51170C6723E9503400396AC7 /* SavingConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingConfirmViewController.swift; sourceTree = "<group>"; };
+		51170C6823E9503400396AC7 /* SavingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingHistory.swift; sourceTree = "<group>"; };
+		51170C7223E9503C00396AC7 /* ChatbotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
+		51170C7323E9503C00396AC7 /* MessageUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageUI.swift; sourceTree = "<group>"; };
+		51170C7423E9503C00396AC7 /* Chatbot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chatbot.storyboard; sourceTree = "<group>"; };
 		511A79AD23A3297A000745E4 /* SignPainter HouseScript Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter HouseScript Regular.ttf"; sourceTree = "<group>"; };
 		511A79B123A32D64000745E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5122672B2390CA650021495D /* PlutusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +167,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		51170C6023E9503400396AC7 /* Saving */ = {
+			isa = PBXGroup;
+			children = (
+				51170C6123E9503400396AC7 /* SavingInfoViewController.swift */,
+				51170C6223E9503400396AC7 /* SavingHistoryViewController.swift */,
+				51170C6323E9503400396AC7 /* SavingInputViewController.swift */,
+				51170C6423E9503400396AC7 /* SavingPickerViewController.swift */,
+				51170C6523E9503400396AC7 /* Saving.storyboard */,
+				51170C6623E9503400396AC7 /* SavingSummaryViewController.swift */,
+				51170C6723E9503400396AC7 /* SavingConfirmViewController.swift */,
+				51170C6823E9503400396AC7 /* SavingHistory.swift */,
+			);
+			path = Saving;
+			sourceTree = "<group>";
+		};
+		51170C7123E9503C00396AC7 /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				51170C7223E9503C00396AC7 /* ChatbotViewController.swift */,
+				51170C7323E9503C00396AC7 /* MessageUI.swift */,
+				51170C7423E9503C00396AC7 /* Chatbot.storyboard */,
+			);
+			name = Chatbot;
+			path = Plutus/Chatbot;
+			sourceTree = SOURCE_ROOT;
+		};
 		511A79AC23A3296A000745E4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				0EA122BB23CF811600F79724 /* UIView+Extensions.swift */,
+				51170C7123E9503C00396AC7 /* Chatbot */,
+				51170C6023E9503400396AC7 /* Saving */,
 				0E28A8532398A73300F7DBED /* Budgeting */,
 				0E28A84D2398A67400F7DBED /* CustomView.swift */,
 				0E28A84E2398A67400F7DBED /* StringExtension.swift */,
@@ -322,11 +372,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51170C6D23E9503500396AC7 /* Saving.storyboard in Resources */,
 				5197F009238F62D3005BC7F0 /* Assets.xcassets in Resources */,
 				5197F004238F62D2005BC7F0 /* Main.storyboard in Resources */,
 				511A79AE23A3297A000745E4 /* SignPainter HouseScript Regular.ttf in Resources */,
 				511A79B223A32D64000745E4 /* LaunchScreen.storyboard in Resources */,
 				0E28A8602398A7B700F7DBED /* Budget.storyboard in Resources */,
+				51170C7723E9503C00396AC7 /* Chatbot.storyboard in Resources */,
 				5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,7 +509,10 @@
 			files = (
 				0EA122BC23CF811600F79724 /* UIView+Extensions.swift in Sources */,
 				0E28A8502398A67400F7DBED /* CustomView.swift in Sources */,
+				51170C6E23E9503500396AC7 /* SavingSummaryViewController.swift in Sources */,
+				51170C6F23E9503500396AC7 /* SavingConfirmViewController.swift in Sources */,
 				51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */,
+				51170C6A23E9503500396AC7 /* SavingHistoryViewController.swift in Sources */,
 				513574AA23CEE8E600135886 /* NFSViewController.swift in Sources */,
 				0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */,
 				513574A623CEE37E00135886 /* topUpViewController.swift in Sources */,
@@ -465,9 +520,15 @@
 				51297C372398A0B6003F913F /* OTPViewController.swift in Sources */,
 				0E28A8512398A67400F7DBED /* StringExtension.swift in Sources */,
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
+				51170C6B23E9503500396AC7 /* SavingInputViewController.swift in Sources */,
+				51170C6C23E9503500396AC7 /* SavingPickerViewController.swift in Sources */,
+				51170C6923E9503500396AC7 /* SavingInfoViewController.swift in Sources */,
+				51170C7023E9503500396AC7 /* SavingHistory.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
+				51170C7523E9503C00396AC7 /* ChatbotViewController.swift in Sources */,
 				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
 				5183AE5F23D0236A00B045EA /* Expense.swift in Sources */,
+				51170C7623E9503C00396AC7 /* MessageUI.swift in Sources */,
 				5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */,
 				0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */,
 				0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */,
