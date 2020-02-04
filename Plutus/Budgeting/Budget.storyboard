@@ -85,6 +85,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="234" id="BCy-NI-73A"/>
+                                    <constraint firstAttribute="width" constant="374" id="GVN-t1-CCk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1s-Uf-yPH" customClass="CustomView" customModule="Plutus" customModuleProvider="target">
@@ -202,6 +203,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="kRR-Se-ncD" firstAttribute="centerX" secondItem="oLp-XV-wwH" secondAttribute="centerX" id="8Yg-v9-tXj"/>
                             <constraint firstItem="kRR-Se-ncD" firstAttribute="leading" secondItem="Bry-qr-MKO" secondAttribute="leading" constant="20" id="Six-rl-xGL"/>
                             <constraint firstItem="kRR-Se-ncD" firstAttribute="top" secondItem="Bry-qr-MKO" secondAttribute="top" constant="19" id="Ypp-LU-f18"/>
                             <constraint firstItem="Bry-qr-MKO" firstAttribute="trailing" secondItem="kRR-Se-ncD" secondAttribute="trailing" constant="20" id="dGo-uX-0J7"/>

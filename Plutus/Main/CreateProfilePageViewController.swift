@@ -67,7 +67,7 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
                 "lastName" : "\(InputLastname.text!)",
                 "mobileNumber" : "\((Auth.auth().currentUser?.phoneNumber)!)",
                 "balanceWallet" : "sgd",
-                "balanceSaving" : 0,
+                "balanceSaving" : "sgd",
             ]){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -77,11 +77,13 @@ class CreateProfilePageViewController: UIViewController, UIScrollViewDelegate, U
                             print("Error writing document: \(err)")
                         }
                     }
-//                    usersRef.document("\(Auth.auth().currentUser!.uid)").collection("transaction").document("0").setData(["0":"0"]){ err in
-//                        if let err = err {
-//                            print("Error writing document: \(err)")
-//                        }
-//                    }
+                    usersRef.document("\(Auth.auth().currentUser!.uid)").collection("balanceSaving").document("currency").setData(["sgd":0,"usd":0]){ err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        }
+                    }
+
+                    
                     print("Document successfully written!")
                     self.performSegue(withIdentifier: "toHome", sender: nil)
                 }

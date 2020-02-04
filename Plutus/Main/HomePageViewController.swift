@@ -5,6 +5,7 @@ import FirebaseFirestore
 class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var currentBalanceCurrency: UIButton!
+    @IBOutlet var savingBalanceCurrency: UIButton!
     @IBOutlet weak var currentBalance: UILabel!
     @IBOutlet weak var savingBalance: UILabel!
     
@@ -13,7 +14,7 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var picker = UIPickerView()
     var selection:String = ""
     
-    let currentUserID = Auth.auth().currentUser?.uid
+    let currentUserID:String = Auth.auth().currentUser!.uid
     let pickerData = [
         "SGD",
         "USD",
@@ -32,37 +33,72 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.navigationController?.isNavigationBarHidden = true
         nameLabel.text = Auth.auth().currentUser?.displayName ?? ""
         db = Firestore.firestore()
-
-        db.collection("users").document("\(currentUserID ?? "")").addSnapshotListener { documentSnapshot, error in
+        var data = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data2 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data3 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        db.collection("users").document("\(currentUserID)").addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
+                print("Error fetching document1: \(error!)")
                 return
             }
-            guard let data = document.data() else {
-                print("Document data was empty.")
+            data = document.data()!
+        }
+    db.collection("users").document("\(self.currentUserID)").collection("balanceWallet").document("currency").addSnapshotListener{ documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document2: \(error!)")
                 return
             }
-            self.db.collection("users").document("\(self.currentUserID ?? "")").collection("balanceWallet").document("currency").addSnapshotListener{ documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                }
-                guard let data2 = document.data() else {
-                    print("Document data was empty.")
-                    return
-                }
-                guard let currency:String = data["balanceWallet"] as? String else {
+            data2 = document.data()!
+        }
+    db.collection("users").document("\(self.currentUserID)").collection("balanceSaving").document("currency").addSnapshotListener{ documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching documents3: \(error!)")
+                return
+            }
+            data3 = document.data()!
+        }
+        func dataValueOnChange(){
+            if (!data.isEmpty && !data2.isEmpty && !data3.isEmpty){
+                guard let walletCurrency:String = data["balanceWallet"] as? String else {
                     print("Error feteching currency Type")
                     return
                 }
-                guard let amount = data2[currency] else {
+                guard let walletAmount:Double = data2[walletCurrency] as? Double else {
+                    print("Error feteching amount")
+                    return
+                }
+                guard let savingCurrency:String = data["balanceSaving"] as? String else {
                     print("Error feteching currency Type")
                     return
                 }
-                self.currentBalance.text = "\(amount)"
-                self.currentBalanceCurrency.setTitle("\(currency.uppercased())", for: .normal)
+                guard let savingAmount:Double = data3[savingCurrency] as? Double else {
+                    print("Error feteching amount")
+                    return
+                }
+                self.currentBalance.text = "\(walletAmount.roundTo(places: 2))"
+                self.currentBalanceCurrency.setTitle("\(walletCurrency.uppercased())", for: .normal)
+                
+                self.savingBalance.text = "\(savingAmount.roundTo(places: 2))"
+                self.savingBalanceCurrency.setTitle("\(savingCurrency.uppercased())", for: .normal)
             }
-            self.savingBalance.text = "\(data["balanceSaving"] ?? 0)"
         }
     }
     
@@ -83,8 +119,8 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    @IBAction func CurrencyOnClick(_ sender: Any) {
-        onDoneButtonTapped()
+    @IBAction func savingCurrencyOnClick(_ sender: Any) {
+        savingDoneButtonTapped()
         dismissKeyboard()
         picker = UIPickerView.init()
         picker.delegate = self
@@ -96,7 +132,24 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.view.addSubview(picker)
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
         toolBar.barStyle = .blackTranslucent
-        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(savingDoneButtonTapped))]
+        self.view.addSubview(toolBar)
+    }
+    @IBAction func currentCurrencyOnClick(_ sender: Any) {
+        toolBar.removeFromSuperview()
+        picker.removeFromSuperview()
+        dismissKeyboard()
+        picker = UIPickerView.init()
+        picker.delegate = self
+        picker.backgroundColor = UIColor.white
+        picker.setValue(UIColor.black, forKey: "textColor")
+        picker.autoresizingMask = .flexibleWidth
+        picker.contentMode = .center
+        picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+        self.view.addSubview(picker)
+        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBar.barStyle = .blackTranslucent
+        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(currentDoneButtonTapped))]
         self.view.addSubview(toolBar)
     }
     
@@ -104,9 +157,16 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.endEditing(false)
     }
     
-    @objc func onDoneButtonTapped() {
+    @objc func currentDoneButtonTapped() {
         db.collection("users").document(Auth.auth().currentUser!.uid).updateData([
             "balanceWallet": selection.lowercased()
+            ])
+        toolBar.removeFromSuperview()
+        picker.removeFromSuperview()
+    }
+    @objc func savingDoneButtonTapped() {
+        db.collection("users").document(Auth.auth().currentUser!.uid).updateData([
+            "balanceSaving": selection.lowercased()
             ])
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
@@ -116,8 +176,6 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let transferAction = UIAlertAction(title: "QR scan", style: .default, handler: QRhandler)
         optionMenu.addAction(transferAction)
-        let topupAction = UIAlertAction(title: "NFS", style: .default, handler: NFShandler)
-        optionMenu.addAction(topupAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
@@ -137,9 +195,6 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func QRhandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toQR", sender: nil)
     }
-    func NFShandler(alert: UIAlertAction!){
-        performSegue(withIdentifier: "toNFS", sender: nil)
-    }
     func transferhandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toTransfer", sender: nil)
     }
@@ -149,5 +204,11 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func topuphandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toTopUp", sender: nil)
     }
-    
+}
+
+extension Double {
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
