@@ -158,6 +158,31 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - ApiAI (0.7.2):
+    - ApiAI/AudioFileConverter (= 0.7.2)
+    - ApiAI/Core (= 0.7.2)
+    - ApiAI/Events (= 0.7.2)
+    - ApiAI/ResponseMapping (= 0.7.2)
+    - ApiAI/UIKit (= 0.7.2)
+    - ApiAI/UserEntities (= 0.7.2)
+    - ApiAI/VoiceFileRequest (= 0.7.2)
+    - ApiAI/VoiceRequest (= 0.7.2)
+  - ApiAI/AudioFileConverter (0.7.2):
+    - ApiAI/Core
+  - ApiAI/Core (0.7.2)
+  - ApiAI/Events (0.7.2):
+    - ApiAI/Core
+  - ApiAI/ResponseMapping (0.7.2):
+    - ApiAI/Core
+  - ApiAI/UIKit (0.7.2):
+    - ApiAI/Core
+    - ApiAI/VoiceRequest
+  - ApiAI/UserEntities (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceFileRequest (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceRequest (0.7.2):
+    - ApiAI/Core
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
@@ -286,6 +311,7 @@ PODS:
   - VisaCheckoutSDK (6.7.0)
 
 DEPENDENCIES:
+  - ApiAI
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -299,6 +325,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - ApiAI
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -326,6 +353,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
+  ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
@@ -351,6 +379,6 @@ SPEC CHECKSUMS:
   UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
   VisaCheckoutSDK: c303ea257edc20bdcbbc3914e1a6d7c935fc43a6
 
-PODFILE CHECKSUM: 85b10e748d614d214cc624847f8baf204a82fb82
+PODFILE CHECKSUM: 5ec0fd7df816bb49ac8ac2bdae5aac87b533ab54
 
 COCOAPODS: 1.8.4
