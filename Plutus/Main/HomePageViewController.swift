@@ -66,6 +66,10 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     @IBAction func SignOutOnClick(_ sender: Any) {
         do {
             try Auth.auth().signOut()

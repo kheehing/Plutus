@@ -10,15 +10,15 @@ import Foundation
 
 class Expense: NSObject{
     
-    var user: String
     var categories: String
     var desc: String
     var budget: String
+    var spent: String
     
-    init(_ User: String, _ Categories: String, _ Description: String, _ Budget: String) {
-        self.user = User
+    init(_ Categories: String, _ Description: String, _ Budget: String, _ Spent: String) {
         self.categories = Categories
         self.desc = Description
         self.budget = Budget
+        self.spent = Spent
     }
 }

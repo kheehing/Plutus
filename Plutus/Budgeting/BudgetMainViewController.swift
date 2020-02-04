@@ -9,6 +9,7 @@
 import UIKit
 import MultiProgressView
 import FirebaseFirestore
+import Firebase
 
 class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource, MultiProgressViewDataSource {
 
@@ -34,55 +35,94 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     @IBOutlet weak var progressBar: CustomProgressView!
     
     var budgetOver = false
-    var budgetLeft = 15
+    var budgetLeft: Double! = 0.00
+    var totalBudget: Double! = 0.00
+    var totalSpent: Double! = 0.00
     var db: Firestore!
     var expense: [Expense] = []
-    var exampleBudget = 550.00
+    
+    var currentSpent: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        checkAmtLabel()
-        animatedProgress(progressBar, progress: 0.85)
-        
+//        animatedProgress(progressBar, progress: 0.85, 85)
         tableView.rowHeight = tableView.frame.height / 3.45
+//        loadData()
+//        checkAmtLabel()
+        
+        print(Auth.auth().currentUser!.uid)
     }
     
     func loadData() {
-        db.collection("expenditure").getDocuments() { (QuerySnapshot, err)  in
+        db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("budget").getDocuments() { (QuerySnapshot, err)  in
             if let err = err {
                 print("error getting docs \(err)")
             } else {
                 for document in QuerySnapshot!.documents {
-                    self.expense.append(Expense(document["user"] as! String, document["categories"] as! String, document["description"] as! String, document["budget"] as! String))
+                    self.expense.append(Expense(document["categories"] as! String, document["description"] as! String, document["budget"] as! String, document["spent"] as! String))
                 }
             }
+            self.checkAmtLabel()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        if(expense.count >= 0) {
+        self.navigationController?.isNavigationBarHidden = false
+        createBudget()
+        if expense.count > 0 {
             expense.removeAll()
-            loadData()
-//        }
+        }
+        loadData()
         self.tableView.reloadData()
     }
     
     func checkAmtLabel() {
+        totalBudget = 0
+        totalSpent = 0
+        
+        for i in expense {
+            totalBudget += Double(i.budget)!
+            totalSpent += Double(i.spent)!
+        }
+        
+        if (totalBudget! - totalSpent!) < 0 {
+            budgetOver = true
+        } else {
+            budgetOver = false
+        }
+        
+        budgetAmt.text = "$\(totalBudget!)"
+        spentAmt.text = "$\(totalSpent!)"
+        
+        if (totalSpent != 0) {
+            if (totalSpent > totalBudget) {
+                if (totalBudget > 0) {
+                    animatedProgress(progressBar, progress: 1, percentage: Int((totalSpent!/totalBudget!)*100))
+                } else {
+                    animatedProgress(progressBar, progress: 1, percentage: Int(totalSpent!*10))
+                }
+            } else {
+                animatedProgress(progressBar, progress: (Float(totalSpent!/totalBudget!)), percentage: Int((totalSpent!/totalBudget!)*100))
+            }
+        } else {
+            animatedProgress(progressBar, progress: 0, percentage: 0)
+        }
+        
         if budgetOver == false {
-            self.spendAmtLabel.attributedText = "You can spend <b>$\(budgetLeft)</b> for the rest of the month!".htmlAttributed(family: "Helvetica", size: 13)
+            self.spendAmtLabel.attributedText = "You can spend <b>$\(((totalBudget! - totalSpent!)*100).rounded()/100)</b> for the rest of the month!".htmlAttributed(family: "Helvetica", size: 13)
         } else {
             self.spendAmtLabel.text = "You have exceeded your budget!"
             budgetOver = true
         }
     }
     
-    private func animatedProgress(_ progressView: CustomProgressView, progress: Float) {
+    private func animatedProgress(_ progressView: CustomProgressView, progress: Float, percentage: Int) {
         UIView.animate(withDuration: 0.25, delay: 0.2, options: .curveEaseInOut, animations: {
             progressView.setProgress(section: 0, to: progress)
         }, completion: nil)
         
-        progressView.percentage = 85
+        progressView.percentage = percentage
     }
     
     func numberOfSections(in progressView: MultiProgressView) -> Int {
@@ -102,23 +142,56 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
             self.tableView.reloadData()
         }
         
-        return expense.count - 1
+        return expense.count - 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenditureCell", for: indexPath)
-        let label = UILabel.init(frame: CGRect(x:0, y:0, width: 135, height: 20))
+        let label = UILabel.init(frame: CGRect(x:5, y:0, width: 135, height: 20))
         let budget = Float(expense[indexPath.row].budget)
         
         if indexPath.row <= 3 {
             cell.textLabel?.text = expense[indexPath.row].categories
             cell.detailTextLabel?.text = expense[indexPath.row].desc
-            label.text = "\(expense[indexPath.row].budget)  |  \(expense[indexPath.row].budget)"
+            label.text = "$\(expense[indexPath.row].spent)  |  $\(expense[indexPath.row].budget)"
+            label.textAlignment = .right
             if (budget! - budget!) != 0.0 {
                 label.textColor = .red
             }
             cell.accessoryView = label
         }
         return cell
+    }
+    
+    func createBudget() {
+        let budgetLink = db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("budget")
+        budgetLink.getDocuments() { (QuerySnapshot, err) in
+            if let err = err {
+                print("error \(err)")
+            } else {
+                if QuerySnapshot!.documents.isEmpty {
+                    budgetLink.document("Bills").setData(["description": "None",
+                                                          "budget": "0",
+                                                          "spent": "0",
+                                                          "categories": "Bills"])
+                    budgetLink.document("Entertainment").setData(["description": "None",
+                                                                  "budget": "0",
+                                                                  "spent": "0",
+                                                                  "categories": "Entertainment"])
+                    budgetLink.document("Food").setData(["description": "None",
+                                                         "budget": "0",
+                                                         "spent": "0",
+                                                         "categories": "Food"])
+                    budgetLink.document("Transportation").setData(["description": "None",
+                                                                   "budget": "0",
+                                                                   "spent": "0",
+                                                                   "categories": "Transportation"])
+                    budgetLink.document("Others").setData(["description": "None",
+                                                           "budget": "0",
+                                                           "spent": "0",
+                                                           "categories": "Others"])
+                }
+            }
+        }
     }
 }
