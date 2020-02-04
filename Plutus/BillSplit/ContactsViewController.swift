@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Firebase
 
 class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var receiptID : String = ""
     var contacts : [String] = ["Bob","Steve"]
+    var itemList : [String] = []
+    var db : Firestore!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        db = Firestore.firestore()
+        retrieveReceipt()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -40,6 +47,20 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         return contacts.count
     }
     
+    private func retrieveReceipt() {
+        let docRef = db.collection("receipt").document(receiptID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                self.itemList = document.get("text") as! [String]
+                print("This is supposed to be \(self.itemList)")
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "SelectAmountSegue"){
             let vc = segue.destination as! SelectPayViewController
@@ -49,7 +70,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                 let contact = contacts[(myIndexPath?.section)!]
                 vc.Person = contact
                 vc.receiptID = receiptID
+                vc.PitemList = itemList
             }
         }
     }
 }
+

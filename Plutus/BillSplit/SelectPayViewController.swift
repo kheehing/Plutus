@@ -12,20 +12,26 @@ import Firebase
 
 
 class SelectPayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     
     
     var Person : String!
     var receiptID : String = ""
     var db : Firestore!
-    var itemList : [String] = []
-
+    var PitemList : [String] = []
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //        super.viewWillAppear(animated)
+        retrieveReceipt()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        retrieveReceipt()
+        tableView?.allowsMultipleSelection = true
         
     }
     
@@ -36,13 +42,15 @@ class SelectPayViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Dequeue a reusable cell.
         let cell : ItemCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ItemsCell") as! ItemCellTableViewCell
-        cell.itemLabel.text = itemList[indexPath.section]
+        cell.itemLabel.text = PitemList[indexPath.section]
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return itemList.count
+        return PitemList.count
     }
+    
+    
     
     private func retrieveReceipt() {
         let docRef = db.collection("receipt").document(receiptID)
@@ -50,7 +58,8 @@ class SelectPayViewController: UIViewController, UITableViewDelegate, UITableVie
             if let document = document, document.exists {
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 print("Document data: \(dataDescription)")
-                self.itemList = document.get("text") as! [String]
+                self.PitemList = document.get("text") as! [String]
+                print("This is supposed to be \(self.PitemList)")
             } else {
                 print("Document does not exist")
             }
