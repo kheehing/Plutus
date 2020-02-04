@@ -33,8 +33,8 @@ class SavingSummaryViewController: UIViewController, UITableViewDelegate, UITabl
         db = Firestore.firestore()
         let group = DispatchGroup()
         group.enter()
-
-        let data = db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true)
+self.navigationController?.isNavigationBarHidden = false
+        _ = db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")

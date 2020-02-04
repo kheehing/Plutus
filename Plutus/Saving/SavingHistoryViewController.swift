@@ -19,7 +19,7 @@ class SavingHistoryViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = false
         db = Firestore.firestore()
         let data = db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true)
             .getDocuments() { (querySnapshot, err) in

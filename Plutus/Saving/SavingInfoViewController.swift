@@ -24,6 +24,7 @@ class SavingInfoViewController: UIViewController {
         textOne.isHidden = true
         textTwo.isHidden = true
         nextbtn.isEnabled = false
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {

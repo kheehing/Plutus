@@ -29,7 +29,7 @@
         <!--SavingInfoViewController-->
         <scene sceneID="OeD-x4-yXb">
             <objects>
-                <viewController storyboardIdentifier="Saving" id="QP4-eo-dDa" userLabel="SavingInfoViewController" customClass="SavingInfoViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="savingView" id="QP4-eo-dDa" userLabel="SavingInfoViewController" customClass="SavingInfoViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y0H-fl-iLW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -260,6 +260,14 @@
             </objects>
             <point key="canvasLocation" x="1291.304347826087" y="45.535714285714285"/>
         </scene>
+        <!--HomePage-->
+        <scene sceneID="ehz-SW-mBd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomePage" id="7vi-Bg-k8J" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fkd-Nc-qDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2049" y="-389"/>
+        </scene>
         <!--Savings-->
         <scene sceneID="iPl-Jy-xce">
             <objects>
@@ -377,7 +385,7 @@
                     <navigationItem key="navigationItem" title="Savings" id="710-Wx-byU">
                         <barButtonItem key="leftBarButtonItem" title="Home" id="76m-AQ-pid" userLabel="Home">
                             <connections>
-                                <segue destination="xY2-g5-Atg" kind="unwind" unwindAction="unwindToHomePageWithSegue:" id="uoL-7X-vat"/>
+                                <segue destination="7vi-Bg-k8J" kind="show" id="1P6-D0-rlg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="1om-Vo-AXj">
@@ -394,7 +402,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Baf-eT-sri" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="xY2-g5-Atg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2127.536231884058" y="45.535714285714285"/>
         </scene>
