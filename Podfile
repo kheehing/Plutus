@@ -14,9 +14,9 @@ target 'Plutus' do
   pod 'Firebase/Firestore'
 
   pod 'MultiProgressView'
-  pod 'UPCarouselFlowLayout'
-  pod 'VisaCheckoutSDK'
   pod 'ApiAI'
+  pod 'FirebaseMLVision'
+  pod 'Firebase/MLVisionTextModel'
 
   target 'PlutusTests' do
     inherit! :search_paths
