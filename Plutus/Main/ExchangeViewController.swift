@@ -74,6 +74,13 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         return
                     }
                     self.toBefore.text = String(format: "%.3f", fromDB)
+                    if (!self.fromTextfield.text!.isEmpty){
+                        guard let toTF:Double = Double(self.toTextfield.text!) else {
+                            print("Error fetching fromTextField")
+                            return
+                        }
+                        self.toAfter.text = String(format: "%.3f", fromDB + toTF)
+                    }
                 }
                 if (!self.fromPickerValue.isEmpty){
                     guard let fromDB:Double = self.data2[self.fromPickerValue.lowercased()] as? Double else {
@@ -81,6 +88,13 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         return
                     }
                     self.fromBefore.text = String(format: "%.3f", fromDB)
+                    if (!self.fromTextfield.text!.isEmpty){
+                        guard let fromTF:Double = Double(self.fromTextfield.text!) else {
+                            print("Error fetching fromTextField")
+                            return
+                        }
+                        self.fromAfter.text = String(format: "%.3f", fromDB - fromTF)
+                    }
                 }
             }
         }
