@@ -69,12 +69,18 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             DispatchQueue.main.async {
                 print(self.data2)
                 if (!self.toPickerValue.isEmpty){
-                    print(String(describing: self.data2[self.toPickerValue.lowercased()]!))
-                    self.toBefore.text = String(describing: self.data2[self.toPickerValue.lowercased()]!)
+                    guard let fromDB:Double = self.data2[self.toPickerValue.lowercased()] as? Double else {
+                        print("Error feteching fromDB")
+                        return
+                    }
+                    self.toBefore.text = String(format: "%.3f", fromDB)
                 }
                 if (!self.fromPickerValue.isEmpty){
-                    print(String(describing: self.data2[self.fromPickerValue.lowercased()]!))
-                    self.fromBefore.text = String(describing: self.data2[self.fromPickerValue.lowercased()]!)
+                    guard let fromDB:Double = self.data2[self.fromPickerValue.lowercased()] as? Double else {
+                        print("Error feteching fromDB")
+                        return
+                    }
+                    self.fromBefore.text = String(format: "%.3f", fromDB)
                 }
             }
         }
@@ -240,20 +246,24 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         var value:Double = (someDouble * Double(fromTextfield.text!)!)
                         value = value.roundTo(places: 3)
                         toTextfield.text = "\(value)"
+                        self.checkExchange()
                     } else {
                         var value:Double = ((1/someDouble) * Double(fromTextfield.text!)!)
                         value = value.roundTo(places: 3)
                         toTextfield.text = "\(value)"
+                        self.checkExchange()
                     }
                 } else if (toTextfield.isUserInteractionEnabled == true && fromTextfield.isUserInteractionEnabled == false){
                     if (toPickerValue.lowercased() == "sgd"){
                         var value:Double = (someDouble / Double(toTextfield.text!)!)
                         value = value.roundTo(places: 3)
                         fromTextfield.text = "\(value)"
+                        self.checkExchange()
                     } else {
                         var value:Double = ((1/someDouble) * Double(toTextfield.text!)!)
                         value = value.roundTo(places: 3)
                         fromTextfield.text = "\(value)"
+                        self.checkExchange()
                     }
                 }
             }
@@ -261,27 +271,45 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func checkExchange(){
+        func cal(_ value:Double,_ Type:Bool){
+            if (!toBefore.text!.isEmpty && !fromBefore.text!.isEmpty) {
+                guard let toDB:Double = self.data2[self.toPickerValue.lowercased()] as? Double else {
+                    print("Error feteching fromDB")
+                    return
+                }
+                guard let fromDB:Double = self.data2[self.fromPickerValue.lowercased()] as? Double else {
+                    print("Error feteching fromDB")
+                    return
+                }
+                if (Type){
+                    toAfter.text = String(format: "%.3f", toDB + value)
+                    fromAfter.text = String(format: "%.3f", fromDB - Double(fromTextfield.text!)!)
+                } else {
+                    toAfter.text = String(format: "%.3f", toDB + Double(toTextfield.text!)!)
+                    fromAfter.text = String(format: "%.3f", fromDB - value)
+                }
+            }
+        }
         if (fromTextfield.isFirstResponder){
             if (fromPickerValue.lowercased() == "sgd"){
-                var value:Double = (someDouble * Double(fromTextfield.text!)!)
-                value = value.roundTo(places: 3)
-                toTextfield.text = "\(value)"
+                let value:Double = (someDouble * Double(fromTextfield.text!)!)
+                toTextfield.text = String(format: "%.3f", value)
+                cal(value,true)
             } else {
-                var value:Double = ((1/someDouble) * Double(fromTextfield.text!)!)
-                value = value.roundTo(places: 3)
-                toTextfield.text = "\(value)"
+                let value:Double = (Double(fromTextfield.text!)! / someDouble)
+                toTextfield.text = String(format: "%.3f", value)
+                cal(value,true)
             }
         } else if (toTextfield.isFirstResponder){
             if (toPickerValue.lowercased() == "sgd"){
-                var value:Double = (someDouble / Double(toTextfield.text!)!)
-                value = value.roundTo(places: 3)
-                fromTextfield.text = "\(value)"
+                let value:Double = (Double(toTextfield.text!)! / someDouble)
+                fromTextfield.text = String(format: "%.3f", value)
+                cal(value,false)
             } else {
-                var value:Double = ((1/someDouble) * Double(toTextfield.text!)!)
-                value = value.roundTo(places: 3)
-                fromTextfield.text = "\(value)"
+                let value:Double = (someDouble * Double(toTextfield.text!)!)
+                fromTextfield.text = String(format: "%.3f", value)
+                cal(value,false)
             }
-            
         }
     }
     
