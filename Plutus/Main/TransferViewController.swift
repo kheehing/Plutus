@@ -24,7 +24,8 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var data2 = [String : Any](){
         didSet{
             DispatchQueue.main.async {
-                self.displayBalance.text = "You have: \(self.data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!) \(self.currencyButton.currentTitle!.uppercased())"
+                let this:Double = self.data2[String(describing: self.currencyButton.currentTitle!.lowercased())] as! Double
+                self.displayBalance.text = "You have: \(round(1000*this)/1000) \(self.currencyButton.currentTitle!.uppercased())"
                 print(self.data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!)
             }
         }
@@ -76,7 +77,7 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @objc func onDoneButtonTapped() {
-        displayBalance.text = "You have: \(data2[String(describing: self.currencyButton.currentTitle!.lowercased())]!) \(self.currencyButton.currentTitle!.uppercased())"
+        displayBalance.text = "You have: \(data2[String(describing:self.currencyButton.currentTitle!.lowercased())]!) \(self.currencyButton.currentTitle!.uppercased())"
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }
