@@ -292,11 +292,11 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         if (fromTextfield.isFirstResponder){
             if (fromPickerValue.lowercased() == "sgd"){
-                let value:Double = (someDouble * Double(fromTextfield.text!)!)
+                let value:Double = (Double(fromTextfield.text!)! / someDouble)
                 toTextfield.text = String(format: "%.3f", value)
                 cal(value,true)
             } else {
-                let value:Double = (Double(fromTextfield.text!)! / someDouble)
+                let value:Double = (someDouble * Double(fromTextfield.text!)!)
                 toTextfield.text = String(format: "%.3f", value)
                 cal(value,true)
             }
