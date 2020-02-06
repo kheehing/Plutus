@@ -9,3 +9,12 @@ A centralised monetary system that incorporates the transaction of money, tracki
 
 ##
 basically a wallet app.
+
+
+# Paypal
+## SandBox account
+Plutus@business.example.com
+## Client ID
+AQrYZSIIMynOcqoC4lW_ZG4cZHXF5S_ILMPAMnGDryTiT3kquFQluRTe-D11U-Nx-BgytydSE7NnNOcp
+### Secret 
+ENxUHLiMgZqG4hf7TCNQEqZFmD4B1KEc24x6NA5B6NGAMCXsK_nXtpxtd8NYAbjC7Iy2995tQhOTtSuw
