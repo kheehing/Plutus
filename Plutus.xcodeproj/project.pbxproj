@@ -46,9 +46,9 @@
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
 		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
 		51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */; };
+		513070A823EBDC5B00BAF400 /* testpaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */; };
+		513070AA23EBF4AD00BAF400 /* topUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513070A923EBF4AD00BAF400 /* topUpViewController.swift */; };
 		5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */; };
-		513574A623CEE37E00135886 /* topUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513574A523CEE37E00135886 /* topUpViewController.swift */; };
-		513574AA23CEE8E600135886 /* NFSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513574A923CEE8E600135886 /* NFSViewController.swift */; };
 		5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */; };
 		5183AE5F23D0236A00B045EA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5183AE5E23D0236A00B045EA /* Expense.swift */; };
 		5186E44323CDB393001ED3A4 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E44223CDB393001ED3A4 /* TransferViewController.swift */; };
@@ -124,10 +124,10 @@
 		5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terms_ConditionsViewController.swift; sourceTree = "<group>"; };
 		51297C362398A0B6003F913F /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfilePageViewController.swift; sourceTree = "<group>"; };
+		513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testpaymentViewController.swift; sourceTree = "<group>"; };
+		513070A923EBF4AD00BAF400 /* topUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topUpViewController.swift; sourceTree = "<group>"; };
 		5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		513574A523CEE37E00135886 /* topUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topUpViewController.swift; sourceTree = "<group>"; };
 		513574A723CEE8DC00135886 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
-		513574A923CEE8E600135886 /* NFSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFSViewController.swift; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		5183AE5E23D0236A00B045EA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -259,11 +259,11 @@
 				51297C362398A0B6003F913F /* OTPViewController.swift */,
 				51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */,
 				511580B823A8842800F006F3 /* HomePageViewController.swift */,
-				513574A523CEE37E00135886 /* topUpViewController.swift */,
 				513574A723CEE8DC00135886 /* QRViewController.swift */,
-				513574A923CEE8E600135886 /* NFSViewController.swift */,
 				5186E44223CDB393001ED3A4 /* TransferViewController.swift */,
 				5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */,
+				513070A923EBF4AD00BAF400 /* topUpViewController.swift */,
+				513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -606,18 +606,17 @@
 				0E62371C23E9554200C8F9C0 /* DetailsViewController.swift in Sources */,
 				51170C6A23E9503500396AC7 /* SavingHistoryViewController.swift in Sources */,
 				0E62371823E9554200C8F9C0 /* ProductCellTableViewCell.swift in Sources */,
-				513574AA23CEE8E600135886 /* NFSViewController.swift in Sources */,
 				0E62371D23E9554200C8F9C0 /* BillSplitViewController.swift in Sources */,
 				0E28A85F2398A7B700F7DBED /* BudgetMainViewController.swift in Sources */,
 				0E62371A23E9554200C8F9C0 /* BillProductsViewController.swift in Sources */,
 				0E62371623E9554200C8F9C0 /* BillTextViewController.swift in Sources */,
-				513574A623CEE37E00135886 /* topUpViewController.swift in Sources */,
 				5186E44323CDB393001ED3A4 /* TransferViewController.swift in Sources */,
 				51297C372398A0B6003F913F /* OTPViewController.swift in Sources */,
 				0E28A8512398A67400F7DBED /* StringExtension.swift in Sources */,
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				51170C6B23E9503500396AC7 /* SavingInputViewController.swift in Sources */,
 				51170C6C23E9503500396AC7 /* SavingPickerViewController.swift in Sources */,
+				513070A823EBDC5B00BAF400 /* testpaymentViewController.swift in Sources */,
 				0E62371923E9554200C8F9C0 /* Line.swift in Sources */,
 				51170C6923E9503500396AC7 /* SavingInfoViewController.swift in Sources */,
 				51170C7023E9503500396AC7 /* SavingHistory.swift in Sources */,
@@ -630,6 +629,7 @@
 				0E62371E23E9554200C8F9C0 /* SelectPayViewController.swift in Sources */,
 				5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */,
 				0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */,
+				513070AA23EBF4AD00BAF400 /* topUpViewController.swift in Sources */,
 				0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */,
 				511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */,
 				5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import ApiAI
+import Braintree
 
 @UIApplicationMain
 
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let apiai = ApiAI.shared()
         apiai?.configuration = configuration
         FirebaseApp.configure()
+        BTAppSwitch.setReturnURLScheme("com.nyp.plutus.payments")
         return true
     }
 
@@ -97,6 +99,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("com.nyp.plutus.payments") == .orderedSame {
+            return BTAppSwitch.handleOpen(url, options: options)
+        }
+        return false
     }
 
 }

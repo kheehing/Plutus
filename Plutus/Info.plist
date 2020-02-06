@@ -26,6 +26,16 @@
 				<string>com.googleusercontent.apps.808020789555-05oi1l2jhifprh2glp0eebas1fm4ffir</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.nyp.plutus</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.nyp.plutus.payments</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

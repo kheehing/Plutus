@@ -189,6 +189,28 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - Braintree (4.31.0):
+    - Braintree/Card (= 4.31.0)
+    - Braintree/Core (= 4.31.0)
+    - Braintree/PayPal (= 4.31.0)
+    - Braintree/UI (= 4.31.0)
+  - Braintree/Card (4.31.0):
+    - Braintree/Core
+  - Braintree/Core (4.31.0)
+  - Braintree/PayPal (4.31.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.31.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.31.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.31.0)
+  - Braintree/UI (4.31.0):
+    - Braintree/Card
+    - Braintree/Core
   - Firebase/Analytics (6.13.0):
     - Firebase/Core
   - Firebase/Auth (6.13.0):
@@ -355,6 +377,7 @@ PODS:
 
 DEPENDENCIES:
   - ApiAI
+  - Braintree
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -370,6 +393,7 @@ SPEC REPOS:
     - abseil
     - ApiAI
     - BoringSSL-GRPC
+    - Braintree
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -402,6 +426,7 @@ SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  Braintree: c20fb599a8cfee54ad7dfc603dee68f0922bfcba
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
   FirebaseAuth: 7d0f84873926f6648bbd1391a318dfb1a26b5e4f
@@ -430,6 +455,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
 
-PODFILE CHECKSUM: d125c173b91dfc14f7140ada1bd1a443b5dd5d0e
+PODFILE CHECKSUM: 508af5f62090ad9b62ee7102a2ed9ef99b9926d8
 
 COCOAPODS: 1.8.4

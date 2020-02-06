@@ -17,6 +17,7 @@ target 'Plutus' do
   pod 'ApiAI'
   pod 'FirebaseMLVision'
   pod 'Firebase/MLVisionTextModel'
+  pod 'Braintree'
 
   target 'PlutusTests' do
     inherit! :search_paths

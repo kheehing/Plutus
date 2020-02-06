@@ -1,110 +1,142 @@
 import UIKit
+import Braintree
 import FirebaseFirestore
+import Firebase
 
-class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, UIScrollViewDelegate {
-    @IBOutlet var typeOfTopUp: UITextField!
-    @IBOutlet var scrollView: UIScrollView!
+class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    @IBOutlet var textfield: UITextField!
+    @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var button: UIButton!
+    @IBOutlet var textView: UITextView!
     
+    var braintreeClient: BTAPIClient!
+    var pickerViewSelection:String = "SGD"
     var db: Firestore!
     
     let pickerData = [
-    "CreditCard",
-    "Bank Transfer",
+        "SGD",
+        "USD",
     ]
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNotificationKeyboard()
-        scrollView.delegate = self
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
         db = Firestore.firestore()
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
         self.navigationController?.isNavigationBarHidden = false
-        self.title = "Top Up"
-        createCatPicker()
+        braintreeClient = BTAPIClient(authorization: "sandbox_w3ry6mkv_dqz5p667pcwdq44y")!
+        self.title = "PayPal TopUp"
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true}
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1}
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count}
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]}
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedPickerView = pickerData[row]
-        typeOfTopUp.text = selectedPickerView
-    }
-    
-    func createCatPicker() {
-        let catPicker = UIPickerView()
-        catPicker.delegate = self
-        typeOfTopUp.delegate = self
-        typeOfTopUp.inputView = catPicker
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let doneBtn = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
-        toolbar.setItems([space, space, doneBtn], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        typeOfTopUp.inputAccessoryView = toolbar
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func tes(){
-        let lastHash = db.collection("transaction").document("lastTransaction")
-        lastHash.getDocument{ (document,error) in
-            if let document = document, document.exists {
-                let lastHashDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Last Hash: \(lastHashDescription)")
+    func startCheckout(amount:String,currency:String) {
+        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+        payPalDriver.viewControllerPresentingDelegate = self
+        payPalDriver.appSwitchDelegate = self
+        
+        let request = BTPayPalRequest(amount: amount)
+        request.currencyCode = currency
+        
+        payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                self.addtheMONEYY(amount: amount, currency: currency)
+//                Access additional information
+//                let email = tokenizedPayPalAccount.email
+//                let firstName = tokenizedPayPalAccount.firstName
+//                let lastName = tokenizedPayPalAccount.lastName
+//                let phone = tokenizedPayPalAccount.phone
+                
+//                See BTPostalAddress.h for details
+//                let billingAddress = tokenizedPayPalAccount.billingAddress
+//                let shippingAddress = tokenizedPayPalAccount.shippingAddres
+                // function that add and minus money
+            } else if let error = error {
+                // Handle error here...
+                print("Error: \(error)")
+            } else {
+                // Buyer canceled payment approval
+                print("Cancelled payment")
             }
         }
     }
     
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 { scrollView.contentOffset.x = 0 }
-    }
-    
-    func setNotificationKeyboard ()  {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification:NSNotification){
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        scrollView.contentInset = contentInset
-    }
-    
-    @objc func keyboardWillHide(notification:NSNotification){
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+    func addtheMONEYY(amount:String,currency:String){
+        print("addtheMONEYY")
+        db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").getDocument(){ (document, error) in
+            if let document = document {
+                let amount:Double = Double(amount)!
+                let currentmoney:Double = Double(document.data()![currency.lowercased()]! as! NSNumber)
+                let newMoney:Double = currentmoney + amount
+                print(amount)
+                print(currentmoney)
+                print(newMoney)
+                let Ref = self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency")
+                Ref.updateData([
+                    currency.lowercased() : newMoney
+                ]){ err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            } else {
+                print("document does not exist")
+            }
+            if let error = error {
+                print("Error: \(error)")
+            }
         }
-        return false
+        
     }
+    
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "close", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func SubmitOnClick(_ sender: Any) {
+        if (textfield.text!.isEmpty){
+            alert(title: "Error", message: "Amount Cannot be Empty")
+        } else {
+            print(textfield.text!)
+            print(pickerViewSelection)
+            startCheckout(amount: "\(textfield.text!)", currency: pickerViewSelection)
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return pickerData.count }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { return pickerData[row] }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedPickerView = pickerData[row]
+        self.pickerViewSelection = "\(selectedPickerView)"
+        print("pickerView: \(selectedPickerView)")
+    }
+    
+}
 
+extension topUpViewController : BTViewControllerPresentingDelegate {
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension topUpViewController : BTAppSwitchDelegate{
+    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
+        //showLoadingUI()
+        //NotificationCenter.default.addObserver(self, selector: #selector(hideLoadingUI), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
+        //hideLoadingUI()
+    }
+    
+    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
+    }
 }
