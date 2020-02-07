@@ -10,14 +10,12 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedPickerView = pickerData[row]
         if (pickerView == fromPicker){
-            print("frompickerView: \(selectedPickerView)")
             fromPickerValue = selectedPickerView
         } else {
-            print("topickerView: \(selectedPickerView)")
             toPickerValue = selectedPickerView
         }
     }
-    
+
     @IBOutlet weak var fromBefore: UILabel!
     @IBOutlet weak var toBefore: UILabel!
     @IBOutlet weak var fromAfter: UILabel!
@@ -27,6 +25,52 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var fromPicker: UIPickerView!
     @IBOutlet var toTextfield: UITextField!
     @IBOutlet var fromTextfield: UITextField!
+    
+    override func loadView() {
+        super.loadView()
+        self.navigationController?.isNavigationBarHidden = false
+        self.toPicker.delegate = self
+        self.toPicker.dataSource = self
+        self.fromPicker.delegate = self
+        self.fromPicker.dataSource = self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fromPickerValue = ""
+        toPickerValue = ""
+        self.title = "Exchange"
+        db = Firestore.firestore()
+        db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document2: \(error!)")
+                    return
+                }
+                self.data2 = document.data()!
+        }
+        fromTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        toTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        if let url = URL(string: "https://api.exchangeratesapi.io/latest") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Whole String",jsonString)
+                    }
+                    do {
+                        let res = try JSONDecoder().decode(currency.self, from: data)
+                        let value:Decimal = res.rates["SGD"]! / res.rates["USD"]!
+                        let someDouble = Double(truncating: value as NSNumber).roundTo(places: 3)
+                        self.someDouble = someDouble
+                        self.exchangeRateUStoSGD = "USD : SGD     1 : \(someDouble)"
+                    } catch let error {
+                        print(error)
+                    }
+                }
+                }.resume()
+        }
+    }
+
     
     var exchangeRateUStoSGD:String = "" {
         didSet{
@@ -67,7 +111,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var data2 = [String : Any](){
         didSet{
             DispatchQueue.main.async {
-                print(self.data2)
                 if (!self.toPickerValue.isEmpty){
                     guard let fromDB:Double = self.data2[self.toPickerValue.lowercased()] as? Double else {
                         print("Error feteching fromDB")
@@ -113,49 +156,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let date: String;
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fromPickerValue = ""
-        toPickerValue = ""
-        self.navigationController?.isNavigationBarHidden = false
-        self.title = "Exchange"
-        self.toPicker.delegate = self
-        self.toPicker.dataSource = self
-        self.fromPicker.delegate = self
-        self.fromPicker.dataSource = self
-        db = Firestore.firestore()
-        db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")
-            .document("currency").addSnapshotListener{ documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document2: \(error!)")
-                    return
-                }
-                self.data2 = document.data()!
-        }
-        fromTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        toTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        if let url = URL(string: "https://api.exchangeratesapi.io/latest") {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                        print("Whole String",jsonString)
-                    }
-                    do {
-                        let res = try JSONDecoder().decode(currency.self, from: data)
-                        let value:Decimal = res.rates["SGD"]! / res.rates["USD"]!
-                        let someDouble = Double(truncating: value as NSNumber).roundTo(places: 3)
-                        self.someDouble = someDouble
-                        self.exchangeRateUStoSGD = "USD : SGD     1 : \(someDouble)"
-                        print("US:SGD: 1:\(res.rates["SGD"]! / res.rates["USD"]!)")
-                        print("date: ",res.date)
-                    } catch let error {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-    }
-    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if (URL.absoluteString == "1"){
             self.performSegue(withIdentifier: "toTerms&Conditions", sender: nil)
@@ -182,8 +182,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     let amountBank:Double  = sData["\(self.fromPickerValue.lowercased())"]! as! Double
                     let amountEntered:Double = Double(self.fromTextfield.text!)!
                     let amountCalculated:Double = Double(self.toTextfield.text!)!
-                    print(amountBank)
-                    print(amountEntered)
                     if (amountBank < amountEntered) {
                         self.alert(title: "Invalid number", message: "You bank doesn't have $\(amountEntered) \(self.fromPickerValue), \nit only has $\(amountBank) \(self.fromPickerValue.uppercased()).")
                     } else {
@@ -191,9 +189,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                             if let err = err {
                                 print("Error getting documents: \(err)")
                             } else {
-                                print(Tsnapshot!.data()!)
-                                print(snapshot!.data()!)
-                                print(self.someDouble)
                                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "\(fromAmountType)" : snapshot!.data()![fromAmountType] as! Double - amountEntered ]) // from
                                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "\(toAmountType)" : snapshot!.data()![toAmountType] as! Double + amountCalculated ]) // to
                                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
@@ -206,8 +201,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                 }
                             }
                         }
-//                        print("bank: \(amountBank)")
-//                        print("entered: \(amountEntered )")
                     }
                 }
             }
@@ -225,7 +218,6 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     resetLabel()
                     toTextfield.isUserInteractionEnabled = true
                 } else if (fromTextfield.text!.prefix(1) == "-"){
-                    print("\(fromTextfield.text!.prefix(1))")
                     alert(title: "Error", message: "Numbers cannot be negative")
                 } else if (!fromTextfield.text!.isEmpty){
                     checkExchange()

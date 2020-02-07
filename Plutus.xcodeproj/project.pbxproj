@@ -46,8 +46,8 @@
 		5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */; };
 		51297C372398A0B6003F913F /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51297C362398A0B6003F913F /* OTPViewController.swift */; };
 		51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */; };
-		513070A823EBDC5B00BAF400 /* testpaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */; };
 		513070AA23EBF4AD00BAF400 /* topUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513070A923EBF4AD00BAF400 /* topUpViewController.swift */; };
+		513095E423ED515000620827 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513095E323ED515000620827 /* QRViewController.swift */; };
 		5130FD7E23AB5DDB00C7F587 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */; };
 		5146CAAD23E3E79C002C34E5 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */; };
 		5183AE5F23D0236A00B045EA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5183AE5E23D0236A00B045EA /* Expense.swift */; };
@@ -124,10 +124,9 @@
 		5127488B239636D50006B33F /* Terms_ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terms_ConditionsViewController.swift; sourceTree = "<group>"; };
 		51297C362398A0B6003F913F /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfilePageViewController.swift; sourceTree = "<group>"; };
-		513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testpaymentViewController.swift; sourceTree = "<group>"; };
 		513070A923EBF4AD00BAF400 /* topUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topUpViewController.swift; sourceTree = "<group>"; };
+		513095E323ED515000620827 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		5130FD7D23AB5DDB00C7F587 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		513574A723CEE8DC00135886 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		514103D3238F771F006178D0 /* Plutus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		5183AE5E23D0236A00B045EA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -259,11 +258,10 @@
 				51297C362398A0B6003F913F /* OTPViewController.swift */,
 				51301BCA23C3195700134ED5 /* CreateProfilePageViewController.swift */,
 				511580B823A8842800F006F3 /* HomePageViewController.swift */,
-				513574A723CEE8DC00135886 /* QRViewController.swift */,
 				5186E44223CDB393001ED3A4 /* TransferViewController.swift */,
 				5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */,
 				513070A923EBF4AD00BAF400 /* topUpViewController.swift */,
-				513070A723EBDC5B00BAF400 /* testpaymentViewController.swift */,
+				513095E323ED515000620827 /* QRViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -616,9 +614,9 @@
 				5197F032238F67CA005BC7F0 /* LoginViewController.swift in Sources */,
 				51170C6B23E9503500396AC7 /* SavingInputViewController.swift in Sources */,
 				51170C6C23E9503500396AC7 /* SavingPickerViewController.swift in Sources */,
-				513070A823EBDC5B00BAF400 /* testpaymentViewController.swift in Sources */,
 				0E62371923E9554200C8F9C0 /* Line.swift in Sources */,
 				51170C6923E9503500396AC7 /* SavingInfoViewController.swift in Sources */,
+				513095E423ED515000620827 /* QRViewController.swift in Sources */,
 				51170C7023E9503500396AC7 /* SavingHistory.swift in Sources */,
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				51170C7523E9503C00396AC7 /* ChatbotViewController.swift in Sources */,
@@ -801,13 +799,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MKDLWZR882;
+				DEVELOPMENT_TEAM = NX35LULALS;
 				INFOPLIST_FILE = Plutus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -823,13 +821,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MKDLWZR882;
+				DEVELOPMENT_TEAM = NX35LULALS;
 				INFOPLIST_FILE = Plutus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

@@ -152,8 +152,6 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                 }
                             }
                         }
-                        print("bank: \(amountBank)")
-                        print("entered: \(amountEntered )")
                     }
                 }
             }

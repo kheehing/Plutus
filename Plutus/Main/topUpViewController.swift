@@ -61,7 +61,6 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func addtheMONEYY(amount:String,currency:String){
-        print("addtheMONEYY")
         db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").getDocument(){ (document, error) in
             if let document = document {
                 let amount:Double = Double(amount)!
@@ -80,14 +79,20 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                         print("Document successfully updated")
                     }
                 }
+                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
+                    "type": "PayPal-TopUp",
+                    "user": "\(Auth.auth().currentUser!.displayName!)",
+                    "time": Timestamp(date: Date()),
+                    "fromAmount": "\(currentmoney) \(currency.uppercased())",
+                    "toAmount": "\(newMoney) \(currency.uppercased())",]) // transaction log
+                self.alert(title: "Transaction", message: "\(amount) \(currency.uppercased()) has been added to your account")
             } else {
-                print("document does not exist")
+                print("can't get doc")
             }
             if let error = error {
                 print("Error: \(error)")
             }
         }
-        
     }
     
     func alert(title:String, message:String){

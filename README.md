@@ -9,3 +9,7 @@ A centralised monetary system that incorporates the transaction of money, tracki
 
 ##
 basically a wallet app.
+---
+PayPal account (sandbox)
+username: kh@lmao.com
+password: Kheehing1234
