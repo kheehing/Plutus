@@ -210,7 +210,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bry-qr-MKO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Budget" id="996-FQ-saa"/>
+                    <navigationItem key="navigationItem" title="Budget" id="996-FQ-saa">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="RfK-TL-rQU">
+                            <connections>
+                                <segue destination="fYb-62-zow" kind="show" id="zfM-W0-e1Q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="budgetAmt" destination="1xp-KP-z5w" id="c7E-BR-d71"/>
                         <outlet property="cardTest" destination="kRR-Se-ncD" id="lTx-HJ-NwN"/>
@@ -228,6 +234,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENF-qD-yAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="53.571428571428569"/>
+        </scene>
+        <!--Statistics-->
+        <scene sceneID="hgm-hx-xAo">
+            <objects>
+                <viewController id="fYb-62-zow" customClass="ChartViewController" customModule="Plutus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="12a-xO-v5d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uR8-ks-HyE" customClass="CustomView" customModule="Plutus" customModuleProvider="target">
+                                <rect key="frame" x="20" y="109" width="374" height="397"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Balance Trend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emh-Wy-ONV">
+                                        <rect key="frame" x="19" y="0.0" width="180" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGD 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HJ-5e-wmg">
+                                        <rect key="frame" x="19" y="89" width="70" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cA-0d-ZkW">
+                                        <rect key="frame" x="19" y="60" width="46" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQB-L4-JLl" customClass="Chart" customModule="SwiftChart">
+                                        <rect key="frame" x="0.0" y="124" width="374" height="253"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Gbf-Ua-SNN"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Statistics" id="Gid-fj-MCK"/>
+                    <connections>
+                        <outlet property="chartView" destination="LQB-L4-JLl" id="KcD-5l-PMM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bwl-Iq-Y5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="750.66964285714278"/>
         </scene>
         <!--Edit Budget-->
         <scene sceneID="why-dp-Rqd">

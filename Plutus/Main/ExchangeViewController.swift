@@ -39,6 +39,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         super.viewDidLoad()
         fromPickerValue = ""
         toPickerValue = ""
+        self.hideKeyboardWhenTappedAround()
         self.title = "Exchange"
         db = Firestore.firestore()
         db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")

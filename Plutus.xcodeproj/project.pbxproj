@@ -26,6 +26,12 @@
 		0E62371C23E9554200C8F9C0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62370E23E9554200C8F9C0 /* DetailsViewController.swift */; };
 		0E62371D23E9554200C8F9C0 /* BillSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62370F23E9554200C8F9C0 /* BillSplitViewController.swift */; };
 		0E62371E23E9554200C8F9C0 /* SelectPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62371023E9554200C8F9C0 /* SelectPayViewController.swift */; };
+		0E62EC5123EDDDA700FB0867 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62EC5023EDDDA700FB0867 /* ChartViewController.swift */; };
+		0E62EC5323EE525200FB0867 /* SwiftChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E62EC5223EE525200FB0867 /* SwiftChart.framework */; };
+		0E62EC5523EF1EC000FB0867 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62EC5423EF1EC000FB0867 /* testViewController.swift */; };
+		0E62EC5723EF298500FB0867 /* QRGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62EC5623EF298500FB0867 /* QRGViewController.swift */; };
+		0E62EC5923EF372F00FB0867 /* QRImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62EC5823EF372F00FB0867 /* QRImageViewController.swift */; };
+		0E62EC5B23EF4CCA00FB0867 /* AfterScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62EC5A23EF4CCA00FB0867 /* AfterScanViewController.swift */; };
 		0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122B323CF7FF200F79724 /* ViewExpViewController.swift */; };
 		0EA122B623CF7FF200F79724 /* AddExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122B423CF7FF200F79724 /* AddExpViewController.swift */; };
 		0EA122BC23CF811600F79724 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA122BB23CF811600F79724 /* UIView+Extensions.swift */; };
@@ -100,6 +106,12 @@
 		0E62370E23E9554200C8F9C0 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0E62370F23E9554200C8F9C0 /* BillSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillSplitViewController.swift; sourceTree = "<group>"; };
 		0E62371023E9554200C8F9C0 /* SelectPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPayViewController.swift; sourceTree = "<group>"; };
+		0E62EC5023EDDDA700FB0867 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		0E62EC5223EE525200FB0867 /* SwiftChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E62EC5423EF1EC000FB0867 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		0E62EC5623EF298500FB0867 /* QRGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGViewController.swift; sourceTree = "<group>"; };
+		0E62EC5823EF372F00FB0867 /* QRImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRImageViewController.swift; sourceTree = "<group>"; };
+		0E62EC5A23EF4CCA00FB0867 /* AfterScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterScanViewController.swift; sourceTree = "<group>"; };
 		0EA122B323CF7FF200F79724 /* ViewExpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExpViewController.swift; sourceTree = "<group>"; };
 		0EA122B423CF7FF200F79724 /* AddExpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpViewController.swift; sourceTree = "<group>"; };
 		0EA122BB23CF811600F79724 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Extensions/UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -148,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E62EC5323EE525200FB0867 /* SwiftChart.framework in Frameworks */,
 				7DBBAEC5C484F1BA4426E5ED /* Pods_Plutus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +193,7 @@
 				0E28A85C2398A7B700F7DBED /* BudgetMainViewController.swift */,
 				0E28A85E2398A7B700F7DBED /* CustomProgressView.swift */,
 				5183AE5E23D0236A00B045EA /* Expense.swift */,
+				0E62EC5023EDDDA700FB0867 /* ChartViewController.swift */,
 			);
 			path = Budgeting;
 			sourceTree = "<group>";
@@ -208,6 +222,7 @@
 		3A89A49D8EE0D0566BE33A1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E62EC5223EE525200FB0867 /* SwiftChart.framework */,
 				A7CFFF28767EFD860DA6DA28 /* Pods_Plutus.framework */,
 				08F0A3AE4C82B7FE41828F61 /* Pods_Plutus_PlutusUITests.framework */,
 				F73885A222FE777EAB5A0289 /* Pods_PlutusTests.framework */,
@@ -262,6 +277,10 @@
 				5146CAAC23E3E79C002C34E5 /* ExchangeViewController.swift */,
 				513070A923EBF4AD00BAF400 /* topUpViewController.swift */,
 				513095E323ED515000620827 /* QRViewController.swift */,
+				0E62EC5423EF1EC000FB0867 /* testViewController.swift */,
+				0E62EC5623EF298500FB0867 /* QRGViewController.swift */,
+				0E62EC5823EF372F00FB0867 /* QRImageViewController.swift */,
+				0E62EC5A23EF4CCA00FB0867 /* AfterScanViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -599,8 +618,10 @@
 				0E62371223E9554200C8F9C0 /* ItemCellTableViewCell.swift in Sources */,
 				51170C6E23E9503500396AC7 /* SavingSummaryViewController.swift in Sources */,
 				0E62371B23E9554200C8F9C0 /* PeopleViewController.swift in Sources */,
+				0E62EC5523EF1EC000FB0867 /* testViewController.swift in Sources */,
 				51170C6F23E9503500396AC7 /* SavingConfirmViewController.swift in Sources */,
 				51301BCB23C3195700134ED5 /* CreateProfilePageViewController.swift in Sources */,
+				0E62EC5723EF298500FB0867 /* QRGViewController.swift in Sources */,
 				0E62371C23E9554200C8F9C0 /* DetailsViewController.swift in Sources */,
 				51170C6A23E9503500396AC7 /* SavingHistoryViewController.swift in Sources */,
 				0E62371823E9554200C8F9C0 /* ProductCellTableViewCell.swift in Sources */,
@@ -621,7 +642,9 @@
 				5197EFFF238F62D2005BC7F0 /* AppDelegate.swift in Sources */,
 				51170C7523E9503C00396AC7 /* ChatbotViewController.swift in Sources */,
 				0E28A8612398A7B700F7DBED /* CustomProgressView.swift in Sources */,
+				0E62EC5923EF372F00FB0867 /* QRImageViewController.swift in Sources */,
 				5183AE5F23D0236A00B045EA /* Expense.swift in Sources */,
+				0E62EC5123EDDDA700FB0867 /* ChartViewController.swift in Sources */,
 				0E62371723E9554200C8F9C0 /* ContactsTableViewCell.swift in Sources */,
 				51170C7623E9503C00396AC7 /* MessageUI.swift in Sources */,
 				0E62371E23E9554200C8F9C0 /* SelectPayViewController.swift in Sources */,
@@ -631,6 +654,7 @@
 				0EA122B523CF7FF200F79724 /* ViewExpViewController.swift in Sources */,
 				511580B923A8842800F006F3 /* HomePageViewController.swift in Sources */,
 				5127488C239636D50006B33F /* Terms_ConditionsViewController.swift in Sources */,
+				0E62EC5B23EF4CCA00FB0867 /* AfterScanViewController.swift in Sources */,
 				0E62371423E9554200C8F9C0 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,13 +823,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NX35LULALS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Plutus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -821,13 +845,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NX35LULALS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Plutus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = plutus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.plutus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plutus/Main/Plutus-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -891,7 +915,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -914,7 +938,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

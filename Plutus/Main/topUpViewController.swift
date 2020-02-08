@@ -23,6 +23,7 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         db = Firestore.firestore()
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        self.hideKeyboardWhenTappedAround()
         self.navigationController?.isNavigationBarHidden = false
         braintreeClient = BTAPIClient(authorization: "sandbox_w3ry6mkv_dqz5p667pcwdq44y")!
         self.title = "PayPal TopUp"
@@ -51,10 +52,8 @@ class topUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 //                let shippingAddress = tokenizedPayPalAccount.shippingAddres
                 // function that add and minus money
             } else if let error = error {
-                // Handle error here...
                 print("Error: \(error)")
             } else {
-                // Buyer canceled payment approval
                 print("Cancelled payment")
             }
         }

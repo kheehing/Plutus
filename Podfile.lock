@@ -374,6 +374,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.11.3)
+  - SwiftChart (1.0.1)
 
 DEPENDENCIES:
   - ApiAI
@@ -387,6 +388,7 @@ DEPENDENCIES:
   - FirebaseMLVision
   - Hero
   - MultiProgressView
+  - SwiftChart
 
 SPEC REPOS:
   trunk:
@@ -421,6 +423,7 @@ SPEC REPOS:
     - MultiProgressView
     - nanopb
     - Protobuf
+    - SwiftChart
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -454,7 +457,8 @@ SPEC CHECKSUMS:
   MultiProgressView: 65e5bb8181687099ade56d16d85d245a92fafa96
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
 
-PODFILE CHECKSUM: 508af5f62090ad9b62ee7102a2ed9ef99b9926d8
+PODFILE CHECKSUM: cfa123a3e0ce72f83cb0fcde890ed60991210f51
 
 COCOAPODS: 1.8.4

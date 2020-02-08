@@ -38,6 +38,7 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        self.hideKeyboardWhenTappedAround()
         self.title = "Transfer"
         db = Firestore.firestore()
         db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet")
@@ -72,7 +73,7 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.view.addSubview(toolBar)
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(false)
     }
     
@@ -142,7 +143,7 @@ class TransferViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                                     "transferer": Auth.auth().currentUser!.displayName!,
                                                     "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
                                                     "time": Timestamp(date: Date()),
-                                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
+                                                    "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferee
                                                 if let navController = self.navigationController {
                                                     navController.popViewController(animated: true)
                                                 }

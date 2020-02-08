@@ -14,6 +14,7 @@ target 'Plutus' do
   pod 'Firebase/Firestore'
 
   pod 'MultiProgressView'
+  pod 'SwiftChart'
   pod 'ApiAI'
   pod 'FirebaseMLVision'
   pod 'Firebase/MLVisionTextModel'

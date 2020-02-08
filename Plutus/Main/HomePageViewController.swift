@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import SwiftChart
 
 class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet var nameLabel: UILabel!
@@ -8,6 +9,7 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var savingBalanceCurrency: UIButton!
     @IBOutlet weak var currentBalance: UILabel!
     @IBOutlet weak var savingBalance: UILabel!
+    @IBOutlet weak var chartView: Chart!
     
     var db: Firestore!
     var toolBar = UIToolbar()
@@ -30,6 +32,34 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        for i in 0...4 {
+//
+//            let sevenDaysAgo = NSCalendar.current.date(byAdding: .day, value: -i, to: Date())
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.timeStyle = DateFormatter.Style.none
+//            dateFormatter.dateStyle = DateFormatter.Style.short
+//            dateFormatter.dateFormat = "dd/MM/yy"
+//
+//            timeInterval.append(sevenDaysAgo!.timeIntervalSince1970)
+//            print(dateFormatter.string(from: sevenDaysAgo!))
+//
+//        }
+        
+        let dataChart = [
+            (x: 0, y: 0),
+            (x: 1, y: 3.1),
+            (x: 4, y: 2),
+            (x: 5, y: -4.2),
+            (x: 7, y: 5),
+            (x: 9, y: 9),
+            (x: 10, y: 8)
+        ]
+        let series = ChartSeries(data: dataChart)
+        series.area = true
+        
+        chartView.add(series)
+        
         self.navigationController?.isNavigationBarHidden = true
         nameLabel.text = Auth.auth().currentUser?.displayName ?? ""
         db = Firestore.firestore()
@@ -83,7 +113,8 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     print("Error feteching currency Type")
                     return
                 }
-                guard let walletAmount:Double = data2[walletCurrency] as? Double else {
+                print(walletCurrency)
+                guard let walletAmount:Double = data2[walletCurrency.lowercased()] as? Double else {
                     print("Error feteching amount")
                     return
                 }
@@ -91,7 +122,7 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     print("Error feteching currency Type")
                     return
                 }
-                guard let savingAmount:Double = data3[savingCurrency] as? Double else {
+                guard let savingAmount:Double = data3[savingCurrency.lowercased()] as? Double else {
                     print("Error feteching amount")
                     return
                 }
@@ -155,7 +186,7 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.view.addSubview(toolBar)
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(false)
     }
     
@@ -176,8 +207,10 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func paymentOnClick(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let transferAction = UIAlertAction(title: "QR scan", style: .default, handler: QRhandler)
-        optionMenu.addAction(transferAction)
+        let QRScanAction = UIAlertAction(title: "Scan QR", style: .default, handler: QRScanhandler)
+        optionMenu.addAction(QRScanAction)
+        let QRGenerateAction = UIAlertAction(title: "Generate QR", style: .default, handler: QRGeneratehandler)
+        optionMenu.addAction(QRGenerateAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
@@ -194,7 +227,10 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     }
-    func QRhandler(alert: UIAlertAction!){
+    func QRGeneratehandler(alert: UIAlertAction!){
+        performSegue(withIdentifier: "toQRG", sender: nil)
+    }
+    func QRScanhandler(alert: UIAlertAction!){
         performSegue(withIdentifier: "toQR", sender: nil)
     }
     func transferhandler(alert: UIAlertAction!){
@@ -212,5 +248,17 @@ extension Double {
     func roundTo(places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
