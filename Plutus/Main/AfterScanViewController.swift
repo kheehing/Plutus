@@ -6,6 +6,7 @@ class AfterScanViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var TransfereeTextField: UITextField!
+    @IBOutlet weak var CABLabel: UILabel!
     
     var db:Firestore!
     var amount:Int = 0
@@ -46,6 +47,7 @@ class AfterScanViewController: UIViewController {
             }
             if let document = snapshot {
                 self.transfererBalance = document.data()![self.currency.lowercased()]! as! Int
+                self.CABLabel.text = "Current Balance: \(self.transfererBalance) \(self.currency.uppercased())"
             }
         }
     }
