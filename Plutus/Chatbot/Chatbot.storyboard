@@ -68,9 +68,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="send" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-Fh-pnb">
-                                <rect key="frame" x="171" y="733" width="71" height="30"/>
+                                <rect key="frame" x="149" y="733" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Budgeting"/>
+                                <state key="normal" title="Transfer Amount"/>
                                 <connections>
                                     <action selector="budgetBtnPressed:" destination="YTJ-fm-tIV" eventType="touchUpInside" id="3q3-pJ-qT4"/>
                                 </connections>

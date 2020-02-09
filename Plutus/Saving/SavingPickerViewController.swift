@@ -24,6 +24,13 @@ class SavingPickerViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
 self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
+        alert(title: "Alert", message: "Amount will be deducted when saved")
+    }
+    
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "close", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 

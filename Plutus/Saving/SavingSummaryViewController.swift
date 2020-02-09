@@ -18,7 +18,8 @@ class SavingSummaryViewController: UIViewController, UITableViewDelegate, UITabl
     var savingOften = 0
     var savingAmt = 0
     var savingDate = Date()
-    
+    let currentUserID:String = Auth.auth().currentUser!.uid
+    var ttsv = [String : Any]()
     
     @IBOutlet weak var savingStatement: UILabel!
     @IBOutlet weak var totalSavingValue: UILabel!
@@ -26,15 +27,20 @@ class SavingSummaryViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var savingHistoryTableView: UITableView!
     @IBOutlet weak var viewMoreBtn: UIButton!
     
+    @IBOutlet weak var currentSavingValue: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         savingHistoryTableView.rowHeight = savingHistoryTableView.frame.height / 3.45
         self.viewMoreBtn.isHidden = true
         db = Firestore.firestore()
+        
+        
+
+        
         let group = DispatchGroup()
         group.enter()
 self.navigationController?.isNavigationBarHidden = false
-        _ = db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true)
+        db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -50,7 +56,7 @@ self.navigationController?.isNavigationBarHidden = false
                 }
         }
         
-        let data2 = db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true).limit(to: 1)
+        db.collection("savings").whereField("name", isEqualTo: "Afiq").order(by: "date", descending: true).limit(to: 1)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -63,6 +69,19 @@ self.navigationController?.isNavigationBarHidden = false
                     }
                 }
         }
+        
+        
+        
+        db.collection("users").document("\(self.currentUserID)").collection("balanceSaving")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching documents3: \(error!)")
+                    return
+                }
+               
+                self.ttsv = document.data()!
+        }
+
         
         initSavingStatement(0, 0)
         
@@ -151,6 +170,12 @@ self.navigationController?.isNavigationBarHidden = false
                 self.viewMoreBtn.isHidden = false
             }
             self.totalSavingValue.text = "$\(self.totalSavings)"
+            if self.ttsv["sgd"] != nil {
+                self.currentSavingValue.text = "$\(self.ttsv["sgd"]!)"
+            }
+            else {
+                self.currentSavingValue.text = "$\(self.ttsv["sgd"])"
+            }
             self.initSavingStatement(self.savingOften, self.savingAmt)
         }
         if savingHist.count > 3 {
@@ -192,6 +217,210 @@ self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(v, animated: true)
     }
     
+    @IBAction func takeOutSaving(_ sender: Any) {
+        var data = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data2 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data3 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        db.collection("users").document("\(currentUserID)").addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document1: \(error!)")
+                return
+            }
+            data = document.data()!
+        }
+        db.collection("users").document("\(self.currentUserID)").collection("balanceWallet")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document2: \(error!)")
+                    return
+                }
+                data2 = document.data()!
+        }
+        db.collection("users").document("\(self.currentUserID)").collection("balanceSaving")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching documents3: \(error!)")
+                    return
+                }
+                data3 = document.data()!
+        }
+        
+        func dataValueOnChange(){
+            if (!data.isEmpty && !data2.isEmpty && !data3.isEmpty){
+
+                guard let walletAmount1:Int = data2["sgd"] as? Int else {
+                    print("Error feteching amount1")
+                    return
+                }
+
+                guard let savingAmount1:Int = data3["sgd"] as? Int else {
+                    print("Error feteching amount2")
+                    return
+                }
+                
+//                guard let walletAmount2:Int = data2["usd"] as? Int else {
+//                    print("Error feteching amount1")
+//                    return
+//                }
+//
+//                guard let savingAmount2:Int = data3["usd"] as? Int else {
+//                    print("Error feteching amount2")
+//                    return
+//                }
+                
+            db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else { self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" :  walletAmount1 + savingAmount1 ])
+                        
+                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceSaving").document("currency").updateData([ "sgd" :  savingAmount1 - savingAmount1 ])
+                        
+                        
+//                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "usd" :  walletAmount2 + savingAmount2 ])
+//
+//                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceSaving").document("currency").updateData([ "usd" :  savingAmount2 - savingAmount2 ])
+                        
+                        if let navController = self.navigationController {
+                            navController.popViewController(animated: true)
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+
+    @IBAction func depositSaving(_ sender: Any) {
+        var data = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data2 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        var data3 = [String : Any](){
+            didSet{
+                DispatchQueue.main.async {
+                    dataValueOnChange()
+                }
+            }
+        };
+        db.collection("users").document("\(currentUserID)").addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document1: \(error!)")
+                return
+            }
+            data = document.data()!
+        }
+        db.collection("users").document("\(self.currentUserID)").collection("balanceWallet")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document2: \(error!)")
+                    return
+                }
+                data2 = document.data()!
+        }
+        db.collection("users").document("\(self.currentUserID)").collection("balanceSaving")
+            .document("currency").addSnapshotListener{ documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching documents3: \(error!)")
+                    return
+                }
+                data3 = document.data()!
+        }
+        
+        func dataValueOnChange(){
+            if (!data.isEmpty && !data2.isEmpty && !data3.isEmpty){
+                
+                guard let walletAmount1:Int = data2["sgd"] as? Int else {
+                    print("Error feteching amount1")
+                    return
+                }
+                
+                guard let savingAmount1:Int = data3["sgd"] as? Int else {
+                    print("Error feteching amount2")
+                    return
+                }
+                
+//                guard let walletAmount2:Int = data2["usd"] as? Int else {
+//                    print("Error feteching amount1")
+//                    return
+//                }
+//
+//                guard let savingAmount2:Int = data3["usd"] as? Int else {
+//                    print("Error feteching amount2")
+//                    return
+//                }
+                
+                db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" :  walletAmount1 - self.savingAmt])
+                        
+                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceSaving").document("currency").updateData([ "sgd" :  savingAmount1 + self.savingAmt ])
+                        
+//                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "usd" :  walletAmount2 - self.savingAmt ])
+//
+//                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceSaving").document("currency").updateData([ "usd" :  savingAmount2 + self.savingAmt ])
+                        
+//                            self.db.collection("savings").addDocument(data: [
+//                                "name": "Afiq",
+//                                "amount": self.savingAmt,
+//                                "savingOften": self.savingOften,
+//                                "date": NSDate()
+//                            ]) { err in
+//                                if let err = err {
+//                                    print("Error adding document: \(err)")
+//                                } else {
+//                                    print("Document added")
+//                                }
+//                            }
+                        
+                        
+                        if let navController = self.navigationController {
+                            navController.popViewController(animated: true)
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "close", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     /*
     // MARK: - Navigation
 
