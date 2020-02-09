@@ -30,6 +30,9 @@ password: Kheehing1234
 ## Built With
 
 * [Firestore](https://firebase.google.com/docs/firestore) - The database used
+* [Swift 4.2](https://swift.org/blog/swift-4-2-released/) - The programming language used
+* [Xcode](https://developer.apple.com/xcode/) - The IDE used
+
 ### Pods
 * [MultiProgressView](https://cocoapods.org/pods/MultiProgressView) - used by Yodi for budgeting
 * [SwiftChart](https://cocoapods.org/pods/SwiftChart) - used by Yodi for budgeting
