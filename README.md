@@ -45,7 +45,7 @@ password: Kheehing1234
 
 Not accepting any contribution, because this is a school project.
 
-## Authors
+## contributor
 
 * **[Afiq](https://github.com/afiqali)** 
 * **[Kai Keat]()** 
