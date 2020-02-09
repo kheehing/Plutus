@@ -3,15 +3,18 @@ import Firebase
 import FirebaseFirestore
 import SwiftChart
 
-class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var currentBalanceCurrency: UIButton!
     @IBOutlet var savingBalanceCurrency: UIButton!
     @IBOutlet weak var currentBalance: UILabel!
     @IBOutlet weak var savingBalance: UILabel!
     @IBOutlet weak var chartView: Chart!
+    @IBOutlet weak var chartBalance: UILabel!
     
     var db: Firestore!
+    var chartData: [ChartData] = []
+    var walletBalance2: Double = 0
     var toolBar = UIToolbar()
     var picker = UIPickerView()
     var selection:String = ""
@@ -32,33 +35,6 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        for i in 0...4 {
-//
-//            let sevenDaysAgo = NSCalendar.current.date(byAdding: .day, value: -i, to: Date())
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.timeStyle = DateFormatter.Style.none
-//            dateFormatter.dateStyle = DateFormatter.Style.short
-//            dateFormatter.dateFormat = "dd/MM/yy"
-//
-//            timeInterval.append(sevenDaysAgo!.timeIntervalSince1970)
-//            print(dateFormatter.string(from: sevenDaysAgo!))
-//
-//        }
-        
-        let dataChart = [
-            (x: 0, y: 0),
-            (x: 1, y: 3.1),
-            (x: 4, y: 2),
-            (x: 5, y: -4.2),
-            (x: 7, y: 5),
-            (x: 9, y: 9),
-            (x: 10, y: 8)
-        ]
-        let series = ChartSeries(data: dataChart)
-        series.area = true
-        
-        chartView.add(series)
         
         self.navigationController?.isNavigationBarHidden = true
         nameLabel.text = Auth.auth().currentUser?.displayName ?? ""
@@ -137,6 +113,114 @@ class HomePageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        chartData.removeAll()
+        getChartData()
+    }
+    
+    func chartInitialize() {
+        
+        chartView.removeAllSeries()
+        
+        let sortedMovie = chartData.sorted {$0.date < $1.date}
+        
+        var seriesData: [Double] = []
+        var labels: [Double] = []
+        var labelString: Array<String> = []
+        var currentBal: Double = Double(walletBalance2)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.dateFormat = "dd/MM"
+        
+        for (i, value) in sortedMovie.enumerated() {
+            
+            let getAmt = value.amount.prefix(value.amount.count - 4)
+//            if (value.xferer == "") {
+//                let frmAmt = Double(value.amount.prefix(value.amount.count - 4))
+//                let toAmt = Double(value.xferee.prefix(value.amount.count - 4))
+//
+//                getAmt =
+//            }
+            
+            var newAmt: Double = 0
+            
+            print(Double(getAmt)!)
+            if (value.xferer != "") {
+                if (Auth.auth().currentUser?.displayName == value.xferee) {
+                    newAmt = currentBal - Double(getAmt)!
+                } else {
+                    newAmt = currentBal + Double(getAmt)!
+                    
+                }
+            } else {
+                newAmt = currentBal - Double(getAmt)!
+            }
+            
+        
+            seriesData.append(newAmt)
+            currentBal = newAmt
+            
+            let onlyDate = dateFormatter.string(from: value.date)
+//            print(value.date)
+//            print(onlyDate)
+            
+            if (labels.count == 0 || labelString.last != onlyDate) {
+                
+                labels.append(Double(i))
+                labelString.append(onlyDate)
+            }
+        }
+        
+        for i in 0...4 {
+            
+            let sevenDaysAgo = NSCalendar.current.date(byAdding: .day, value: i, to: Date())
+            
+            labelString.append(dateFormatter.string(from: sevenDaysAgo!))
+            
+        }
+        
+        print("\(seriesData)  \(labels)")
+        let series = ChartSeries(seriesData.reversed())
+        series.area = true
+        
+        chartView.minY = 0
+        chartView.xLabels = labels
+        chartView.xLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
+            return labelString[labelIndex]
+        }
+        
+        chartView.add(series)
+        chartBalance.text = "\(String(format: "%.2f", walletBalance2)) SGD"
+        
+    }
+    
+    func getChartData() {
+        db = Firestore.firestore()
+        let transaction = db.collection("users").document("\(currentUserID)").collection("transaction").whereField("type", in: ["transfer"])
+        
+        let walletBalance = db.collection("users").document("\(currentUserID)").collection("balanceWallet")
+        
+        transaction.getDocuments() { (snapshot, err) in
+            if let err = err {
+                print("Error in retrieving chart data: \(err)")
+            } else {
+                for data in snapshot!.documents {
+                    self.chartData.append(ChartData((data["time"] as AnyObject).dateValue(), data["amount"] as? String ?? data["fromAmount"] as! String, data["transferee"] as? String ?? data["toAmount"] as! String, data["transferer"] as? String ?? "", data["type"] as! String))
+                }
+                
+                walletBalance.getDocuments() { (snapshot2, err2 ) in
+                    if let err2 = err2 {
+                        print("Error in retrieving wallet balance: \(err2)")
+                    } else {
+                        for data in snapshot2!.documents {
+                           self.walletBalance2 = data["sgd"] as! Double
+                        }
+                    }
+                    self.chartInitialize()
+                }
+            }
+        }
     }
     
     @IBAction func SignOutOnClick(_ sender: Any) {

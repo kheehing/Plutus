@@ -1020,6 +1020,7 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="CBd-lI-8ei"/>
                     <connections>
+                        <outlet property="chartBalance" destination="hWk-fA-96O" id="Ltb-5p-hhF"/>
                         <outlet property="chartView" destination="9gV-32-SDs" id="h3u-YY-kKl"/>
                         <outlet property="currentBalance" destination="BO1-Z4-GW1" id="DS6-FL-kUC"/>
                         <outlet property="currentBalanceCurrency" destination="5Mq-87-p1f" id="dlb-EP-YWF"/>
@@ -1273,8 +1274,8 @@ Pulvinar mattis nunc sed blandit libero. Nisl tincidunt eget nullam non nisi est
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-qP-exB">
-                                <rect key="frame" x="182.5" y="439" width="49" height="30"/>
-                                <state key="normal" title="Proced"/>
+                                <rect key="frame" x="178.5" y="439" width="57" height="30"/>
+                                <state key="normal" title="Proceed"/>
                                 <connections>
                                     <action selector="SubmitOnClick:" destination="KnO-ly-XU1" eventType="touchUpInside" id="ICU-0Q-8UW"/>
                                 </connections>

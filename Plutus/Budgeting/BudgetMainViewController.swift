@@ -40,6 +40,7 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     var totalSpent: Double! = 0.00
     var db: Firestore!
     var expense: [Expense] = []
+    var chartData: [ChartData] = []
     
     var currentSpent: Int!
     
@@ -55,6 +56,8 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
     }
     
     func loadData() {
+        let transaction = db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("transaction").whereField("type", in: ["Bills", "Entertainment", "Food", "Transportation", "Others"])
+        
         db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("budget").getDocuments() { (QuerySnapshot, err)  in
             if let err = err {
                 print("error getting docs \(err)")
@@ -62,8 +65,17 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
                 for document in QuerySnapshot!.documents {
                     self.expense.append(Expense(document["categories"] as! String, document["description"] as! String, document["budget"] as! String, document["spent"] as! String))
                 }
+                transaction.getDocuments() { (snapshot, err2) in
+                    if let err2 = err2 {
+                        print("error retrieving transaction data budget: \(err2)")
+                    } else {
+                        for data in snapshot!.documents {
+                            self.chartData.append(ChartData((data["time"] as AnyObject).dateValue(), data["amount"] as! String , data["transferee"] as! String, data["transferer"] as! String, data["type"] as! String))
+                        }
+                    }
+                    self.checkSpent()
+                }
             }
-            self.checkAmtLabel()
         }
     }
     
@@ -115,6 +127,18 @@ class BudgetMainViewController: UIViewController, UITableViewDelegate ,UITableVi
             self.spendAmtLabel.text = "You have exceeded your budget!"
             budgetOver = true
         }
+    }
+    
+    func checkSpent() {
+        
+        for i in 0..<chartData.count {
+            
+           let changedAmount = Double(chartData[i].amount.prefix(chartData[i].amount.count - 4))
+            db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("budget").document(chartData[i].type).updateData([
+            "spent": "\(String(format: "%.2f", changedAmount!))"])
+        }
+        
+        self.checkAmtLabel()
     }
     
     private func animatedProgress(_ progressView: CustomProgressView, progress: Float, percentage: Int) {
