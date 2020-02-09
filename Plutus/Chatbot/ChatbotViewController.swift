@@ -9,6 +9,8 @@
 import UIKit
 import ApiAI
 import AVFoundation
+import FirebaseFirestore
+import Firebase
 
 class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,11 +20,17 @@ class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDa
     
     let speechSynthesizer = AVSpeechSynthesizer()
     var messages = [String]()
+    var db: Firestore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
+        db = Firestore.firestore()
+        let initializeMsg = "Welcome back, \(Auth.auth().currentUser?.displayName ?? "Anonymous")"
+        self.reloadChatData(message: initializeMsg)
+        self.speechAndText(text: initializeMsg)
+        GlobalMsgCounter.counter = 1
         
     }
     
@@ -37,6 +45,10 @@ class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDa
         cell.textLabel?.text = messages[indexPath.row]
             
         return cell
+    }
+    
+    @objc override func dismissKeyboard() {
+        view.endEditing(false)
     }
     
     // Global counter for Default Welcome Intent
@@ -89,6 +101,7 @@ class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDa
     // Customized response based on Intent dectection
     func responseToIntent(_ response: AIResponse, _ textResponse: String) {
         let intent = response.result.metadata.intentName
+        let entity = response.result.parameters!
         
         if intent != "" {
             print(intent!)
@@ -101,17 +114,119 @@ class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDa
                 self.reloadChatData(message: reply)
                 self.speechAndText(text: reply)
             }
-            else if intent == "Bill Split" {
+            else if intent == "Bill Split - yes - custom" {
+                let unitCurrency = entity["unit-currency"] as! AIResponseParameter
+                
+                let phoneNumber = entity["phone-number"] as! AIResponseParameter
+                
+                var amt = unitCurrency.stringValue!
+                if amt.count > 0 {
+                    amt.remove(at: amt.startIndex)
+                }
+                
+                print(amt)
+                print(phoneNumber.stringValue!)
+    
                 self.reloadChatData(message: reply)
                 self.speechAndText(text: reply)
                 
-                // head to bill split page..?
+                reply = "A total of $\(amt) has been billed to \(phoneNumber.stringValue!)"
+                self.reloadChatData(message: reply)
+                self.speechAndText(text: reply)
+                
+                
             }
-            else if intent == "Budgeting" {
-                self.reloadChatData(message: reply)
-                self.speechAndText(text: reply)
+            else if intent == "TransferAmt - custom" {
+                let unitCurrency = entity["unit-currency"] as! AIResponseParameter
                 
-                // head to budgeting page..?
+                let phoneNumber = entity["phone-number"] as! AIResponseParameter
+                
+                var amt = unitCurrency.stringValue!
+                if amt.count > 0 {
+                    amt.remove(at: amt.startIndex)
+                }
+
+                print(amt)
+                print(phoneNumber.stringValue!)
+                
+                db.collection("users").document("\(Auth.auth().currentUser!.uid)").collection("balanceWallet").document("currency").getDocument{ (snapshot,err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        let sData = snapshot!.data()!
+                        let amountType = "sgd"
+                        let amountBank = sData["\(amountType)"]!
+                        let amountEntered:Int = Int(amt)!
+                        let mobileNumber = phoneNumber.stringValue!
+                        if (Int("\(amountBank)")! < Int(amountEntered)) {
+                            //self.alert(title: "Invalid number", message: "Your bank doesn't have $\(amountEntered) \(amountType.uppercased()), \nit only has $\(amountBank) \(amountType.uppercased()).")
+                            //
+                            // ur bank does not have enough balanace, only have amoutBank balance
+                            reply = "Your bank doesn't have $\(amountEntered) SGD, it only has $\(amountBank) SGD"
+                            self.reloadChatData(message: reply)
+                            self.speechAndText(text: reply)
+                            
+                        } else if ("+65\(mobileNumber)" == Auth.auth().currentUser!.phoneNumber!){
+                            //self.alert(title: "Error", message: "you can not transfer money to yourself.")
+                            //
+                            // cannot xfer to self
+                            reply = "You cannot transfer money to yourself!"
+                            self.reloadChatData(message: reply)
+                            self.speechAndText(text: reply)
+                        } else {
+                            self.db.collection("users").whereField("mobileNumber", isEqualTo: "+65\(mobileNumber)").getDocuments(){ (Tsnapshot, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                } else {
+                                    if (Tsnapshot!.isEmpty){
+                                        //self.alert(title: "Invalid number", message: "the mobile number does not exist in out database, please check if you have entered the correct number.")
+                                        //
+                                        // invalid phone number
+                                        reply = "The mobile number does not exist in our database, please check if you have entered the correct number."
+                                        self.reloadChatData(message: reply)
+                                        self.speechAndText(text: reply)
+                                    } else {
+                                        for document in Tsnapshot!.documents {
+                                            self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").getDocument{ (snapshott,err) in
+                                                if let err = err {
+                                                    print("Error getting documents: \(err)")
+                                                } else {
+                                                    
+                                                    self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshot!.data()![amountType] as! Int - amountEntered ]) // transferer
+                                                    
+                                                    self.db.collection("users").document(document.documentID).collection("balanceWallet").document("currency").updateData([ "sgd" : snapshott!.data()![amountType] as! Int + amountEntered ]) // transferee
+                                                    
+                                                    self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("transaction").addDocument(data: [
+                                                        "type": "transfer",
+                                                        "transferer": Auth.auth().currentUser!.displayName!,
+                                                        "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
+                                                        "time": Timestamp(date: Date()),
+                                                        "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferer
+                                                    
+                                                    self.db.collection("users").document(document.documentID).collection("transaction").addDocument(data: [
+                                                        "type": "transfer",
+                                                        "transferer": Auth.auth().currentUser!.displayName!,
+                                                        "transferee": "\(document.data()["firstName"]!) \(document.data()["lastName"]!)",
+                                                        "time": Timestamp(date: Date()),
+                                                        "amount": "\(amountEntered) \(amountType.uppercased())",]) // transferee
+                                                }
+                                            }
+                                        }
+                                        self.reloadChatData(message: reply)
+                                        self.speechAndText(text: reply)
+                                        reply = "You have successfully transferred $\(amt) to \(phoneNumber.stringValue!)"
+                                        self.reloadChatData(message: reply)
+                                        self.speechAndText(text: reply)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+//                self.reloadChatData(message: reply)
+//                self.speechAndText(text: reply)
+                
             }
             else {
                 // Fallback response
@@ -156,11 +271,11 @@ class ChatbotViewController: UIViewController, UITextViewDelegate, UITableViewDa
     }
     
     @IBAction func budgetBtnPressed(_ sender: Any) {
-        sendTextToBot("Head to budgeting")
+        sendTextToBot("Transfer amount")
     }
     
     @IBAction func billSplitBtnPressed(_ sender: Any) {
-        sendTextToBot("How to split my bill?")
+        sendTextToBot("Bill split")
     }
     
     /*
