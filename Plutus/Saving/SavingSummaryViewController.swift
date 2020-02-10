@@ -298,9 +298,9 @@ self.navigationController?.isNavigationBarHidden = false
 //
 //                        self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("balanceSaving").document("currency").updateData([ "usd" :  savingAmount2 - savingAmount2 ])
                         
-                        if let navController = self.navigationController {
-                            navController.popViewController(animated: true)
-                        }
+//                        if let navController = self.navigationController {
+//                            //navController.popViewController(animated: true)
+//                        }
                         
                     }
                 }

@@ -200,6 +200,7 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                                     "toAmount": "\(amountCalculated) \(toAmountType.uppercased())",]) // transaction
                                     }
                                 }
+                        self.alert(title: "Exchange Completed", message: "You have changed from \(amountEntered) \(fromAmountType.uppercased()) to \(amountCalculated) \(toAmountType.uppercased())")
                             }
                         }
                     }
